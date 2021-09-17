@@ -1,91 +1,92 @@
 # Read4Share
 
-Semester 3 Individual Track Project
+[TOC]
 
-## Getting started
+## Intro
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+The goal of this project is to create an online platform that allows general users (especially students) to share new and second-hand books, either in free form or asking an amount of money.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+This platform doesn't aim to handle an eventual payment for the books exchange, but it will permit sellers and buyers to keep in touch each other through an online chat system.
 
-## Add your files
+### Example of operation
 
-- [ ] [Create](https://gitlab.com/-/experiment/new_project_readme_content:3d67e053e80c3debbc4497d6fa3ef73d?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://gitlab.com/-/experiment/new_project_readme_content:3d67e053e80c3debbc4497d6fa3ef73d?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://gitlab.com/-/experiment/new_project_readme_content:3d67e053e80c3debbc4497d6fa3ef73d?https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+- A user (the *seller*) wants to sell a book that he owns; the web app will allow him to create a new advertisement and to insert all the book's info (title, authors, ISBN, ecc...).
+-  Another user (the *buyer*) has seen a book advertisement and he would like to buy it; the web platform will allow him to contact the buyer and it will help him to make a purchase proposal for the book.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/IlPalazz/read4share.git
-git branch -M main
-git push -uf origin main
-```
+## Backlog
 
-## Integrate with your tools
+### Types of users
 
-- [ ] [Set up project integrations](https://gitlab.com/-/experiment/new_project_readme_content:3d67e053e80c3debbc4497d6fa3ef73d?https://docs.gitlab.com/ee/user/project/integrations/)
+- `viewer` - an unregistered/unlogged user
+- `seller` - a user who wants to sell/share a book
+- `buyer` - a user who wants to buy a book
+- `admin` - administrator of the platform
 
-## Collaborate with your team
+### User stories & Acceptance criteria
 
-- [ ] [Invite team members and collaborators](https://gitlab.com/-/experiment/new_project_readme_content:3d67e053e80c3debbc4497d6fa3ef73d?https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://gitlab.com/-/experiment/new_project_readme_content:3d67e053e80c3debbc4497d6fa3ef73d?https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://gitlab.com/-/experiment/new_project_readme_content:3d67e053e80c3debbc4497d6fa3ef73d?https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Automatically merge when pipeline succeeds](https://gitlab.com/-/experiment/new_project_readme_content:3d67e053e80c3debbc4497d6fa3ef73d?https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+#### As a *viewer* I want to...
 
-## Test and Deploy
+- visualize the entire book library so that I can choose something interesting for me
+  - *given that* the user has choosen a category of interest 
+- search for a specific book that I am interested in
+  - *given that* the user has entered some of the book's info (title, author, ISBN)
+- create a personal account so that I can chat with sellers
+  - *given that* the user is not already registered on the platform
 
-Use the built-in continuous integration in GitLab.
+#### As a *buyer* I want to...
 
-- [ ] [Get started with GitLab CI/CD](https://gitlab.com/-/experiment/new_project_readme_content:3d67e053e80c3debbc4497d6fa3ef73d?https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://gitlab.com/-/experiment/new_project_readme_content:3d67e053e80c3debbc4497d6fa3ef73d?https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://gitlab.com/-/experiment/new_project_readme_content:3d67e053e80c3debbc4497d6fa3ef73d?https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://gitlab.com/-/experiment/new_project_readme_content:3d67e053e80c3debbc4497d6fa3ef73d?https://docs.gitlab.com/ee/user/clusters/agent/)
+- visualize the entire book library so that I can choose something interesting for me
+- search for a specific book that I am interested in
+  - *given that* the user has entered some of the book's info (title, author, ISBN)
+- have a Login Validation functionality so that I can access my personal info safely
+  1. **Given that** I am a valid user **when** I enter username and password and click the login button **then** the system redirects the user to the home page.
+  2. **Given that** I am an invalid user **when** I enter username and password and click the login button **then** the system throws an "invalid user" error message.
+  3. **Given that** I am already logged in **when** I access the web platform **then** the system should not ask me to reinsert my credentials.
+- logout from the current session so that no one else can access my account
+  - *given that* the user is logged in his account
+- contact a seller so that I can get more info about the book
+  - *given that* the user is already logged in
+- submit a purchase proposal so that I can buy/obtain the book I was looking for
+  - *given that* the user is already logged in
+  - *given that* the user has contacted the seller
+- visualize a list of suggested books so that I can choose one among them
+  - *given that* the user has provided one or more fields of interest
 
-***
+#### As a *seller* I want to...
 
-# Editing this README
+- login into my account so that I can access my personal info
+  - *given that* the user is not already logged in
+  - *given that* the user enters the right email and password
+- logout from the current session so that no one else can access my account
+  - *given that* the user is logged in his account
+- post a new advertisement so that buyers can see it and contact me
+  - *given that* the seller inserts all the required book's info, the price, current condition, ecc...
+- accept a purchase proposal so that I can sell the book
+  - *given that* a buyer has submitted a proposal
+- decline a purchase proposal because I am not interested in
+  - *given that* a buyer has submitted a proposal
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://gitlab.com/-/experiment/new_project_readme_content:3d67e053e80c3debbc4497d6fa3ef73d?https://www.makeareadme.com/) for this template.
+#### As an *admin* I want to...
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+- 
 
-## Name
-Choose a self-explaining name for your project.
+## UML Diagrams
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### Use Case
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+<img src="./resources/Use_Case.png" style="zoom: 67%;" />
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+## Test plan
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+- Unit tests
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+## External resources
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+- [Jira Software](https://strykerstorm.atlassian.net/jira/software/projects/R4S/boards/2/roadmap?shared=&atlOrigin=eyJpIjoiYjQzM2IwMDIxZDFiNDdkYzg5N2ZmNjU4ZTdlZGJjNTciLCJwIjoiaiJ9) - issue tracking product
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## Credits
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+- Federico Palazzi (*author*)
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
 
