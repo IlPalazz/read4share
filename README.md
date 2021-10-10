@@ -10,6 +10,7 @@
 | 1.1     | 16/09/2021 | F. Palazzi | Added intro, user stories and acceptance criteria section |
 | 1.2     | 17/09/2021 | F. Palazzi | Added UML Diagrams section, updated User Stories          |
 | 1.3     | 29/09/2021 | F. Palazzi | Added additional User Stories                             |
+| 1.4     | 10/10/2021 | F. Palazzi | Added C4 diagrams section                                 |
 
 ## Intro
 
@@ -39,7 +40,34 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
 
 ### User stories & Acceptance criteria
 
-[Click to view](resources/stories.md)
+[Click to view](docs/stories.md)
+
+## C4 Diagrams
+
+### System Context (C1)
+
+<details>
+    <summary>Click to expand</summary>
+    <img src="./docs/C1.png" style="zoom: 67%;" />
+</details>
+
+### Containers (C2)
+
+<details>
+    <summary>Click to expand</summary>
+    <img src="./docs/C2.png" style="zoom: 67%;" />
+</details>
+
+### Components (C3)
+
+<details>
+    <summary>Click to expand</summary>
+    <img src="./docs/C3.png" style="zoom: 67%;" />
+</details>
+
+### Code (C4) - Class diagram
+
+*TODO*
 
 ## UML Diagrams
 
@@ -47,8 +75,9 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
 
 <details>
     <summary>Click to expand</summary>
-    <img src="./resources/Use_Case.png" style="zoom: 67%;" />
+    <img src="./docs/Use_Case.png" style="zoom: 67%;" />
 </details>
+
 
 ## Test plan
 
