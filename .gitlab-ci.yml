@@ -1,0 +1,2 @@
+include:
+  - local: 'read4share-backend/.gitlab-ci.yml'
