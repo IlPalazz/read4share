@@ -29,8 +29,8 @@ build:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
     paths:
-      - build
-      - .gradle
+      - read4share-backend/build
+      - read4share-backend/.gradle
 
 test:
   stage: test
@@ -41,5 +41,5 @@ test:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
     paths:
-      - build
-      - .gradle
+      - read4share-backend/build
+      - read4share-backend/.gradle
