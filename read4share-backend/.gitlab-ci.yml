@@ -18,28 +18,24 @@ variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 before_script:
-  - export GRADLE_USER_HOME=`pwd`/read4share-backend/.gradle
+  - export GRADLE_USER_HOME=`pwd`/.gradle
 
 build:
   stage: build
-  script:
-    - cd read4share-backend
-    - gradle --build-cache assemble
+  script: gradle --build-cache assemble
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
     paths:
-      - read4share-backend/build
-      - read4share-backend/.gradle
+      - build
+      - .gradle
 
 test:
   stage: test
-  script:
-    - cd read4share-backend
-    - gradle check
+  script: gradle check
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
     paths:
-      - read4share-backend/build
-      - read4share-backend/.gradle
+      - build
+      - .gradle
