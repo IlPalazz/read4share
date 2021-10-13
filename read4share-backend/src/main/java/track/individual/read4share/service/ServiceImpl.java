@@ -52,4 +52,9 @@ public class ServiceImpl implements ServiceInt{
         userDao.DeleteUser(username);
     }
 
+    @Override
+    public List<User> GetUsers() {
+        return userDao.GetUsers();
+    }
+
 }

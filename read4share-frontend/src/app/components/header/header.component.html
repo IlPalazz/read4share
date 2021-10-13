@@ -1,0 +1,8 @@
+<header>
+  <h1>Read4Share</h1>
+  <app-switch-btn
+    color="{{ showUser ? 'red' : 'green' }}"
+    text="{{ showUser ? 'Books' : 'Users' }}"
+    (btnClick)="toggleUserBook()"
+  ></app-switch-btn>
+</header>

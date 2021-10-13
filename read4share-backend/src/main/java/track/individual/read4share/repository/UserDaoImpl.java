@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import track.individual.read4share.model.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao{
@@ -34,5 +35,10 @@ public class UserDaoImpl implements UserDao{
         for (User user : users)
             if (user.getUsername().equals(username))
                 users.remove(user);
+    }
+
+    @Override
+    public List<User> GetUsers() {
+        return users;
     }
 }

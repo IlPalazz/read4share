@@ -6,21 +6,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import track.individual.read4share.model.Book;
 import track.individual.read4share.model.User;
-import track.individual.read4share.service.ServiceImpl;
 import track.individual.read4share.service.ServiceInt;
 
 import java.net.URI;
 import java.util.List;
 
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 @RequestMapping("/")
 public class Controller {
 
-    @Autowired
-    private ServiceInt service;
+    private final ServiceInt service;
 
-    public Controller() {
-        service = new ServiceImpl();
+    @Autowired
+    public Controller(ServiceInt service) {
+        this.service = service;
     }
 
     // Return a specific user
@@ -29,6 +29,17 @@ public class Controller {
         User user = service.GetUser(username);
         if(user != null) {
             return ResponseEntity.ok().body(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Return all users
+    @GetMapping("user/all")
+    public ResponseEntity<List<User>> GetAllUsers() {
+        List<User> users = service.GetUsers();
+        if(users != null) {
+            return ResponseEntity.ok().body(users);
         } else {
             return ResponseEntity.notFound().build();
         }

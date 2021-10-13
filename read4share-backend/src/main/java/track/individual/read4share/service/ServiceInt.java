@@ -12,4 +12,6 @@ public interface ServiceInt {
     void AddUser(User user);
     User GetUser(String username);
     void DeleteUser(String username);
+
+    List<User> GetUsers();
 }

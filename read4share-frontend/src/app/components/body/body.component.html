@@ -1,0 +1,12 @@
+<div class="body">
+  <!-- Description -->
+  <h2 *ngIf="showUser">User List</h2>
+  <h2 *ngIf="!showUser">Book List</h2>
+  <ng-container *ngIf="!showUser">
+    <app-book *ngFor="let book of books" [book]="book"></app-book>
+  </ng-container>
+
+  <ng-container *ngIf="showUser">
+    <app-user *ngFor="let user of users" [user]="user"></app-user>
+  </ng-container>
+</div>
