@@ -1,0 +1,41 @@
+<!--
+    Databinding:
+    - []   -> parameters input
+    - ()   -> output (ex: events)
+    - [()] -> two-way databinding (bidirectional)
+-->
+
+<form *ngIf="showAddUser" class="add-form" (ngSubmit)="onSubmit()">
+  <!-- Task text -->
+  <div class="form-control">
+    <label for="text">Username</label>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      placeholder="Enter username"
+      [(ngModel)]="username"
+    />
+    <!-- [(ngModel)] = VARIABLE_NAME for bidirectional binding -->
+  </div>
+  <!-- Task day -->
+  <div class="form-control">
+    <label for="day">Email</label>
+    <input
+      type="text"
+      name="email"
+      id="email"
+      placeholder="Enter email address"
+      [(ngModel)]="email"
+    />
+  </div>
+
+  <!-- Task save -->
+  <input
+    type="submit"
+    name="saveUserBtn"
+    id="saveUserBtn"
+    value="Save User"
+    class="btn btn-block"
+  />
+</form>

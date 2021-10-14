@@ -23,4 +23,8 @@ export class HeaderComponent implements OnInit {
   toggleUserBook(): void {
     this.uiService.toggleUserBook();
   }
+
+  toggleAddUser(): void {
+    this.uiService.toggleAddUser();
+  }
 }

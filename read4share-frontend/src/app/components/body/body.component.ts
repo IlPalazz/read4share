@@ -12,13 +12,15 @@ import { Book } from '../../Book';
 })
 export class BodyComponent implements OnInit {
   showUser: boolean = false;
-  subscription: Subscription;
+  //showAddForm: boolean = false;
+
+  changeBtnSub: Subscription;
   users: User[] = [];
   books: Book[] = [];
 
   constructor(private uiService: UiService, private dataService: DataService) {
     // Set a subscription to the toggle
-    this.subscription = this.uiService
+    this.changeBtnSub = this.uiService
       .onToggle()
       .subscribe((value) => (this.showUser = value));
   }
@@ -28,5 +30,9 @@ export class BodyComponent implements OnInit {
     this.dataService.getUsers().subscribe((users) => (this.users = users));
     // Load books from the DB
     this.dataService.getBooks().subscribe((books) => (this.books = books));
+  }
+
+  addUser(user: User): void {
+    this.dataService.addUser(user).subscribe((user) => this.users.push(user));
   }
 }

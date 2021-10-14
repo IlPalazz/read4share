@@ -1,4 +1,5 @@
 <div class="body">
+  <app-add-user (onAddUser)="addUser($event)"></app-add-user>
   <!-- Description -->
   <h2 *ngIf="showUser">User List</h2>
   <h2 *ngIf="!showUser">Book List</h2>

@@ -73,9 +73,12 @@ public class Controller {
             return new ResponseEntity("User already exists!", HttpStatus.CONFLICT);
         else {
             service.AddUser(user);
+            /*
             String url = "/user/" + user.getUsername(); // url of the created student
             URI uri = URI.create(url);
             return new ResponseEntity(uri,HttpStatus.CREATED);
+            */
+            return ResponseEntity.ok().body(user);
         }
 
     }
