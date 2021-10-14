@@ -1,7 +1,7 @@
 // MODULES //
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,13 +19,22 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 
 @NgModule({
   // Only for components
-  declarations: [AppComponent, HeaderComponent, FooterComponent, AddUserBtnComponent, SwitchBtnComponent, UserComponent, BookComponent, BodyComponent, AddUserComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    AddUserBtnComponent,
+    SwitchBtnComponent,
+    UserComponent,
+    BookComponent,
+    BodyComponent,
+    AddUserComponent,
+  ],
   // Only for modules
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserModule,
-    FontAwesomeModule,
     HttpClientModule,
     FormsModule,
   ],
