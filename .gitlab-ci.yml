@@ -1,3 +1,8 @@
+stages:
+ - build
+ - test
+ - sonarqube
+
 # This file is a template, and might need editing before it works on your project.
 # To contribute improvements to CI/CD templates, please follow the Development guide at:
 # https://docs.gitlab.com/ee/development/cicd/templates.html
@@ -47,6 +52,7 @@ test:
       - read4share-backend/.gradle
 
 sonarqube-check:
+  stage: sonarqube
   image: gradle:jre11-slim
   variables:
     SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
