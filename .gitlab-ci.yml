@@ -16,44 +16,45 @@ before_script:
 
 
 stages:
- - build
- - test
+# - build
+# - test
  - analyze
 
-build:
-  stage: build
-  script:
-    - cd read4share-backend
-    - gradle --build-cache assemble
-  cache:
-    key: "$CI_COMMIT_REF_NAME"
-    policy: push
-    paths:
-      - read4share-backend/build
-      - read4share-backend/.gradle
-
-test:
-  stage: test
-  script:
-    - echo "Running tests"
-    - cd read4share-backend
-    - gradle check
-  cache:
-    key: "$CI_COMMIT_REF_NAME"
-    policy: pull
-    paths:
-      - read4share-backend/build
-      - read4share-backend/.gradle
+#build:
+#  stage: build
+#  script:
+#    - cd read4share-backend
+#    - gradle --build-cache assemble
+#  cache:
+#    key: "$CI_COMMIT_REF_NAME"
+#    policy: push
+#    paths:
+#      - read4share-backend/build
+#      - read4share-backend/.gradle
+#
+#test:
+#  stage: test
+#  script:
+#    - echo "Running tests"
+#    - cd read4share-backend
+#    - gradle check
+#  cache:
+#    key: "$CI_COMMIT_REF_NAME"
+#    policy: pull
+#    paths:
+#      - read4share-backend/build
+#      - read4share-backend/.gradle
 
 sonarqube:
   stage: analyze
   script:
     - echo "Starting sonarqube server"
-    - cd /opt/sonarqube/bin/linux-x86-64/
-    - ./sonar.sh console
-    - echo "Running sonarqube test"
-    - cd read4share-backend
-    - gradle sonarqube -Dsonar.login="$SONAR_TOKEN"
+    - whoami
+    #- cd /opt/sonarqube/bin/linux-x86-64/
+    #- ./sonar.sh console
+    #- echo "Running sonarqube test"
+    #- cd read4share-backend
+    #- gradle sonarqube -Dsonar.login="$SONAR_TOKEN"
   #allow_failure: true
   only:
     - main  # main branch only
