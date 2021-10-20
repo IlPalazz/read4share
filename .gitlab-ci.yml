@@ -17,7 +17,7 @@ before_script:
 stages:
  - build
  - test
- - analyze
+# - analyze
 
 build:
   stage: build
@@ -44,7 +44,7 @@ test:
       - read4share-backend/.gradle
 
 analyze:
-  stage: analyze
+  stage: test
   image: gradle:jre11-slim
   variables:
     SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
