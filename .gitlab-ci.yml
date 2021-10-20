@@ -34,6 +34,7 @@ build:
 test:
   stage: test
   script:
+    - echo "Running tests"
     - cd read4share-backend
     - gradle check
   cache:
