@@ -14,6 +14,7 @@ variables:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/read4share-backend/.gradle
 
+
 stages:
  - build
  - test
@@ -47,6 +48,9 @@ test:
 sonarqube:
   stage: analyze
   script:
+    - echo "Starting sonarqube server"
+    - cd /opt/sonarqube/bin/linux-x86-64/
+    - ./sonar.sh console
     - echo "Running sonarqube test"
     - cd read4share-backend
     - gradle sonarqube -Dsonar.login="$SONAR_TOKEN"
