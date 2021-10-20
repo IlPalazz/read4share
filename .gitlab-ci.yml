@@ -49,12 +49,11 @@ sonarqube:
   stage: analyze
   script:
     - echo "Starting sonarqube server"
-    - whoami
-    #- cd /opt/sonarqube/bin/linux-x86-64/
-    #- ./sonar.sh console
-    #- echo "Running sonarqube test"
-    #- cd read4share-backend
-    #- gradle sonarqube -Dsonar.login="$SONAR_TOKEN"
+    - cd /opt/sonarqube/bin/linux-x86-64/
+    - ./sonar.sh console
+    - echo "Running sonarqube test"
+    - cd read4share-backend
+    - gradle sonarqube -Dsonar.login="$SONAR_TOKEN"
   #allow_failure: true
   only:
     - main  # main branch only
