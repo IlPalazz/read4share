@@ -14,62 +14,42 @@ variables:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/read4share-backend/.gradle
 
-
 stages:
-# - build
-# - test
+ - build
+ - test
  - analyze
 
-#build:
-#  stage: build
-#  script:
-#    - cd read4share-backend
-#    - gradle --build-cache assemble
-#  cache:
-#    key: "$CI_COMMIT_REF_NAME"
-#    policy: push
-#    paths:
-#      - read4share-backend/build
-#      - read4share-backend/.gradle
-#
-#test:
-#  stage: test
-#  script:
-#    - echo "Running tests"
-#    - cd read4share-backend
-#    - gradle check
-#  cache:
-#    key: "$CI_COMMIT_REF_NAME"
-#    policy: pull
-#    paths:
-#      - read4share-backend/build
-#      - read4share-backend/.gradle
+build:
+  stage: build
+  script:
+    - cd read4share-backend
+    - gradle --build-cache assemble
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - read4share-backend/build
+      - read4share-backend/.gradle
+
+test:
+  stage: test
+  script:
+    - echo "Running tests"
+    - cd read4share-backend
+    - gradle check
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
+    paths:
+      - read4share-backend/build
+      - read4share-backend/.gradle
 
 sonarqube:
   stage: analyze
   script:
-    - echo "Starting sonarqube server"
-    - cd /opt/sonarqube/bin/linux-x86-64/
-    - ./sonar.sh console
-    - echo "Running sonarqube test"
-    - cd read4share-backend
+    - echo "Running Sonarqube analysis"
+    - cd read4share-backend 
     - gradle sonarqube -Dsonar.login="$SONAR_TOKEN"
-  #allow_failure: true
+  allow_failure: true
   only:
-    - main  # main branch only
-
-
-#analyze:
-#  stage: test
-#  image: gradle:jre11-slim
-#  variables:
-#    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
-#    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
-#  cache:
-#    key: "${CI_JOB_NAME}"
-#    paths:
-#      - .sonar/cache
-#  script: read4share-backend/gradle sonarqube -Dsonar.qualitygate.wait=true
-#  allow_failure: true
-#  only:
-#    - master # or the name of your main branch
+    - main # analyze only the main branch
