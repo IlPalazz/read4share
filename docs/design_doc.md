@@ -55,7 +55,6 @@ The application has been built following a client-server architecture and it pre
     <summary>Click to expand</summary>
     <img src="./docs/C2.png" style="zoom: 67%;" />
 </details>
-
 ### Components (C3)
 
 <details>
