@@ -17,7 +17,7 @@ before_script:
 stages:
  - build
  - test
- - analyze
+# - analyze
 
 build:
   stage: build
@@ -44,12 +44,12 @@ test:
       - read4share-backend/build
       - read4share-backend/.gradle
 
-sonarqube:
-  stage: analyze
-  script:
-    - echo "Running Sonarqube analysis"
-    - cd read4share-backend 
-    - gradle sonarqube -Dsonar.login="$SONAR_TOKEN"
-  allow_failure: true
-  only:
-    - main # analyze only the main branch
+#sonarqube:
+#  stage: analyze
+#  script:
+#    - echo "Running Sonarqube analysis"
+#    - cd read4share-backend 
+#    - gradle sonarqube -Dsonar.login="$SONAR_TOKEN"
+#  allow_failure: true
+#  only:
+#    - main # analyze only the main branch
