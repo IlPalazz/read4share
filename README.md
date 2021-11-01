@@ -11,6 +11,7 @@
 | 1.2     | 17/09/2021 | F. Palazzi | Added UML Diagrams section, updated User Stories          |
 | 1.3     | 29/09/2021 | F. Palazzi | Added additional User Stories                             |
 | 1.4     | 10/10/2021 | F. Palazzi | Added C4 diagrams section                                 |
+| 1.5     | 01/11/2021 | F. Palazzi | Created design document                                   |
 
 ## Intro
 
@@ -42,32 +43,9 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
 
 [Click to view](docs/stories.md)
 
-## C4 Diagrams
+## Design document
 
-### System Context (C1)
-
-<details>
-    <summary>Click to expand</summary>
-    <img src="./docs/C1.png" style="zoom: 67%;" />
-</details>
-
-### Containers (C2)
-
-<details>
-    <summary>Click to expand</summary>
-    <img src="./docs/C2.png" style="zoom: 67%;" />
-</details>
-
-### Components (C3)
-
-<details>
-    <summary>Click to expand</summary>
-    <img src="./docs/C3.png" style="zoom: 67%;" />
-</details>
-
-### Code (C4) - Class diagram
-
-*TODO*
+[Click to view](docs/design_doc.md)
 
 ## UML Diagrams
 
@@ -77,8 +55,6 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
     <summary>Click to expand</summary>
     <img src="./docs/Use_Case.png" style="zoom: 67%;" />
 </details>
-
-
 ## Test plan
 
 - Unit tests
