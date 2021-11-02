@@ -20,18 +20,19 @@ before_script:
   #- echo "$DB_USER_NAME" >> src/main/resources/application.properties
   #- echo "$DB_PSW" >> src/main/resources/application.properties
   - touch src/main/resources/application.properties
-  - echo $DB_ACCESS
+  - cat $DB_ACCESS
   - cat $DB_ACCESS > src/main/resources/application.properties
 
 stages:
- - build
+# - build
  - test
 # - analyze
 
 build:
   stage: build
   script:
-    - gradle --build-cache assemble
+    echo "ciao"
+    #- gradle --build-cache assemble
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
