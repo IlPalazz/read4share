@@ -16,9 +16,10 @@ before_script:
   - export GRADLE_USER_HOME=.gradle
   # Inject variables in application.properties file
   - mkdir src/main/resources
-  - echo "$DB_URL" >> src/main/resources/application.properties
-  - echo "$DB_USER_NAME" >> src/main/resources/application.properties
-  - echo "$DB_PSW" >> src/main/resources/application.properties
+  #- echo "$DB_URL" >> src/main/resources/application.properties
+  #- echo "$DB_USER_NAME" >> src/main/resources/application.properties
+  #- echo "$DB_PSW" >> src/main/resources/application.properties
+  - cat "$DB_ACCESS" > src/main/resources/application.properties
 
 stages:
  - build
