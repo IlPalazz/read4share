@@ -36,6 +36,10 @@ test:
   script:
     - echo "Running tests"
     - cd read4share
+    # Inject variables in application.properties file
+    - echo "$DB_URL" >> src/main/resources/application.properties
+    - echo "$DB_USER_NAME" >> src/main/resources/application.properties
+    - echo "$DB_PSW" >> src/main/resources/application.properties
     - gradle check
   cache:
     key: "$CI_COMMIT_REF_NAME"
