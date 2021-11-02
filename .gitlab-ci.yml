@@ -13,38 +13,38 @@ variables:
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/read4share/.gradle
+  # Inject variables in application.properties file
+  - mkdir src/main/resources
+  - echo "$DB_URL"
+  - echo "$DB_URL" >> src/main/resources/application.properties
+  - echo "$DB_USER_NAME"
+  - echo "$DB_USER_NAME" >> src/main/resources/application.properties
+  - echo "$DB_PSW"
+  - echo "$DB_PSW" >> src/main/resources/application.properties
+  - cat src/main/resources/application.properties
 
 stages:
-# - build
+ - build
  - test
 # - analyze
 
-#build:
-#  stage: build
-#  script:
-#    - cd read4share
-#    - gradle --build-cache assemble
-#  cache:
-#    key: "$CI_COMMIT_REF_NAME"
-#    policy: push
-#    paths:
-#      - read4share/build
-#      - read4share/.gradle
+build:
+  stage: build
+  script:
+    - cd read4share
+    - gradle --build-cache assemble
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - read4share/build
+      - read4share/.gradle
 
 test:
   stage: test
   script:
     - echo "Running tests"
     - cd read4share
-    # Inject variables in application.properties file
-    - mkdir src/main/resources
-    - echo "$DB_URL"
-    - echo "$DB_URL" >> src/main/resources/application.properties
-    - echo "$DB_USER_NAME"
-    - echo "$DB_USER_NAME" >> src/main/resources/application.properties
-    - echo "$DB_PSW"
-    - echo "$DB_PSW" >> src/main/resources/application.properties
-    - cat src/main/resources/application.properties
     - gradle check
   cache:
     key: "$CI_COMMIT_REF_NAME"
