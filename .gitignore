@@ -26,16 +26,22 @@ local.properties
 .project
 
 # Ignore Intellij project files and idea directory
-.idea/
+.idea
+*.iws
 *.iml
 *.ipr
-*.iws
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 
 # Gradle related files and caches
 .gradletasknamecache
 .gradle/
 build/
 bin/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 # Dolphin folder's configuration file
 .directory
