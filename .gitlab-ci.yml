@@ -12,7 +12,8 @@ variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 before_script:
-  - export GRADLE_USER_HOME=`pwd`/read4share/.gradle
+  - cd `pwd`/read4share
+  - export GRADLE_USER_HOME=.gradle
   # Inject variables in application.properties file
   - mkdir src/main/resources
   - echo "$DB_URL"
