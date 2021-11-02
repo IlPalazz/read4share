@@ -37,6 +37,7 @@ test:
     - echo "Running tests"
     - cd read4share
     # Inject variables in application.properties file
+    - mkdir src/main/resources
     - echo "$DB_URL" >> src/main/resources/application.properties
     - echo "$DB_USER_NAME" >> src/main/resources/application.properties
     - echo "$DB_PSW" >> src/main/resources/application.properties
@@ -52,7 +53,7 @@ test:
 #  stage: analyze
 #  script:
 #    - echo "Running Sonarqube analysis"
-#    - cd read4share-backend 
+#    - cd read4share
 #    - gradle sonarqube -Dsonar.login="$SONAR_TOKEN"
 #  allow_failure: true
 #  only:
