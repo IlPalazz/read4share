@@ -12,7 +12,7 @@ variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 before_script:
-  - export GRADLE_USER_HOME=`pwd`/read4share-backend/.gradle
+  - export GRADLE_USER_HOME=`pwd`/read4share/.gradle
 
 stages:
  - build
@@ -22,27 +22,27 @@ stages:
 build:
   stage: build
   script:
-    - cd read4share-backend
+    - cd read4share
     - gradle --build-cache assemble
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
     paths:
-      - read4share-backend/build
-      - read4share-backend/.gradle
+      - read4share/build
+      - read4share/.gradle
 
 test:
   stage: test
   script:
     - echo "Running tests"
-    - cd read4share-backend
+    - cd read4share
     - gradle check
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
     paths:
-      - read4share-backend/build
-      - read4share-backend/.gradle
+      - read4share/build
+      - read4share/.gradle
 
 #sonarqube:
 #  stage: analyze
