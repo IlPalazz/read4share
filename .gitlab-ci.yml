@@ -16,13 +16,9 @@ before_script:
   - export GRADLE_USER_HOME=.gradle
   # Inject variables in application.properties file
   - mkdir src/main/resources
-  - echo "$DB_URL"
   - echo "$DB_URL" >> src/main/resources/application.properties
-  - echo "$DB_USER_NAME"
   - echo "$DB_USER_NAME" >> src/main/resources/application.properties
-  - echo "$DB_PSW"
   - echo "$DB_PSW" >> src/main/resources/application.properties
-  - cat src/main/resources/application.properties
 
 stages:
  - build
@@ -32,33 +28,30 @@ stages:
 build:
   stage: build
   script:
-    - cd read4share
     - gradle --build-cache assemble
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
     paths:
-      - read4share/build
-      - read4share/.gradle
+      - build
+      - .gradle
 
 test:
   stage: test
   script:
     - echo "Running tests"
-    - cd read4share
     - gradle check
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
     paths:
-      - read4share/build
-      - read4share/.gradle
+      - build
+      - .gradle
 
 #sonarqube:
 #  stage: analyze
 #  script:
 #    - echo "Running Sonarqube analysis"
-#    - cd read4share
 #    - gradle sonarqube -Dsonar.login="$SONAR_TOKEN"
 #  allow_failure: true
 #  only:
