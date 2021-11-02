@@ -96,4 +96,4 @@ baseline.json
 .husky/_
 
 # Application.properties
-read4share-backend/src/main/resources/application.properties
+**/resources/application.properties
