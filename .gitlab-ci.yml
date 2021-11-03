@@ -10,7 +10,7 @@ image: gradle:alpine
 # isolated from any previous builds.
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-  DB_URLL: $DB_URL
+  DB_URL: $DB_URL
 
 before_script:
   - echo "$DB_URL"
