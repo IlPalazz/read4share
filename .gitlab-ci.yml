@@ -10,9 +10,6 @@ image: gradle:alpine
 # isolated from any previous builds.
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-  #DB_URL: $DB_URL
-  #DB_USER: $DB_USER
-  #DB_PSW: $DB_PSW
 
 before_script:
   - cd `pwd`/read4share
@@ -24,20 +21,20 @@ before_script:
   - echo "$DB_PSW" >> src/main/resources/application.properties
 
 stages:
-# - build
+ - build
  - test
 # - analyze
 
-#build:
-#  stage: build
-#  script:
-#    - gradle --build-cache assemble
-#  cache:
-#    key: "$CI_COMMIT_REF_NAME"
-#    policy: push
-#    paths:
-#      - build
-#      - .gradle
+build:
+  stage: build
+  script:
+    - gradle --build-cache assemble
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - build
+      - .gradle
 
 test:
   stage: test
