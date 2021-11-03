@@ -10,10 +10,10 @@ image: gradle:alpine
 # isolated from any previous builds.
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-  DB_URL: "$DB_URL"
+  DB_URLL: "$DB_URL"
 
 before_script:
-  - echo "$DB_URL"
+  - echo "$DB_URLL"
   - cd `pwd`/read4share
   - export GRADLE_USER_HOME=.gradle
   # Inject variables in application.properties file
