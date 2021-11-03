@@ -10,20 +10,21 @@ image: gradle:alpine
 # isolated from any previous builds.
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-  DB_URLL: $DB_URL
+  DB_URL: $DB_URL
+  DB_NAME: $DB_NAME
+  DB_PSW: $DB_PSW
 
 before_script:
-  - echo "$DB_URLL"
+  - echo "$DB_URL"
+  - echo "$DB_NAME"
+  - echo "$DB_PSW"
   - cd `pwd`/read4share
   - export GRADLE_USER_HOME=.gradle
   # Inject variables in application.properties file
   - mkdir src/main/resources
-  #- echo "$DB_URL" >> src/main/resources/application.properties
-  #- echo "$DB_USER_NAME" >> src/main/resources/application.properties
-  #- echo "$DB_PSW" >> src/main/resources/application.properties
-  #- echo "$CI_JOB_STAGE"
-  #- cat "$DB_ACCESS"
-  #- cat $DB_ACCESS > src/main/resources/application.properties
+  - echo "$DB_URL" >> src/main/resources/application.properties
+  - echo "$DB_NAME" >> src/main/resources/application.properties
+  - echo "$DB_PSW" >> src/main/resources/application.properties
 
 stages:
 # - build
@@ -45,7 +46,7 @@ test:
   stage: test
   script:
     - echo "Running tests"
-    #- gradle check
+    - gradle check
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
