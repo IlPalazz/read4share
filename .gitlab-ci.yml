@@ -25,6 +25,7 @@ before_script:
   - echo "$DB_URL" >> src/main/resources/application.properties
   - echo "$DB_NAME" >> src/main/resources/application.properties
   - echo "$DB_PSW" >> src/main/resources/application.properties
+  - cat src/main/resources/application.properties
 
 stages:
 # - build
@@ -46,7 +47,7 @@ test:
   stage: test
   script:
     - echo "Running tests"
-    - gradle check
+    #- gradle check
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
