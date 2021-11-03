@@ -10,14 +10,11 @@ image: gradle:alpine
 # isolated from any previous builds.
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-  DB_URL: $DB_URL
-  DB_USER: $DB_USER
-  DB_PSW: $DB_PSW
+  #DB_URL: $DB_URL
+  #DB_USER: $DB_USER
+  #DB_PSW: $DB_PSW
 
 before_script:
-  - echo "$DB_URL"
-  - echo "$DB_USER"
-  - echo "$DB_PSW"
   - cd `pwd`/read4share
   - export GRADLE_USER_HOME=.gradle
   # Inject variables in application.properties file
@@ -25,7 +22,6 @@ before_script:
   - echo "$DB_URL" >> src/main/resources/application.properties
   - echo "$DB_USER" >> src/main/resources/application.properties
   - echo "$DB_PSW" >> src/main/resources/application.properties
-  - cat src/main/resources/application.properties
 
 stages:
 # - build
