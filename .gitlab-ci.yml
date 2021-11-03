@@ -11,12 +11,12 @@ image: gradle:alpine
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
   DB_URL: $DB_URL
-  DB_NAME: $DB_NAME
+  DB_USER: $DB_USER
   DB_PSW: $DB_PSW
 
 before_script:
   - echo "$DB_URL"
-  - echo "$DB_NAME"
+  - echo "$DB_USER"
   - echo "$DB_PSW"
   - cd `pwd`/read4share
   - export GRADLE_USER_HOME=.gradle
