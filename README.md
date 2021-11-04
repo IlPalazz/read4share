@@ -55,9 +55,10 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
     <summary>Click to expand</summary>
     <img src="./docs/Use_Case.png" style="zoom: 67%;" />
 </details>
+
 ## Test plan
 
-- Unit tests
+[Click to view](docs/test_plan.md)
 
 ## External resources
 
