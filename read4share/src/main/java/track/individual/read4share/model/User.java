@@ -27,3 +27,4 @@ public class User {
     @Column(name = "email_addr", nullable = false)
     private String email;
 }
+
