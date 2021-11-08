@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+@Entity(name = "Book")
 @Table(name = "book")
 @Builder
 @Data
@@ -28,6 +28,8 @@ public class Book {
     private String publisher;
     @Column(name = "lang", nullable = false)
     private String language;
-    @Column(name = "category_id")
-    private Long categoryId;        // FK
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_cat_id", referencedColumnName = "cat_id")
+    private Category category;
 }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "City")
 @Table(name = "city",
         uniqueConstraints = @UniqueConstraint(
                 name = "city_name_unique", columnNames = "name"
@@ -19,7 +19,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class City {
     @Id
-    @Column(name = "id")
+    @Column(name = "city_id")
     private Long id;
     @Column(name = "name", nullable = false)
     private String name;

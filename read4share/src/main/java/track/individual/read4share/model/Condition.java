@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Condition")
 @Table(name = "condition")
 @Data
 @Builder
@@ -15,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Condition {
     @Id
-    @Column(name = "code")
+    @Column(name = "cond_code")
     private Conditions code;
     @Column(name = "pen_underln", nullable = false)
     private boolean pen_underln;

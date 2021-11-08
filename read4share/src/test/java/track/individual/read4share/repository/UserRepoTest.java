@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.Assert;
 import track.individual.read4share.model.User;
 
 import java.util.List;
@@ -39,5 +40,37 @@ class UserRepoTest {
     public void printAllUser() {
         List<User> userList = userRepo.findAll();
         System.out.println("User list = " + userList);
+    }
+
+    @Test
+    public void printUserByUsername() {
+        List<User> users = userRepo.findByUsername("testUser");
+        //Assert.isNull(users, "Nessun utente trovato");
+        System.out.println(users);
+
+    }
+
+    @Test
+    public void printUserByUsernameContaining() {
+        List<User> users = userRepo.findByUsernameContaining("te");
+        //Assert.isNull(users, "Nessun utente trovato");
+        System.out.println(users);
+
+    }
+
+    @Test
+    public void printUserByEmail() {
+        User user = userRepo.getUserByEmail("testemail@demo.com");
+        //Assert.isNull(users, "Nessun utente trovato");
+        System.out.println(user);
+
+    }
+
+    @Test
+    public void printUsernameByEmail() {
+        String username = userRepo.getUserUsernameByEmailNative("testemail@demo.com");
+        //Assert.isNull(users, "Nessun utente trovato");
+        System.out.println(username);
+
     }
 }
