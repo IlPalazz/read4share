@@ -15,7 +15,6 @@ before_script:
   - cd `pwd`/read4share
   - export GRADLE_USER_HOME=.gradle
   # Inject variables in application.properties file
-  - mkdir src/main/resources
   - echo "$DB_URL" >> src/main/resources/application.properties
   - echo "$DB_USER" >> src/main/resources/application.properties
   - echo "$DB_PSW" >> src/main/resources/application.properties
