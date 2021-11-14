@@ -8,14 +8,21 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 
+@NamedEntityGraph(name = "book-category-graph",
+        attributeNodes = { @NamedAttributeNode("category") }
+)
 @Entity(name = "Book")
-@Table(name = "book")
+@Table(name = "book", uniqueConstraints = @UniqueConstraint(
+        name = "book_isbn_unique", columnNames = "isbn"))
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "book_id")
+    private Long id;
     @Column(name = "isbn", length = 13)
     private String isbn;
     @Column(name = "title", nullable = false)

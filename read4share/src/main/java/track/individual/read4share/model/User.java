@@ -1,9 +1,6 @@
 package track.individual.read4share.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -54,7 +51,7 @@ public class User {
     @JoinTable(name = "user_category",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "cat_id"))
-    private Set<Category> categories = new HashSet<>();
+    private Set<Category> categories;
 
     // Methods used to sync both sides of the bidirectional association
     public void addMessage(Message mess) {

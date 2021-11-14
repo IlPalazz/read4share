@@ -19,6 +19,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class City {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "city_id")
     private Long id;
     @Column(name = "name", nullable = false)

@@ -1,8 +1,6 @@
 package track.individual.read4share.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,10 +10,10 @@ import java.util.Set;
 @Entity(name = "Category")
 @Table(name = "category",
         uniqueConstraints = @UniqueConstraint(
-                name="category_name_unique", columnNames = "name"
-        )
+                name="category_name_unique", columnNames = "name")
 )
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Category {
@@ -26,6 +24,6 @@ public class Category {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
-    private Set<User> users = new HashSet<>();
+    //@ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
+    //private Set<User> users;
 }

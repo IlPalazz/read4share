@@ -15,7 +15,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Condition {
     @Id
-    @Column(name = "cond_code")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cond_id")
+    private Long id;
+    @Column(name = "cond_code", length = 2)
+    @Enumerated(EnumType.STRING)
     private Conditions code;
     @Column(name = "pen_underln", nullable = false)
     private boolean pen_underln;

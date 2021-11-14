@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class DataService {
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) {}
 
@@ -26,7 +26,7 @@ export class DataService {
 
   getBooks(): Observable<Book[]> {
     // HTTP GET request for the books
-    return this.http.get<Book[]>(this.apiUrl + '/book/all');
+    return this.http.get<Book[]>(this.apiUrl + '/adv/all');
   }
 
   addUser(user: User): Observable<User> {

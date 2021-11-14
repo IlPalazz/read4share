@@ -34,14 +34,14 @@ public class Advertisement {
      * Advertisement book
      */
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_book_isbn", referencedColumnName = "isbn")
+    @JoinColumn(name = "fk_book_id", referencedColumnName = "book_id")
     private Book book;
 
     /**
      * Book conditions
      */
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_cond_code", referencedColumnName = "cond_code")
+    @JoinColumn(name = "fk_cond_id", referencedColumnName = "cond_id")
     private Condition condition;
 
     /**
