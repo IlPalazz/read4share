@@ -35,6 +35,10 @@ public class Book {
     private String publisher;
     @Column(name = "lang", nullable = false)
     private String language;
+    @Column(name = "cover_path", nullable = true)
+    private String coverPath;
+    @Column(name = "avg_rating", nullable = false)
+    private double avgRating;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_cat_id", referencedColumnName = "cat_id")

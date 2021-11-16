@@ -24,6 +24,8 @@ public class Message {
     private String text;
     @Column(name = "timestamp", nullable = false)
     private Date timestamp;
+    @Column(name = "read", nullable = false)
+    private boolean read;
 
     /**
      * User who has sent the message

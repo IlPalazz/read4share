@@ -27,7 +27,9 @@ public class Advertisement {
     private double shipCost;
     @Column(name = "publ_date", nullable = false)
     private Date publDate;
-    @Column(name = "pic_path", nullable = false)
+    @Column(name = "sale_date", nullable = true)
+    private Date saleDate;
+    @Column(name = "pic_path", nullable = true)
     private String picPath;
 
     /**
@@ -75,17 +77,5 @@ public class Advertisement {
     public void removeMessage(Message mess) {
         messages.remove(mess);
         mess.setAdv(null);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Advertisement )) return false;
-        return id != null && id.equals(((Advertisement) o).getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
     }
 }

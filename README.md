@@ -12,6 +12,7 @@
 | 1.3     | 29/09/2021 | F. Palazzi | Added additional User Stories                             |
 | 1.4     | 10/10/2021 | F. Palazzi | Added C4 diagrams section                                 |
 | 1.5     | 01/11/2021 | F. Palazzi | Created design document                                   |
+| 1.6     | 15/11/2021 | F. Palazzi | Added endpoints list                                      |
 
 ## Intro
 
@@ -55,6 +56,10 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
     <summary>Click to expand</summary>
     <img src="./docs/Use_Case.png" style="zoom: 67%;" />
 </details>
+## Endpoints
+
+[Click to view](docs/endpoints.md)
+
 ## Test plan
 
 - Unit tests
