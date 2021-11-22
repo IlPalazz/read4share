@@ -35,7 +35,7 @@ public class Book {
     private String publisher;
     @Column(name = "lang", nullable = false)
     private String language;
-    @Column(name = "cover_path", nullable = true)
+    @Column(name = "cover_path", nullable = false)
     private String coverPath;
     @Column(name = "avg_rating", nullable = false)
     private double avgRating;

@@ -8,37 +8,42 @@ public interface AdvService {
 
     /**
      * Most recently posted advertisements
-     * @return List of Advertisements
+     * @param size Number of elements to return to the client
+     * @return List of Advertisements Overview
      */
-    List<AdvOverview> getLatest();
+    List<AdvOverview> getLatest(int size);
 
     /**
      * Advertisements with the best rated books
-     * @return List of Advertisements
+     * @param size Number of elements to return to the client
+     * @return List of Advertisements Overview
      */
-    List<AdvOverview> getBestRating();
+    List<AdvOverview> getBestRating(int size);
 
     /**
      * Latest free advertisements
-     * @return List of Advertisements
+     * @param size Number of elements to return to the client
+     * @return List of Advertisements Overview
      */
-    List<AdvOverview> getFree();
+    List<AdvOverview> getFree(int size);
 
     /**
      * Latest advertisements with no delivery fees
-     * @return List of Advertisements
+     * @param size Number of elements to return to the client
+     * @return List of Advertisements Overview
      */
-    List<AdvOverview> getFreeDel();
+    List<AdvOverview> getFreeDel(int size);
 
     /**
      * Advertisements with books marked as new
-     * @return List of Advertisements
+     * @param size Number of elements to return to the client
+     * @return List of Advertisements Overview
      */
-    List<AdvOverview> getAsNew();
+    List<AdvOverview> getAsNew(int size);
 
     /**
      * Advertisements with books that belong to a specific category
-     * @return List of Advertisements
+     * @return List of Advertisements Overview
      */
-    List<AdvOverview> getByCategoryId(Long id);
+    List<AdvOverview> getByCategoryId(Long id, int page, int size);
 }

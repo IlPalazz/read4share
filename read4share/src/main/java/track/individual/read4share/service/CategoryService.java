@@ -9,15 +9,21 @@ import java.util.Optional;
 public interface CategoryService {
 
     /**
-     * Get all the categories by name
+     * Get all the categories
+     * @return List with all the categories
+     */
+    List<Category> getAll();
+
+    /**
+     * Get all the categories' names
      * @return List with all the categories' names
      */
-    List<String> getAll();
+    List<String> getAllNames();
 
     /**
      * Get a specific book category by id
      * @param catId category id
      * @return Optional Category Object, Null whether the category doesn't exist
      */
-    Optional<Category> findByid(Long catId);
+    Optional<Category> findById(Long catId);
 }

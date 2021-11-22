@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import track.individual.read4share.model.Category;
 import track.individual.read4share.repository.CategoryRepo;
 import track.individual.read4share.service.CategoryService;
 
@@ -18,11 +19,22 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     /**
+     * Returns all the categories' names
+     * @return List of categories' names
+     */
+    @GetMapping("/all/names")
+    public ResponseEntity<List<String>> getAllNames() {
+        return ResponseEntity.ok().body(categoryService.getAllNames());
+    }
+
+    /**
      * Returns all the categories
-     * @return List of Category
+     * @return List of categories
      */
     @GetMapping("/all")
-    public ResponseEntity<List<String>> getAll() {
+    public ResponseEntity<List<Category>> getAll() {
         return ResponseEntity.ok().body(categoryService.getAll());
     }
+
+
 }

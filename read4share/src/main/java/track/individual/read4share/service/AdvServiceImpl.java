@@ -1,15 +1,15 @@
 package track.individual.read4share.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import track.individual.read4share.model.response.AdvOverview;
 import track.individual.read4share.repository.AdvRepo;
+import track.individual.read4share.utils.Config;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AdvServiceImpl implements AdvService {
@@ -17,33 +17,43 @@ public class AdvServiceImpl implements AdvService {
     private final AdvRepo advRepo;
 
     @Override
-    public List<AdvOverview> getLatest() {
-        return this.fromObjToAdvOverview(advRepo.findLatest());
+    public List<AdvOverview> getLatest(int size) {
+        return this.fromObjToAdvOverview(
+                advRepo.findLatest(
+                        PageRequest.of(0, this.validateRecordsNumber(size))));
     }
 
     @Override
-    public List<AdvOverview> getBestRating() {
-        return null;
+    public List<AdvOverview> getBestRating(int size) {
+        return this.fromObjToAdvOverview(
+                advRepo.findBestRating(
+                        PageRequest.of(0, this.validateRecordsNumber(size))));
     }
 
     @Override
-    public List<AdvOverview> getFree() {
-        return null;
+    public List<AdvOverview> getFree(int size) {
+        return this.fromObjToAdvOverview(
+                advRepo.findFree(
+                        PageRequest.of(0, this.validateRecordsNumber(size))));
     }
 
     @Override
-    public List<AdvOverview> getFreeDel() {
-        return null;
+    public List<AdvOverview> getFreeDel(int size) {
+        return this.fromObjToAdvOverview(
+                advRepo.findFreeDel(
+                        PageRequest.of(0, this.validateRecordsNumber(size))));
     }
 
     @Override
-    public List<AdvOverview> getAsNew() {
-        return null;
+    public List<AdvOverview> getAsNew(int size) {
+        return this.fromObjToAdvOverview(
+                advRepo.findAsNew(
+                        PageRequest.of(0, this.validateRecordsNumber(size))));
     }
 
     @Override
-    public List<AdvOverview> getByCategoryId(Long id) {
-        return null;
+    public List<AdvOverview> getByCategoryId(Long id, int page, int size) {
+        return null; // TODO: Implement method
     }
 
     private List<AdvOverview> fromObjToAdvOverview(List<Object[]> records) {
@@ -61,5 +71,14 @@ public class AdvServiceImpl implements AdvService {
             );
         }
         return advs;
+    }
+
+    /**
+     * Check whether the size parameter respects the maximum allowed
+     * @param size Value to be validated
+     * @return Validated int value
+     */
+    private int validateRecordsNumber(int size) {
+        return Math.min(size, Config.maxRecordsAdvOverview);
     }
 }
