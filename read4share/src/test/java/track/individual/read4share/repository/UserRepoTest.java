@@ -60,15 +60,15 @@ class UserRepoTest {
 
     @Test
     public void printUserByEmail() {
-        User user = userRepo.getUserByEmail("testemail@demo.com");
+        User user = userRepo.getUserByEmail("demomail1@gmail.com");
         //Assert.isNull(users, "Nessun utente trovato");
-        System.out.println(user);
+        System.out.println(user.getUsername());
 
     }
 
     @Test
     public void printUsernameByEmail() {
-        String username = userRepo.getUserUsernameByEmailNative("testemail@demo.com");
+        String username = userRepo.getUsernameByEmailNative("testemail@demo.com");
         //Assert.isNull(users, "Nessun utente trovato");
         System.out.println(username);
 

@@ -2,11 +2,17 @@ package track.individual.read4share.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import track.individual.read4share.model.Advertisement;
+import track.individual.read4share.model.Category;
 import track.individual.read4share.service.AdvService;
+import track.individual.read4share.service.CategoryService;
 
-@Slf4j
+import java.util.List;
+import java.util.Optional;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController()
 @RequestMapping("/api/adv")
@@ -14,41 +20,43 @@ import track.individual.read4share.service.AdvService;
 public class AdvController {
 
     private final AdvService advService;
+    private final CategoryService categoryService;
 
     /**
      * Most recently posted advertisements
      * @return List of Advertisements
      */
     @GetMapping("/latest")
-    public ResponseEntity getLatest() {
-        return null;
+    public ResponseEntity<List<Advertisement>> getLatest() {
+        List<Advertisement> temp = advService.getLatest();
+        return ResponseEntity.ok().body(temp);
     }
 
     /**
      * Advertisements with the best rated books
      * @return List of Advertisements
      */
-    @GetMapping("/best")
-    public ResponseEntity getBest() {
-        return null;
+    @GetMapping("/bestrate")
+    public ResponseEntity<List<Advertisement>> getBestRating() {
+        return ResponseEntity.ok().body(advService.getBestRating());
     }
 
     /**
-     * Free advertisements
+     * Latest free advertisements
      * @return List of Advertisements
      */
     @GetMapping("/free")
-    public ResponseEntity getFree() {
-        return null;
+    public ResponseEntity<List<Advertisement>> getFree() {
+        return ResponseEntity.ok().body(advService.getFree());
     }
 
     /**
-     * Advertisements with no delivery fees
+     * Latest advertisements with no delivery fees
      * @return List of Advertisements
      */
     @GetMapping("/freedel")
-    public ResponseEntity getFreeDelivery() {
-        return null;
+    public ResponseEntity<List<Advertisement>> getFreeDelivery() {
+        return ResponseEntity.ok().body(advService.getFreeDel());
     }
 
     /**
@@ -56,8 +64,8 @@ public class AdvController {
      * @return List of Advertisements
      */
     @GetMapping("/asnew")
-    public ResponseEntity getAsNew() {
-        return null;
+    public ResponseEntity<List<Advertisement>> getAsNew() {
+        return ResponseEntity.ok().body(advService.getAsNew());
     }
 
     /**
@@ -65,7 +73,12 @@ public class AdvController {
      * @return List of Advertisements
      */
     @GetMapping("/cat")
-    public ResponseEntity getByCategory(@RequestParam("id") Long catId) {
-        return null;
+    public ResponseEntity<?> getByCategory(@RequestParam("id") Long catId) {
+        Optional<Category> category = categoryService.findByid(catId);  // Get category by id
+        if (category.isEmpty()) // If category doesn't exist
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Specified category not found");
+        // TODO: Implements custom exception handler
+        // Else return the related advertisements list
+        return ResponseEntity.ok().body(advService.getByCategoryId(category.get().getId()));
     }
 }

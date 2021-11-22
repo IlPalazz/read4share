@@ -1,25 +1,41 @@
 package track.individual.read4share.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@NamedEntityGraph(name = "adv-book-graph",
+        attributeNodes = { @NamedAttributeNode("book") }
+)
+@NamedEntityGraph(
+        name = "adv-book-category-graph",
+        attributeNodes = {
+                @NamedAttributeNode(value = "book", subgraph = "category-subgraph"),
+        },
+        subgraphs = {
+                @NamedSubgraph(
+                        name = "category-subgraph",
+                        attributeNodes = {
+                                @NamedAttributeNode("category")
+                        }
+                )
+        }
+)
 @Entity(name = "Advertisement")
 @Table(name = "adv")
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Advertisement {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "adv_id")
     private Long id;
-    @Column(name = "descr", nullable = false)
+    @Column(name = "descr", nullable = false, columnDefinition = "TEXT")
     private String descr;
     @Column(name = "price", nullable = false)
     private double price;

@@ -32,7 +32,7 @@ public interface UserRepo extends JpaRepository<User, Long> {
             value = "select u.email_addr from users u where u.email_addr= ?1",
             nativeQuery = true
     )
-    String getUserUsernameByEmailNative(String email);
+    String getUsernameByEmailNative(String email);
 
     // Update records
     @Modifying

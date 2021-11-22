@@ -9,7 +9,6 @@ import track.individual.read4share.service.UserService;
 
 import java.util.List;
 
-@Slf4j
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController()
 @RequestMapping("/api/user")

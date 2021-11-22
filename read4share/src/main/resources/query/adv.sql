@@ -189,7 +189,8 @@ INSERT INTO adv (descr, price, publ_date, ship_cost, fk_book_id, fk_city_id, fk_
      7,     -- book_id      (1-9)
      111,   -- city_id      (1-939)
      12,     -- condition_id (1-33)
-     9,      -- seller_id    (1-9)
+     7,      -- seller_id    (1-9)
      '',
      NULL
     );
+
