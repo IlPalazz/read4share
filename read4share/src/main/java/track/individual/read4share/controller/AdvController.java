@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import track.individual.read4share.model.Advertisement;
 import track.individual.read4share.model.Category;
+import track.individual.read4share.model.response.AdvOverview;
 import track.individual.read4share.service.AdvService;
 import track.individual.read4share.service.CategoryService;
 
@@ -23,48 +24,48 @@ public class AdvController {
     private final CategoryService categoryService;
 
     /**
-     * Most recently posted advertisements
+     * Overview of the most recently posted advertisements
      * @return List of Advertisements
      */
     @GetMapping("/latest")
-    public ResponseEntity<List<Advertisement>> getLatest() {
-        List<Advertisement> temp = advService.getLatest();
+    public ResponseEntity<List<AdvOverview>> getLatest() {
+        List<AdvOverview> temp = advService.getLatest();
         return ResponseEntity.ok().body(temp);
     }
 
     /**
-     * Advertisements with the best rated books
-     * @return List of Advertisements
+     * Overview of the advertisements with the best rated books
+     * @return List of AdvOverview
      */
     @GetMapping("/bestrate")
-    public ResponseEntity<List<Advertisement>> getBestRating() {
+    public ResponseEntity<List<AdvOverview>> getBestRating() {
         return ResponseEntity.ok().body(advService.getBestRating());
     }
 
     /**
-     * Latest free advertisements
-     * @return List of Advertisements
+     * Overview of the latest free advertisements
+     * @return List of AdvOverview
      */
     @GetMapping("/free")
-    public ResponseEntity<List<Advertisement>> getFree() {
+    public ResponseEntity<List<AdvOverview>> getFreeOverview() {
         return ResponseEntity.ok().body(advService.getFree());
     }
 
     /**
-     * Latest advertisements with no delivery fees
-     * @return List of Advertisements
+     * Overview of the latest advertisements with no delivery fees
+     * @return List of AdvOverview
      */
     @GetMapping("/freedel")
-    public ResponseEntity<List<Advertisement>> getFreeDelivery() {
+    public ResponseEntity<List<AdvOverview>> getFreeDeliveryOverview() {
         return ResponseEntity.ok().body(advService.getFreeDel());
     }
 
     /**
-     * Advertisements with books marked as new
-     * @return List of Advertisements
+     * Advertisements overview with books marked as new
+     * @return List of AdvOverview
      */
     @GetMapping("/asnew")
-    public ResponseEntity<List<Advertisement>> getAsNew() {
+    public ResponseEntity<List<AdvOverview>> getAsNewOverview() {
         return ResponseEntity.ok().body(advService.getAsNew());
     }
 

@@ -70,3 +70,7 @@ The application has been built following a client-server architecture and it pre
 
 ## Applied research
 
+### Main Question
+
+
+

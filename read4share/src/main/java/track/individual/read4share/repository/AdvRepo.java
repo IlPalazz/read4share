@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import track.individual.read4share.model.Advertisement;
+import track.individual.read4share.model.response.AdvOverview;
 
 import java.util.List;
 
@@ -12,14 +13,13 @@ import java.util.List;
 public interface AdvRepo extends JpaRepository<Advertisement, Long> {
 
     /**
-     * Most recently posted advertisements
+     * Overview of the most recently posted advertisements
      * @return List of Advertisements
      */
-    //@Query("select adv from ")
-    //@Query("select adv from Advertisement adv ")
     //@EntityGraph("adv-book-category")
-    //@Query("select adv from Advertisement adv")
-    List<Advertisement> findAll();
+    @Query("select adv.book.title, adv.book.author, adv.seller.username, " +
+            "adv.city.name, adv.price from Advertisement adv order by adv.publDate desc")
+    List<Object[]> findLatest();
 
 
 }
