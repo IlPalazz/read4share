@@ -17,4 +17,5 @@ public class AdvOverview {
     private String sellerUsername;
     private String advLocation;
     private double advPrice;
+    private String bookCoverUrl;
 }

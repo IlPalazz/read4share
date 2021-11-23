@@ -17,7 +17,7 @@ public interface AdvRepo extends JpaRepository<Advertisement, Long> {
      * @return List of AdvOverview Objects
      */
     @Query("select adv.book.title, adv.book.author, adv.seller.username, " +
-            "adv.city.name, adv.price from Advertisement adv where adv.saleDate is null " +
+            "adv.city.name, adv.price, adv.book.coverPath from Advertisement adv where adv.saleDate is null " +
             "order by adv.publDate desc")
     List<Object[]> findLatest(Pageable page);
 
@@ -27,7 +27,7 @@ public interface AdvRepo extends JpaRepository<Advertisement, Long> {
      * @return List of AdvOverview Objects
      */
     @Query("select adv.book.title, adv.book.author, adv.seller.username, " +
-            "adv.city.name, adv.price from Advertisement adv where adv.saleDate is null " +
+            "adv.city.name, adv.price, adv.book.coverPath from Advertisement adv where adv.saleDate is null " +
             "order by adv.book.avgRating, adv.publDate desc")
     List<Object[]> findBestRating(Pageable page);
 
@@ -37,7 +37,7 @@ public interface AdvRepo extends JpaRepository<Advertisement, Long> {
      * @return List of AdvOverview Objects
      */
     @Query("select adv.book.title, adv.book.author, adv.seller.username, " +
-            "adv.city.name, adv.price from Advertisement adv where adv.price = 0.0 " +
+            "adv.city.name, adv.price, adv.book.coverPath from Advertisement adv where adv.price = 0.0 " +
             "order by adv.publDate desc")
     List<Object[]> findFree(Pageable page);
 
@@ -47,7 +47,7 @@ public interface AdvRepo extends JpaRepository<Advertisement, Long> {
      * @return List of AdvOverview Objects
      */
     @Query("select adv.book.title, adv.book.author, adv.seller.username, " +
-            "adv.city.name, adv.price from Advertisement adv where adv.shipCost = 0.0 " +
+            "adv.city.name, adv.price, adv.book.coverPath from Advertisement adv where adv.shipCost = 0.0 " +
             "order by adv.publDate desc")
     List<Object[]> findFreeDel(Pageable page);
 
@@ -57,7 +57,7 @@ public interface AdvRepo extends JpaRepository<Advertisement, Long> {
      * @return List of AdvOverview Objects
      */
     @Query("select adv.book.title, adv.book.author, adv.seller.username, " +
-            "adv.city.name, adv.price from Advertisement adv where adv.condition.code = 'AN' " +
+            "adv.city.name, adv.price, adv.book.coverPath from Advertisement adv where adv.condition.code = 'AN' " +
             "order by adv.publDate desc")
     List<Object[]> findAsNew(Pageable page);
 
