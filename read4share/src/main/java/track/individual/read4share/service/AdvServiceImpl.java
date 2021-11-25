@@ -5,7 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import track.individual.read4share.model.response.AdvOverview;
 import track.individual.read4share.repository.AdvRepo;
-import track.individual.read4share.utils.Config;
+import track.individual.read4share.config.GlobalConstants;
 import track.individual.read4share.utils.QueryMapper;
 
 import java.util.List;
@@ -57,6 +57,6 @@ public class AdvServiceImpl implements AdvService {
      * @return Validated int value
      */
     private int validateRecordsNumber(int size) {
-        return Math.min(size, Config.maxRecordsAdvOverview);
+        return Math.min(size, GlobalConstants.maxRecordsAdvOverview);
     }
 }

@@ -1,9 +1,9 @@
-package track.individual.read4share.utils;
+package track.individual.read4share.config;
 
 /**
  * Configuration class
  */
-public class Config {
+public class GlobalConstants {
     /**
      * Maximum number of returned records for the Advertisements Overview section
      */
