@@ -3,26 +3,9 @@ package track.individual.read4share.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
-@NamedEntityGraph(name = "adv-book-graph",
-        attributeNodes = { @NamedAttributeNode("book") }
-)
-@NamedEntityGraph(
-        name = "adv-book-category-graph",
-        attributeNodes = {
-                @NamedAttributeNode(value = "book", subgraph = "category-subgraph"),
-        },
-        subgraphs = {
-                @NamedSubgraph(
-                        name = "category-subgraph",
-                        attributeNodes = {
-                                @NamedAttributeNode("category")
-                        }
-                )
-        }
-)
 @Entity(name = "Advertisement")
 @Table(name = "adv")
 @Getter
@@ -42,10 +25,10 @@ public class Advertisement {
     @Column(name = "ship_cost")
     private double shipCost;
     @Column(name = "publ_date", nullable = false)
-    private Date publDate;
-    @Column(name = "sale_date", nullable = true)
-    private Date saleDate;
-    @Column(name = "pic_path", nullable = true)
+    private LocalDateTime publDate;
+    @Column(name = "sale_date")
+    private LocalDateTime saleDate;
+    @Column(name = "pic_path")
     private String picPath;
 
     /**

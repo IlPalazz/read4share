@@ -2,6 +2,8 @@ package track.individual.read4share.model.response;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 /**
  * Advertisement overview containing the main info
  */

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity(name = "Message")
@@ -23,7 +24,7 @@ public class Message {
     @Column(name = "text", nullable = false)
     private String text;
     @Column(name = "timestamp", nullable = false)
-    private Date timestamp;
+    private LocalDateTime timestamp;
     @Column(name = "read", nullable = false)
     private boolean read;
 

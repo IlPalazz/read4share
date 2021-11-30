@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @NamedEntityGraph(name = "book-category-graph",
@@ -30,7 +31,7 @@ public class Book {
     @Column(name = "author", nullable = false)
     private String author;
     @Column(name = "publ_date", nullable = false)
-    private Date publDate;
+    private LocalDateTime publDate;
     @Column(name = "publisher", nullable = false)
     private String publisher;
     @Column(name = "lang", nullable = false)
