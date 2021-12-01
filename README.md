@@ -13,6 +13,7 @@
 | 1.4     | 10/10/2021 | F. Palazzi | Added C4 diagrams section                                 |
 | 1.5     | 01/11/2021 | F. Palazzi | Created design document                                   |
 | 1.6     | 15/11/2021 | F. Palazzi | Added endpoints list                                      |
+| 1.7     | 26/11/2021 | F. Palazzi | Added test plan                                           |
 
 ## Intro
 
@@ -54,15 +55,16 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
 
 <details>
     <summary>Click to expand</summary>
-    <img src="./docs/Use_Case.png" style="zoom: 67%;" />
+    <img src="./docs/diagrams/Use_Case.png" style="zoom: 67%;" />
 </details>
+
 ## Endpoints
 
 [Click to view](docs/endpoints.md)
 
 ## Test plan
 
-- Unit tests
+[Click to view](docs/testplan.md)
 
 ## SonarQube Scan
 

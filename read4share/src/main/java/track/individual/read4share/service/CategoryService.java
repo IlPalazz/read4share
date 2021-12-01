@@ -15,15 +15,36 @@ public interface CategoryService {
     List<Category> getAll();
 
     /**
-     * Get all the categories' names
-     * @return List with all the categories' names
+     * Get a specific category by id
+     * @param id category id
+     * @return Category Object, otherwise Null if the id is not valid
      */
-    List<String> getAllNames();
+    Optional<Category> getById(Long id);
 
     /**
-     * Get a specific book category by id
-     * @param catId category id
-     * @return Optional Category Object, Null whether the category doesn't exist
+     * Get a specific category by
+     * @param name Category name
+     * @return Category Object, Null if the name is not valid
      */
-    Optional<Category> findById(Long catId);
+    Optional<Category> getByName(String name);
+
+    /**
+     * Check whether a particular category id is valid
+     * @param id Category id
+     * @return True if the id is associated to a valid category, false otherwise
+     */
+    boolean isValid(Long id);
+
+    /**
+     * Check whether a particular category name already exists
+     * @param name Category name
+     * @return True if the name is not present inside the db, false otherwise
+     */
+    boolean isPresent(String name);
+
+    /**
+     * Save a new category inside the db
+     * @param name Category name
+     */
+    void addCategory(String name);
 }

@@ -24,12 +24,23 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.6'
 	implementation 'org.springframework.boot:spring-boot-starter-mail:2.5.6'
 	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
+
 	compileOnly 'org.projectlombok:lombok:1.18.22'
-	runtimeOnly 'org.postgresql:postgresql:42.3.1'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+	runtimeOnly 'org.postgresql:postgresql:42.3.1'
+	runtimeOnly 'com.h2database:h2:1.4.200'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
 	testImplementation 'org.springframework.security:spring-security-test:5.5.1'
+	// https://mvnrepository.com/artifact/org.assertj/assertj-core
+	testImplementation 'org.assertj:assertj-core:3.21.0'
+	// https://mvnrepository.com/artifact/org.mockito/mockito-all
+	testImplementation 'org.mockito:mockito-all:1.10.19'
+	// https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
+	testImplementation 'org.mockito:mockito-junit-jupiter:4.1.0'
+	//testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.8.1')
+
 }
 
 test {

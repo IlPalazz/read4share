@@ -1,21 +1,23 @@
-package track.individual.read4share.model.response;
+package track.individual.read4share.dto.response;
 
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 /**
  * Advertisement overview containing the main info
  */
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AdvOverview {
+public class AdvOverviewResp {
 
     private String bookTitle;
     private String bookAuthor;
     private String sellerUsername;
     private String advLocation;
+    private LocalDateTime advPublDate;
     private double advPrice;
     private String bookCoverUrl;
 }

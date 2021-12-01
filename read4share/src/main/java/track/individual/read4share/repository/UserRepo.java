@@ -8,38 +8,26 @@ import track.individual.read4share.model.User;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
 
-    List<User> findByUsername(String username);
+    boolean existsByEmailIgnoreCase(String email);
 
-    // Search users with a username that contains the specified string
-    List<User> findByUsernameContaining(String username);
+    boolean existsByUsernameIgnoreCase(String username);
 
-    // Return not null records
-    List<User> findByEmailNotNull();
+    Optional<User> findByUsernameIgnoreCase(String username);
 
-    // JPQL Queries: custom queries based on classes rather than DB tables
-    @Query("select u from User u where u.email = ?1")
-    User getUserByEmail(String email);
+    Optional<User> findById(Long id);
 
-    @Query("select u.username from User u where u.email = ?1")
-    String getUserUsernameByEmail(String email);
 
-    // Native query
-    @Query(
-            value = "select u.email_addr from users u where u.email_addr= ?1",
-            nativeQuery = true
-    )
-    String getUsernameByEmailNative(String email);
-
-    // Update records
-    @Modifying
-    @Transactional
-    @Query(
-            value = "update users set username = ?1 where email_addr = ?2",
-            nativeQuery = true
-    )
-    int updateUsernameByEmail(String username, String email);
+//    // Update records
+//    @Modifying
+//    @Transactional
+//    @Query(
+//            value = "update users set username = ?1 where email_addr = ?2",
+//            nativeQuery = true
+//    )
+//    int updateUsernameByEmail(String username, String email);
 }

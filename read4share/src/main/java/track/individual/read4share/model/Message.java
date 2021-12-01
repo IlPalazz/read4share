@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity(name = "Message")
 @Table(name = "mess")
@@ -23,7 +23,7 @@ public class Message {
     @Column(name = "text", nullable = false)
     private String text;
     @Column(name = "timestamp", nullable = false)
-    private Date timestamp;
+    private LocalDateTime timestamp;
     @Column(name = "read", nullable = false)
     private boolean read;
 
@@ -39,7 +39,7 @@ public class Message {
      */
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_adv_id", referencedColumnName = "adv_id")
-    private Advertisement adv;
+    private Adv adv;
 
     @Override
     public boolean equals(Object o) {

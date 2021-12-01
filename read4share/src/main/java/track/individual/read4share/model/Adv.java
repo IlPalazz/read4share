@@ -3,34 +3,30 @@ package track.individual.read4share.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
-@NamedEntityGraph(name = "adv-book-graph",
-        attributeNodes = { @NamedAttributeNode("book") }
-)
+
+@Entity(name = "Adv")
+@Table(name = "adv")
 @NamedEntityGraph(
-        name = "adv-book-category-graph",
+        name = "graph.AdvUserCityBookCategory",
         attributeNodes = {
-                @NamedAttributeNode(value = "book", subgraph = "category-subgraph"),
+                @NamedAttributeNode(value = "seller", subgraph = "subgraph.seller"),
+                @NamedAttributeNode(value = "city"),
+                @NamedAttributeNode(value = "book", subgraph = "subgraph.book")
         },
         subgraphs = {
-                @NamedSubgraph(
-                        name = "category-subgraph",
-                        attributeNodes = {
-                                @NamedAttributeNode("category")
-                        }
-                )
+                @NamedSubgraph(name = "subgraph.book", attributeNodes = @NamedAttributeNode(value = "category")),
+                @NamedSubgraph(name = "subgraph.seller", attributeNodes = @NamedAttributeNode(value = "username"))
         }
 )
-@Entity(name = "Advertisement")
-@Table(name = "adv")
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Advertisement {
+public class Adv {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "adv_id")
@@ -42,10 +38,10 @@ public class Advertisement {
     @Column(name = "ship_cost")
     private double shipCost;
     @Column(name = "publ_date", nullable = false)
-    private Date publDate;
-    @Column(name = "sale_date", nullable = true)
-    private Date saleDate;
-    @Column(name = "pic_path", nullable = true)
+    private LocalDateTime publDate;
+    @Column(name = "sale_date")
+    private LocalDateTime saleDate;
+    @Column(name = "pic_path")
     private String picPath;
 
     /**

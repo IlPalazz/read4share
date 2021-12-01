@@ -1,21 +1,17 @@
 package track.individual.read4share.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-@NamedEntityGraph(name = "book-category-graph",
-        attributeNodes = { @NamedAttributeNode("category") }
-)
 @Entity(name = "Book")
 @Table(name = "book", uniqueConstraints = @UniqueConstraint(
         name = "book_isbn_unique", columnNames = "isbn"))
 @Builder
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
@@ -30,13 +26,13 @@ public class Book {
     @Column(name = "author", nullable = false)
     private String author;
     @Column(name = "publ_date", nullable = false)
-    private Date publDate;
+    private LocalDateTime publDate;
     @Column(name = "publisher", nullable = false)
     private String publisher;
     @Column(name = "lang", nullable = false)
     private String language;
-    @Column(name = "cover_path", nullable = false)
-    private String coverPath;
+    @Column(name = "cover_url", nullable = false)
+    private String coverUrl;
     @Column(name = "avg_rating", nullable = false)
     private double avgRating;
 

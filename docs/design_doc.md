@@ -47,22 +47,24 @@ The application has been built following a client-server architecture and it pre
 
 <details>
     <summary>Click to expand</summary>
-    <img src="C1.png" style="zoom: 67%;" />
+    <img src="diagrams/C1.png" style="zoom: 67%;" />
 </details>
 
 ### Containers (C2)
 
 <details>
     <summary>Click to expand</summary>
-    <img src="C2.png" style="zoom: 67%;" />
+    <img src="diagrams/C2.png" style="zoom: 67%;" />
 </details>
+
 
 ### Components (C3)
 
 <details>
     <summary>Click to expand</summary>
-    <img src="C3.png" style="zoom: 67%;" />
+    <img src="diagrams/C3.png" style="zoom: 67%;" />
 </details>
+
 
 ### Code (C4) - Class diagram
 
