@@ -7,8 +7,7 @@ import java.time.LocalDateTime;
 /**
  * Advertisement overview containing the main info
  */
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -18,6 +17,7 @@ public class AdvOverviewDTO {
     private String bookAuthor;
     private String sellerUsername;
     private String advLocation;
+    private LocalDateTime advPublDate;
     private double advPrice;
     private String bookCoverUrl;
 }

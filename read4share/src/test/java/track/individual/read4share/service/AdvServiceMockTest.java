@@ -6,21 +6,25 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 import org.springframework.data.domain.PageRequest;
+import track.individual.read4share.dto.AdvOverviewDTO;
 import track.individual.read4share.model.Adv;
 import track.individual.read4share.repository.AdvRepo;
+import track.individual.read4share.utils.Converter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-//@ExtendWith(MockitoExtension.class)
 public class AdvServiceMockTest {
 
     // Mock creation
     @Mock
     private AdvRepo advRepo;
+    @Mock
+    private Converter converter;
     private AdvService advService;
 
 
@@ -29,28 +33,31 @@ public class AdvServiceMockTest {
         // Enable Mockito annotations
         MockitoAnnotations.initMocks(this);
         // Inject mock repository
-        advService = new AdvServiceImpl(advRepo);
+        advService = new AdvServiceImpl(advRepo, converter);
     }
 
     @Test
     @DisplayName("Should return the latest published advertisements")
     void getLatest() {
 
+        // ARRANGE
         // Create a list of fake objects
-        List<Adv> mockList = new ArrayList<>();
-        mockList.add(new Adv());
-        mockList.add(new Adv());
+        List<AdvOverviewDTO> mockList = new ArrayList<>();
+        mockList.add(AdvOverviewDTO.builder().bookTitle("test_book1").build());
+        mockList.add(AdvOverviewDTO.builder().bookTitle("test_book2").build());
 
         // Mock the findLatest method
-        when(advRepo.findLatest(PageRequest.of(0,2))).thenReturn(mockList);
+        when(advService.getLatest(2)).thenReturn(mockList);
 
-        List<Adv> results = advRepo.findLatest(PageRequest.of(0,2));
+        // ACT
+        List<AdvOverviewDTO> results = advService.getLatest(2);
 
+        // ASSERT
         // Check the number of returned elements
         Assertions.assertThat(results.size()).isEqualTo(2);
 
-        // Verify number of calls
-        verify(advRepo, times(1)).findLatest(PageRequest.of(0,2));
+        // Verify number of calls to the convert method
+        verify(converter, times(1)).convert(anyListOf(Adv.class));
     }
 
 }
