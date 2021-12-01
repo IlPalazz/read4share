@@ -1,6 +1,6 @@
 package track.individual.read4share.utils;
 
-import track.individual.read4share.dto.AdvOverviewDTO;
+import track.individual.read4share.dto.response.AdvOverviewResp;
 import track.individual.read4share.model.Adv;
 
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
 public interface Converter {
 
     /**
-     * Convert a List of Adv into a List of AdvOverviewDTO
+     * Convert a List of Adv into a List of AdvOverviewResp
      * @param advs List of Adv to convert
-     * @return List of AdvOverviewDTO
+     * @return List of AdvOverviewResp
      */
-    List<AdvOverviewDTO> convert(List<Adv> advs);
+    List<AdvOverviewResp> convert(List<Adv> advs);
 }

@@ -1,13 +1,11 @@
 package track.individual.read4share.utils;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import track.individual.read4share.dto.AdvOverviewDTO;
+import track.individual.read4share.dto.response.AdvOverviewResp;
 import track.individual.read4share.model.Adv;
 import track.individual.read4share.model.Book;
 import track.individual.read4share.model.City;
@@ -15,11 +13,6 @@ import track.individual.read4share.model.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Matchers.anyList;
-import static org.mockito.Matchers.anyListOf;
-import static org.mockito.Mockito.when;
 
 class ConverterTest {
 
@@ -52,7 +45,7 @@ class ConverterTest {
         );
 
         // ACT
-        List<AdvOverviewDTO> advDTOList = converter.convert(advList);
+        List<AdvOverviewResp> advDTOList = converter.convert(advList);
 
         // ASSERT
         Assertions.assertThat(advDTOList.size()).isEqualTo(2);
@@ -71,7 +64,7 @@ class ConverterTest {
         Assertions.assertThatExceptionOfType(NullPointerException.class)
                 .isThrownBy(() -> {
                     // ACT
-                    List<AdvOverviewDTO> advDTOList = converter.convert(advList);
+                    List<AdvOverviewResp> advDTOList = converter.convert(advList);
         });
     }
 }

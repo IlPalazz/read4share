@@ -28,6 +28,9 @@ public class User {
     private String password;
     @Column(name = "email_addr", nullable = false)
     private String email;
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ERole role;
 
     /**
      * Advertisements published by a user

@@ -19,15 +19,6 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     /**
-     * Returns all the categories' names
-     * @return List of categories' names
-     */
-    @GetMapping("/all/names")
-    public ResponseEntity<List<String>> getAllNames() {
-        return ResponseEntity.ok().body(categoryService.getAllNames());
-    }
-
-    /**
      * Returns all the categories
      * @return List of categories
      */

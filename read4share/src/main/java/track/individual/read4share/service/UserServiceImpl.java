@@ -6,6 +6,7 @@ import track.individual.read4share.model.User;
 import track.individual.read4share.repository.UserRepo;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -14,22 +15,12 @@ public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
 
     @Override
-    public User getUser(Long id) {
-        return null;
+    public Optional<User> getById(Long id) {
+        return Optional.empty();
     }
 
     @Override
-    public User getUserByUsername(String username) {
-        return null;
-    }
-
-    @Override
-    public User addUser(User user) {
-        return userRepo.save(user);
-    }
-
-    @Override
-    public List<User> getUsers() {
-        return userRepo.findAll();
+    public Optional<User> getByUsername(String username) {
+        return Optional.empty();
     }
 }

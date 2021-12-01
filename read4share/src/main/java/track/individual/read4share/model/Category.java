@@ -13,7 +13,9 @@ import java.util.Set;
                 name="category_name_unique", columnNames = "name")
 )
 @Builder
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 public class Category {

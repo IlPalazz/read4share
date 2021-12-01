@@ -6,11 +6,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
-import org.springframework.data.domain.PageRequest;
-import track.individual.read4share.dto.AdvOverviewDTO;
+import track.individual.read4share.dto.response.AdvOverviewResp;
 import track.individual.read4share.model.Adv;
 import track.individual.read4share.repository.AdvRepo;
+import track.individual.read4share.repository.CategoryRepo;
 import track.individual.read4share.utils.Converter;
 
 import java.util.ArrayList;
@@ -26,6 +25,8 @@ public class AdvServiceMockTest {
     @Mock
     private Converter converter;
     private AdvService advService;
+    @Mock
+    private CategoryService catService;
 
 
     @BeforeEach
@@ -33,7 +34,7 @@ public class AdvServiceMockTest {
         // Enable Mockito annotations
         MockitoAnnotations.initMocks(this);
         // Inject mock repository
-        advService = new AdvServiceImpl(advRepo, converter);
+        advService = new AdvServiceImpl(advRepo, converter, catService);
     }
 
     @Test
@@ -42,15 +43,15 @@ public class AdvServiceMockTest {
 
         // ARRANGE
         // Create a list of fake objects
-        List<AdvOverviewDTO> mockList = new ArrayList<>();
-        mockList.add(AdvOverviewDTO.builder().bookTitle("test_book1").build());
-        mockList.add(AdvOverviewDTO.builder().bookTitle("test_book2").build());
+        List<AdvOverviewResp> mockList = new ArrayList<>();
+        mockList.add(AdvOverviewResp.builder().bookTitle("test_book1").build());
+        mockList.add(AdvOverviewResp.builder().bookTitle("test_book2").build());
 
         // Mock the findLatest method
         when(advService.getLatest(2)).thenReturn(mockList);
 
         // ACT
-        List<AdvOverviewDTO> results = advService.getLatest(2);
+        List<AdvOverviewResp> results = advService.getLatest(2);
 
         // ASSERT
         // Check the number of returned elements

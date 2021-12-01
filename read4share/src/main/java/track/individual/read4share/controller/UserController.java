@@ -17,13 +17,4 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/all")
-    public ResponseEntity<List<User>> getUsers() {
-        return ResponseEntity.ok(userService.getUsers());
-    }
-
-    @PostMapping("/add")
-    public ResponseEntity<User> addUser(@RequestBody User user) {
-        return ResponseEntity.ok(userService.addUser(user));
-    }
 }

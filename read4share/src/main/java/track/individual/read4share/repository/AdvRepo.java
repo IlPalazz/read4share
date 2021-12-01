@@ -72,5 +72,8 @@ public interface AdvRepo extends JpaRepository<Adv, Long> {
      * @param page Page and number of records to return
      * @return List of AdvOverview
      */
-    //List<Object[]> findByCatId(Long catId, Pageable page)
+    @EntityGraph(value = "graph.AdvOverview")
+    @Query("select adv from Adv adv where adv.saleDate is null and adv.book.category.id = ?1" +
+            "order by adv.publDate desc")
+    List<Adv> findByCatId(Long catId, Pageable page);
 }
