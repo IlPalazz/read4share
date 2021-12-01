@@ -6,14 +6,27 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity(name = "Advertisement")
+
+@Entity(name = "Adv")
 @Table(name = "adv")
+@NamedEntityGraph(
+        name = "graph.AdvUserCityBookCategory",
+        attributeNodes = {
+                @NamedAttributeNode(value = "seller", subgraph = "subgraph.seller"),
+                @NamedAttributeNode(value = "city"),
+                @NamedAttributeNode(value = "book", subgraph = "subgraph.book")
+        },
+        subgraphs = {
+                @NamedSubgraph(name = "subgraph.book", attributeNodes = @NamedAttributeNode(value = "category")),
+                @NamedSubgraph(name = "subgraph.seller", attributeNodes = @NamedAttributeNode(value = "username"))
+        }
+)
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Advertisement {
+public class Adv {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "adv_id")

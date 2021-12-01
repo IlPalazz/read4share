@@ -1,6 +1,6 @@
 package track.individual.read4share.service;
 
-import track.individual.read4share.model.response.AdvOverview;
+import track.individual.read4share.dto.AdvOverviewDTO;
 
 import java.util.List;
 
@@ -11,39 +11,39 @@ public interface AdvService {
      * @param size Number of elements to return to the client
      * @return List of Advertisements Overview
      */
-    List<AdvOverview> getLatest(int size);
+    List<AdvOverviewDTO> getLatest(int size);
 
     /**
      * Advertisements with the best rated books
      * @param size Number of elements to return to the client
      * @return List of Advertisements Overview
      */
-    List<AdvOverview> getBestRating(int size);
+    List<AdvOverviewDTO> getBestRating(int size);
 
     /**
      * Latest free advertisements
      * @param size Number of elements to return to the client
      * @return List of Advertisements Overview
      */
-    List<AdvOverview> getFree(int size);
+    List<AdvOverviewDTO> getFree(int size);
 
     /**
      * Latest advertisements with no delivery fees
      * @param size Number of elements to return to the client
      * @return List of Advertisements Overview
      */
-    List<AdvOverview> getFreeDel(int size);
+    List<AdvOverviewDTO> getFreeDel(int size);
 
     /**
      * Advertisements with books marked as new
      * @param size Number of elements to return to the client
      * @return List of Advertisements Overview
      */
-    List<AdvOverview> getAsNew(int size);
+    List<AdvOverviewDTO> getAsNew(int size);
 
     /**
      * Advertisements with books that belong to a specific category
      * @return List of Advertisements Overview
      */
-    List<AdvOverview> getByCategoryId(Long id, int page, int size);
+    List<AdvOverviewDTO> getByCategoryId(Long id, int page, int size);
 }

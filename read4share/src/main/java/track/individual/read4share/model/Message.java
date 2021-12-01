@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity(name = "Message")
 @Table(name = "mess")
@@ -40,7 +39,7 @@ public class Message {
      */
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_adv_id", referencedColumnName = "adv_id")
-    private Advertisement adv;
+    private Adv adv;
 
     @Override
     public boolean equals(Object o) {

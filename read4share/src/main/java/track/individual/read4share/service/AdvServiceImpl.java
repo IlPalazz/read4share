@@ -3,10 +3,10 @@ package track.individual.read4share.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import track.individual.read4share.model.response.AdvOverview;
+import track.individual.read4share.dto.AdvOverviewDTO;
 import track.individual.read4share.repository.AdvRepo;
+import track.individual.read4share.utils.AdvConverter;
 import track.individual.read4share.utils.Config;
-import track.individual.read4share.utils.QueryMapper;
 
 import java.util.List;
 
@@ -17,37 +17,37 @@ public class AdvServiceImpl implements AdvService {
     private final AdvRepo advRepo;
 
     @Override
-    public List<AdvOverview> getLatest(int size) {
-        return QueryMapper.parseToAdvOverview(advRepo.findLatest(PageRequest.of(
+    public List<AdvOverviewDTO> getLatest(int size) {
+        return AdvConverter.convert(advRepo.findLatest(PageRequest.of(
                 0, this.validateRecordsNumber(size))));
     }
 
     @Override
-    public List<AdvOverview> getBestRating(int size) {
-        return QueryMapper.parseToAdvOverview(advRepo.findBestRating(PageRequest.of(
+    public List<AdvOverviewDTO> getBestRating(int size) {
+        return AdvConverter.convert(advRepo.findBestRating(PageRequest.of(
                 0, this.validateRecordsNumber(size))));
     }
 
     @Override
-    public List<AdvOverview> getFree(int size) {
-        return QueryMapper.parseToAdvOverview(advRepo.findFree(PageRequest.of(
+    public List<AdvOverviewDTO> getFree(int size) {
+        return AdvConverter.convert(advRepo.findFree(PageRequest.of(
                 0, this.validateRecordsNumber(size))));
     }
 
     @Override
-    public List<AdvOverview> getFreeDel(int size) {
-        return QueryMapper.parseToAdvOverview(advRepo.findFreeDel(PageRequest.of(
+    public List<AdvOverviewDTO> getFreeDel(int size) {
+        return AdvConverter.convert(advRepo.findFreeDel(PageRequest.of(
                 0, this.validateRecordsNumber(size))));
     }
 
     @Override
-    public List<AdvOverview> getAsNew(int size) {
-        return QueryMapper.parseToAdvOverview(advRepo.findAsNew(PageRequest.of(
+    public List<AdvOverviewDTO> getAsNew(int size) {
+        return AdvConverter.convert(advRepo.findAsNew(PageRequest.of(
                 0, this.validateRecordsNumber(size))));
     }
 
     @Override
-    public List<AdvOverview> getByCategoryId(Long id, int page, int size) {
+    public List<AdvOverviewDTO> getByCategoryId(Long id, int page, int size) {
         return null; // TODO: Implement method
     }
 

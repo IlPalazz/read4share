@@ -3,7 +3,6 @@ package track.individual.read4share.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,7 +11,9 @@ import java.util.Set;
         @UniqueConstraint(name = "username_unique", columnNames = "username"),
         @UniqueConstraint(name = "email_unique", columnNames = "email_addr")
 })
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,7 +35,7 @@ public class User {
     @OneToMany(mappedBy = "seller",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private List<Advertisement> adverts;
+    private List<Adv> adverts;
 
     /**
      * List of messages sent by a user
@@ -64,12 +65,12 @@ public class User {
         mess.setSender(null);
     }
 
-    public void addAdv(Advertisement adv) {
+    public void addAdv(Adv adv) {
         adverts.add(adv);
         adv.setSeller(this);
     }
 
-    public void removeAdv(Advertisement adv) {
+    public void removeAdv(Adv adv) {
         adverts.remove(adv);
         adv.setSeller(null);
     }

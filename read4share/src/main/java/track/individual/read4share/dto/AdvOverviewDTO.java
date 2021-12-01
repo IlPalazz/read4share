@@ -1,4 +1,4 @@
-package track.individual.read4share.model.response;
+package track.individual.read4share.dto;
 
 import lombok.*;
 
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AdvOverview {
+public class AdvOverviewDTO {
 
     private String bookTitle;
     private String bookAuthor;

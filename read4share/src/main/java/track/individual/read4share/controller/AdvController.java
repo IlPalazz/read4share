@@ -3,7 +3,7 @@ package track.individual.read4share.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import track.individual.read4share.model.response.AdvOverview;
+import track.individual.read4share.dto.AdvOverviewDTO;
 import track.individual.read4share.service.AdvService;
 import track.individual.read4share.service.CategoryService;
 
@@ -24,8 +24,8 @@ public class AdvController {
      * @return List of Advertisements
      */
     @GetMapping("/latest")
-    public ResponseEntity<List<AdvOverview>> getLatest(@RequestParam int size) {
-        List<AdvOverview> temp = advService.getLatest(size);
+    public ResponseEntity<List<AdvOverviewDTO>> getLatest(@RequestParam int size) {
+        List<AdvOverviewDTO> temp = advService.getLatest(size);
         return ResponseEntity.ok().body(temp);
     }
 
@@ -35,7 +35,7 @@ public class AdvController {
      * @return List of AdvOverview
      */
     @GetMapping("/bestrate")
-    public ResponseEntity<List<AdvOverview>> getBestRating(@RequestParam int size) {
+    public ResponseEntity<List<AdvOverviewDTO>> getBestRating(@RequestParam int size) {
         return ResponseEntity.ok().body(advService.getBestRating(size));
     }
 
@@ -45,7 +45,7 @@ public class AdvController {
      * @return List of AdvOverview
      */
     @GetMapping("/free")
-    public ResponseEntity<List<AdvOverview>> getFreeOverview(@RequestParam int size) {
+    public ResponseEntity<List<AdvOverviewDTO>> getFreeOverview(@RequestParam int size) {
         return ResponseEntity.ok().body(advService.getFree(size));
     }
 
@@ -55,7 +55,7 @@ public class AdvController {
      * @return List of AdvOverview
      */
     @GetMapping("/freedel")
-    public ResponseEntity<List<AdvOverview>> getFreeDeliveryOverview(@RequestParam int size) {
+    public ResponseEntity<List<AdvOverviewDTO>> getFreeDeliveryOverview(@RequestParam int size) {
         return ResponseEntity.ok().body(advService.getFreeDel(size));
     }
 
@@ -65,7 +65,7 @@ public class AdvController {
      * @return List of AdvOverview
      */
     @GetMapping("/asnew")
-    public ResponseEntity<List<AdvOverview>> getAsNewOverview(@RequestParam int size) {
+    public ResponseEntity<List<AdvOverviewDTO>> getAsNewOverview(@RequestParam int size) {
         return ResponseEntity.ok().body(advService.getAsNew(size));
     }
 
@@ -77,9 +77,9 @@ public class AdvController {
      * @return List of Advertisements
      */
     @GetMapping("/cat") // TODO: Implement method in AdvServiceImpl
-    public ResponseEntity<List<AdvOverview>> getByCategory(@RequestParam("id") Long catId,
-                                                           @RequestParam int page,
-                                                           @RequestParam int size) {
+    public ResponseEntity<List<AdvOverviewDTO>> getByCategory(@RequestParam("id") Long catId,
+                                                              @RequestParam int page,
+                                                              @RequestParam int size) {
         return ResponseEntity.ok().body(advService.getByCategoryId(catId, page, size));
     }
 }
