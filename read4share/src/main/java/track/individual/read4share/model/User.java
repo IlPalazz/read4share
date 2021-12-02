@@ -28,9 +28,6 @@ public class User {
     private String password;
     @Column(name = "email_addr", nullable = false)
     private String email;
-    @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private ERole role;
 
     /**
      * Advertisements published by a user
@@ -56,6 +53,15 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "cat_id"))
     private Set<Category> categories;
+
+    /**
+     * User's roles
+     */
+    @ManyToMany()
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     // Methods used to sync both sides of the bidirectional association
     public void addMessage(Message mess) {
