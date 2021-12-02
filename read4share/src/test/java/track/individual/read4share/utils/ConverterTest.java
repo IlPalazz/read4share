@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import track.individual.read4share.dto.Converter;
 import track.individual.read4share.dto.ConverterImpl;
-import track.individual.read4share.dto.response.AdvOverviewResp;
+import track.individual.read4share.dto.response.AdvOverviewResponse;
 import track.individual.read4share.model.Adv;
 import track.individual.read4share.model.Book;
 import track.individual.read4share.model.City;
@@ -47,7 +47,7 @@ class ConverterTest {
         );
 
         // ACT
-        List<AdvOverviewResp> advDTOList = converter.convert(advList);
+        List<AdvOverviewResponse> advDTOList = converter.convert(advList);
 
         // ASSERT
         Assertions.assertThat(advDTOList.size()).isEqualTo(2);
@@ -66,7 +66,7 @@ class ConverterTest {
         Assertions.assertThatExceptionOfType(NullPointerException.class)
                 .isThrownBy(() -> {
                     // ACT
-                    List<AdvOverviewResp> advDTOList = converter.convert(advList);
+                    List<AdvOverviewResponse> advDTOList = converter.convert(advList);
         });
     }
 }

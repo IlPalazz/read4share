@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AdvOverviewResp {
+public class AdvOverviewResponse {
 
     private String bookTitle;
     private String bookAuthor;

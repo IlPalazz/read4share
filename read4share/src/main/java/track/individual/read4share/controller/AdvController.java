@@ -3,7 +3,7 @@ package track.individual.read4share.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import track.individual.read4share.dto.response.AdvOverviewResp;
+import track.individual.read4share.dto.response.AdvOverviewResponse;
 import track.individual.read4share.service.AdvService;
 import track.individual.read4share.service.CategoryService;
 
@@ -24,8 +24,8 @@ public class AdvController {
      * @return List of Advertisements
      */
     @GetMapping("/latest")
-    public ResponseEntity<List<AdvOverviewResp>> getLatest(@RequestParam int size) {
-        List<AdvOverviewResp> temp = advService.getLatest(size);
+    public ResponseEntity<List<AdvOverviewResponse>> getLatest(@RequestParam int size) {
+        List<AdvOverviewResponse> temp = advService.getLatest(size);
         return ResponseEntity.ok().body(temp);
     }
 
@@ -35,7 +35,7 @@ public class AdvController {
      * @return List of AdvOverview
      */
     @GetMapping("/bestrate")
-    public ResponseEntity<List<AdvOverviewResp>> getBestRating(@RequestParam int size) {
+    public ResponseEntity<List<AdvOverviewResponse>> getBestRating(@RequestParam int size) {
         return ResponseEntity.ok().body(advService.getBestRating(size));
     }
 
@@ -45,7 +45,7 @@ public class AdvController {
      * @return List of AdvOverview
      */
     @GetMapping("/free")
-    public ResponseEntity<List<AdvOverviewResp>> getFreeOverview(@RequestParam int size) {
+    public ResponseEntity<List<AdvOverviewResponse>> getFreeOverview(@RequestParam int size) {
         return ResponseEntity.ok().body(advService.getFree(size));
     }
 
@@ -55,7 +55,7 @@ public class AdvController {
      * @return List of AdvOverview
      */
     @GetMapping("/freedel")
-    public ResponseEntity<List<AdvOverviewResp>> getFreeDeliveryOverview(@RequestParam int size) {
+    public ResponseEntity<List<AdvOverviewResponse>> getFreeDeliveryOverview(@RequestParam int size) {
         return ResponseEntity.ok().body(advService.getFreeDel(size));
     }
 
@@ -65,7 +65,7 @@ public class AdvController {
      * @return List of AdvOverview
      */
     @GetMapping("/asnew")
-    public ResponseEntity<List<AdvOverviewResp>> getAsNewOverview(@RequestParam int size) {
+    public ResponseEntity<List<AdvOverviewResponse>> getAsNewOverview(@RequestParam int size) {
         return ResponseEntity.ok().body(advService.getAsNew(size));
     }
 
@@ -77,9 +77,9 @@ public class AdvController {
      * @return List of Advertisements
      */
     @GetMapping("/cat") // TODO: Implement method in AdvServiceImpl
-    public ResponseEntity<List<AdvOverviewResp>> getByCategory(@RequestParam("id") Long catId,
-                                                               @RequestParam int page,
-                                                               @RequestParam int size) {
+    public ResponseEntity<List<AdvOverviewResponse>> getByCategory(@RequestParam("id") Long catId,
+                                                                   @RequestParam int page,
+                                                                   @RequestParam int size) {
         return ResponseEntity.ok().body(advService.getByCategoryId(catId, page, size));
     }
 }

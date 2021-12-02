@@ -2,7 +2,7 @@ package track.individual.read4share.dto;
 
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-import track.individual.read4share.dto.response.AdvOverviewResp;
+import track.individual.read4share.dto.response.AdvOverviewResponse;
 import track.individual.read4share.model.Adv;
 
 import java.util.ArrayList;
@@ -17,8 +17,8 @@ public class ConverterImpl implements Converter {
      * @param adv Advertisement to convert
      * @return AdvOverviewResp object
      */
-    private AdvOverviewResp fromAdvToAdvOverviewDTO(Adv adv) {
-        return AdvOverviewResp.builder()
+    private AdvOverviewResponse fromAdvToAdvOverviewDTO(Adv adv) {
+        return AdvOverviewResponse.builder()
                 .bookTitle(adv.getBook().getTitle())
                 .bookAuthor(adv.getBook().getAuthor())
                 .sellerUsername(adv.getSeller().getUsername())
@@ -29,8 +29,8 @@ public class ConverterImpl implements Converter {
                 .build();
     }
 
-    public List<AdvOverviewResp> convert(List<Adv> advs) {
-        List<AdvOverviewResp> listDto = new ArrayList<>();
+    public List<AdvOverviewResponse> convert(List<Adv> advs) {
+        List<AdvOverviewResponse> listDto = new ArrayList<>();
         for (Adv adv : advs)
             listDto.add(this.fromAdvToAdvOverviewDTO(adv));
         return listDto;
