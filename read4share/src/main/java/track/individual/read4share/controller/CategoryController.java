@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryController {
 
+    // TODO: Move getAllCategories into AdvController
     private final CategoryService categoryService;
 
     /**
