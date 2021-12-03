@@ -1,15 +1,3 @@
-# This is the Gradle build system for JVM applications
-# https://gradle.org/
-# https://github.com/gradle/gradle
-
-#image: gradle:alpine
-
-# Disable the Gradle daemon for Continuous Integration servers as correctness
-# is usually a priority over speed in CI environments. Using a fresh
-# runtime for each build is more reliable since the runtime is completely
-# isolated from any previous builds.
-#variables:
-#  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 .base-rules:
   rules:
@@ -53,11 +41,6 @@ backend-build:
   - echo "$DB_USER" >> src/main/resources/application.properties
   - echo "$DB_PSW" >> src/main/resources/application.properties
   - echo "$JWT_KEY" >> src/main/resources/application.properties
-
-  # Create application.properties file for tests
-  - mkdir src/test/resources
-  - echo "$TEST_CONFIG" >> src/test/resources/application.properties
-  - echo "$JWT_KEY" >> src/test/resources/application.properties
   script:
     - gradle --build-cache assemble
   cache:
@@ -71,6 +54,13 @@ backend-test:
   stage: test
   extends: .backend
   needs: ["backend-build"]
+  before_script:
+    - cd `pwd`/read4share
+    - export GRADLE_USER_HOME=.gradle
+    # Create application.properties file for tests
+    - mkdir src/test/resources
+    - echo "$TEST_CONFIG" >> src/test/resources/application.properties
+    - echo "$JWT_KEY" >> src/test/resources/application.properties
   script:
     - echo "Running tests"
     - gradle check
