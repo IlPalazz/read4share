@@ -18,6 +18,7 @@ before_script:
   - echo "$DB_URL" >> src/main/resources/application.properties
   - echo "$DB_USER" >> src/main/resources/application.properties
   - echo "$DB_PSW" >> src/main/resources/application.properties
+  - echo "$JWT_KEY" >> src/main/resources/application.properties
 
 stages:
  - build
