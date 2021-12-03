@@ -2,6 +2,7 @@ package track.individual.read4share.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -41,6 +42,12 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest) {
+
+        if (registerRequest.getUsername()== null ||
+                registerRequest.getEmail()== null ||
+                registerRequest.getPassword() == null)
+            return ResponseEntity.badRequest().body(new MessageResponse("Invalid data: fields cannot be null!"));
+
         if (userRepo.existsByUsernameIgnoreCase(registerRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
@@ -53,27 +60,9 @@ public class AuthController {
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
 
-        Set<String> strRoles = registerRequest.getRole();
         Set<Role> roles = new HashSet<>();
-
-        if (strRoles == null) {
-            Role userRole = roleRepo.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
-        } else {
-            strRoles.forEach(role -> {
-                if (role.equalsIgnoreCase("admin")) {
-                    Role adminRole = roleRepo.findByName(ERole.ROLE_ADMIN)
-                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                    roles.add(adminRole);
-
-                } else {
-                    Role userRole = roleRepo.findByName(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                    roles.add(userRole);
-                }
-            });
-        }
+        roles.add(roleRepo.findByName(ERole.ROLE_USER)
+                .orElseThrow(() -> new RuntimeException("Error: Role is not found.")));
 
         // Create new user's account
         User user = User.builder().username(registerRequest.getUsername()).email(registerRequest.getEmail())
@@ -82,6 +71,27 @@ public class AuthController {
         userRepo.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+    @PostMapping("/registerAdmin")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> registerAdmin(@RequestBody RegisterRequest registerRequest) { //TODO: Implement admin reg
+//
+//           else {
+//            strRoles.forEach(role -> {
+//                if (role.equalsIgnoreCase("admin")) {
+//                    Role adminRole = roleRepo.findByName(ERole.ROLE_ADMIN)
+//                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//                    roles.add(adminRole);
+//
+//                } else {
+//                    Role userRole = roleRepo.findByName(ERole.ROLE_USER)
+//                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//                    roles.add(userRole);
+//                }
+//            });
+//        }
+        return null;
     }
 
     @PostMapping("/login")
@@ -93,18 +103,17 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
+        // Get user details
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
-                //.map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(new JwtResponse(
-                jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles));
+        return ResponseEntity.ok(JwtResponse.builder()
+                .token(jwt)
+                .username(userDetails.getUsername())
+                .roles(roles)
+                .build());
     }
 
 }
