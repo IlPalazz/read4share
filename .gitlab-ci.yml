@@ -20,6 +20,10 @@ before_script:
   - echo "$DB_PSW" >> src/main/resources/application.properties
   - echo "$JWT_KEY" >> src/main/resources/application.properties
 
+  # Create application.properties file for tests
+  - echo "$TEST_CONFIG" >> src/test/resources/application.properties
+  - echo "$JWT_KEY" >> src/test/resources/application.properties
+
 stages:
  - build
  - test
