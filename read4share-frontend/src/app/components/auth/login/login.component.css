@@ -1,0 +1,14 @@
+.login-card {
+  width: 400px;
+  margin: 50px auto;
+  padding: 40px;
+}
+
+.login-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.alert {
+  color: red;
+}

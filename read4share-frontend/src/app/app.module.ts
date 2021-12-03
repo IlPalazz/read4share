@@ -1,44 +1,71 @@
-// MODULES //
+/**
+ * MODULES
+ */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
-// COMPONENTS //
+/**
+ * MATERIAL COMPONENTS
+ */
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatRadioModule } from '@angular/material/radio';
+
+/**
+ * CUSTOM COMPONENTS
+ */
+import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { AddUserBtnComponent } from './components/add-user-btn/add-user-btn.component';
-import { SwitchBtnComponent } from './components/switch-btn/switch-btn.component';
-import { UserComponent } from './components/user/user.component';
-import { BookComponent } from './components/book/book.component';
-import { BodyComponent } from './components/body/body.component';
-import { AddUserComponent } from './components/add-user/add-user.component';
+import { HomeComponent } from './components/home/home.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+//import { HomeComponent } from './components/home/home.component';
+//import { LoginComponent } from './components/auth/login/login.component';
+//import { RegisterComponent } from './components/auth/register/register.component';
+//import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   // Only for components
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    AddUserBtnComponent,
-    SwitchBtnComponent,
-    UserComponent,
-    BookComponent,
-    BodyComponent,
-    AddUserComponent,
-  ],
+  declarations: [AppComponent, HomeComponent, NavbarComponent, LoginComponent, RegisterComponent],
   // Only for modules
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatCardModule,
     HttpClientModule,
+    MatInputModule,
+    MatFormFieldModule,
     FormsModule,
+    MatAutocompleteModule,
+    MatTabsModule,
+    MatRadioModule,
+    //LoginComponent,
+    //RegisterComponent,
+    //HomeComponent,
+    //NavbarComponent,
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

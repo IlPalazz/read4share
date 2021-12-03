@@ -1,0 +1,121 @@
+<mat-card class="login-card">
+  <form
+    *ngIf="!isRegistered"
+    #f="ngForm"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    novalidate
+  >
+    <mat-form-field class="login-field" appearance="fill">
+      <mat-label>Username</mat-label>
+      <input
+        required
+        minlength="5"
+        maxlength="30"
+        matInput
+        [(ngModel)]="form.username"
+        name="username"
+        #username="ngModel"
+        placeholder="john.doe"
+      />
+      <mat-icon matSuffix>person</mat-icon>
+      <mat-error
+        *ngIf="username.errors?.required && !f.submitted && username.touched"
+      >
+        Username is required
+      </mat-error>
+      <mat-error *ngIf="username.errors?.minlength && !f.submitted">
+        Username too short (min 5 characters)
+      </mat-error>
+      <mat-error *ngIf="username.errors?.maxlength && !f.submitted">
+        Username too long (max 30 characters)
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="login-field" appearance="fill">
+      <mat-label>E-mail</mat-label>
+      <input
+        required
+        minlength="5"
+        maxlength="255"
+        matInput
+        [(ngModel)]="form.email"
+        name="email"
+        #email="ngModel"
+        placeholder="my.email@domain.com"
+      />
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error
+        *ngIf="email.errors?.required && !f.submitted && email.touched"
+      >
+        E-mail is required
+      </mat-error>
+      <mat-error *ngIf="email.errors?.minlength && !f.submitted">
+        E-mail too short (min 5 characters)
+      </mat-error>
+      <mat-error *ngIf="email.errors?.maxlength && !f.submitted">
+        E-mail too long (max 255 characters)
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="login-field" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input
+        required
+        minlength="5"
+        maxlength="64"
+        matInput
+        type="password"
+        [(ngModel)]="form.password"
+        name="password"
+        #password="ngModel"
+        placeholder="******"
+      />
+      <mat-icon matSuffix>password</mat-icon>
+      <mat-error
+        *ngIf="password.errors?.required && !f.submitted && password.touched"
+      >
+        Password is required
+      </mat-error>
+      <mat-error *ngIf="password.errors?.minlength && !f.submitted">
+        Password too short (min 5 characters)
+      </mat-error>
+      <mat-error *ngIf="password.errors?.maxlength && !f.submitted">
+        Password too long (max 64 characters)
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="login-field" appearance="fill">
+      <mat-label>Repeat Password</mat-label>
+      <input
+        required
+        minlength="5"
+        maxlength="64"
+        matInput
+        type="password"
+        [(ngModel)]="form.passwordCheck"
+        name="passwordCheck"
+        #passwordCheck="ngModel"
+        placeholder="******"
+      />
+      <mat-error
+        *ngIf="
+          passwordCheck.errors?.required &&
+          !f.submitted &&
+          passwordCheck.touched
+        "
+      >
+        You have to reinsert your password
+      </mat-error>
+      <mat-error *ngIf="passwordCheck.errors?.minlength && !f.submitted">
+        Password too short (min 5 characters)
+      </mat-error>
+      <mat-error *ngIf="passwordCheck.errors?.maxlength && !f.submitted">
+        Password too long (max 64 characters)
+      </mat-error>
+      <mat-error *ngIf="true"> Passwords do not match </mat-error>
+    </mat-form-field>
+  </form>
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary">Register</button>
+  </mat-card-actions>
+</mat-card>
