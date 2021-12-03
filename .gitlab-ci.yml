@@ -21,6 +21,7 @@ before_script:
   - echo "$JWT_KEY" >> src/main/resources/application.properties
 
   # Create application.properties file for tests
+  - mkdir src/test/resources
   - echo "$TEST_CONFIG" >> src/test/resources/application.properties
   - echo "$JWT_KEY" >> src/test/resources/application.properties
 
