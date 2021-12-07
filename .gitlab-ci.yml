@@ -1,4 +1,3 @@
-
 .base-rules:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
@@ -25,14 +24,30 @@
 
 
 stages:
+ - setup
  - build
  - test
 # - analyze
 
+install:
+  stage: setup
+  extends: .base-rules
+  before_script:
+    - cd `pwd`/read4share-frontend
+  script:
+    - npm ci # Install npm dependecies
+  cache:
+    untracked: true
+    policy: push
+    key: ${CI_COMMIT_SHORT_SHA}
+    paths:
+      - node_modules/
+
+
 backend-build:
   stage: build
   extends: .backend
-  needs: []
+  needs: ["install"]
   before_script:
   - cd `pwd`/read4share
   - export GRADLE_USER_HOME=.gradle
@@ -70,6 +85,33 @@ backend-test:
     paths:
       - build
       - .gradle
+
+frontend-build:
+  stage: build
+  extends: .frontend
+  needs: ["install"]
+  before_script:
+    - cd `pwd`/read4share-frontend
+  script:
+    - npm run build --prod
+  cache:
+    untracked: true
+    key: ${CI_COMMIT_SHORT_SHA}
+    policy: pull
+
+frontend-test:
+  stage: test
+  extends: .frontend
+  needs: ["frontend-build"]
+  before_script:
+    - cd `pwd`/read4share-frontend
+  script:
+    - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+  cache:
+    untracked: true
+    key: ${CI_COMMIT_SHORT_SHA}
+    policy: pull
+
 
 #sonarqube:
 #  stage: analyze
