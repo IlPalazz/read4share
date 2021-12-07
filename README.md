@@ -14,6 +14,7 @@
 | 1.5     | 01/11/2021 | F. Palazzi | Created design document                                   |
 | 1.6     | 15/11/2021 | F. Palazzi | Added endpoints list                                      |
 | 1.7     | 26/11/2021 | F. Palazzi | Added test plan                                           |
+| 1.8     | 05/12/2021 | F. Palazzi | Added pipeline setup diagram, research document           |
 
 ## Intro
 
@@ -24,13 +25,14 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
 ### Example of operation
 
 - A user (the *seller*) wants to sell a book that he owns; the web app will allow him to create a new advertisement and to insert all the book's info (title, authors, ISBN, etc...).
--  Another user (the *buyer*) has seen a book advertisement and he would like to buy it; the web platform will allow him to contact the buyer and it will help him to make a purchase proposal for the book.
+-  Another user (the *buyer*) has seen a book advertisement and he would like to buy it; the web platform will allow him to contact the buyer through a chat panel.
 
 ### Build instructions
 
 1. Clone the repository with either [HTTPS](https://gitlab.com/IlPalazz/read4share.git) or [SSH](git@gitlab.com:IlPalazz/read4share.git)
 2. Open the terminal and navigate to the project directory (or open it with an IDE)
-3. Run the `./gradlew build` command to build the project
+3. Run the `./gradlew build` command inside the "read4share" folder to build the backend project
+3. Run the `ng serve` command inside the "read4share-frontend" folder to build the frontend project
 
 ## Backlog
 
@@ -45,9 +47,10 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
 
 [Click to view](docs/stories.md)
 
-## Design document
+## Design document & Applied research
 
-[Click to view](docs/design_doc.md)
+- [Design document](./docs/design_doc.md)
+- [Applied research document](./docs/applied_research.md)
 
 ## UML Diagrams
 
@@ -70,13 +73,14 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
 
 <details>
     <summary>Click to expand</summary>
-    <img src="./docs/sonar_scan_1.png" style="zoom: 67%;" />
+    <img src="./docs/diagrams/sonar_scan_1.png" style="zoom: 67%;" />
 </details>
-
 ## External resources
 
 - [Jira Software](https://strykerstorm.atlassian.net/jira/software/projects/R4S/boards/2/roadmap?shared=&atlOrigin=eyJpIjoiYjQzM2IwMDIxZDFiNDdkYzg5N2ZmNjU4ZTdlZGJjNTciLCJwIjoiaiJ9) - issue tracking product
+- [Gitlab repository](https://gitlab.com/IlPalazz/read4share) - archive of source files and documentation
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/) - Java IDE
+- [SonarQube](https://www.sonarqube.org/) - Static code quality metrics analyzer
 
 ## Credits
 

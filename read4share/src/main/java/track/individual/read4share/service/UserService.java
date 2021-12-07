@@ -1,5 +1,6 @@
 package track.individual.read4share.service;
 
+import track.individual.read4share.exception.UserNotFoundException;
 import track.individual.read4share.model.User;
 
 import java.util.List;
@@ -10,15 +11,17 @@ public interface UserService {
     /**
      * Return a particular user
      * @param id User id
-     * @return User with the specified id, Null otherwise
+     * @return User with the specified id
+     * @exception UserNotFoundException Threw if user is not found
      */
-    Optional<User> getById(Long id);
+    User getById(Long id) throws UserNotFoundException;
 
     /**
      * Return a particular user
      * @param username Username
-     * @return User with the specified username, Null otherwise
+     * @return User with the specified username
+     * @exception UserNotFoundException Threw if user is not found
      */
-    Optional<User> getByUsername(String username);
+    User getByUsername(String username) throws UserNotFoundException;
 
 }

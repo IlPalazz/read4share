@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class CategoryNotFoundException extends RuntimeException{
+public class UserNotFoundException extends RuntimeException {
 
     private String message;
 }
