@@ -31,6 +31,7 @@ stages:
 
 install:
   stage: setup
+  extends: .base-rules
   before_script:
     - cd `pwd`/read4share-frontend
   script:
