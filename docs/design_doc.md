@@ -1,5 +1,7 @@
 # Design document
 
+[TOC]
+
 ## Design decisions
 
 The application has been built following a client-server architecture and it presents a frontend layer and a backend layer.
@@ -43,36 +45,33 @@ The application has been built following a client-server architecture and it pre
 
 ## C4 Diagrams
 
-### System Context (C1)
+### C1 - System Context
 
 <details>
     <summary>Click to expand</summary>
     <img src="diagrams/C1.png" style="zoom: 67%;" />
 </details>
-
-### Containers (C2)
+### C2 - Containers
 
 <details>
     <summary>Click to expand</summary>
     <img src="diagrams/C2.png" style="zoom: 67%;" />
 </details>
-
-
-### Components (C3)
+### C3 - Components
 
 <details>
     <summary>Click to expand</summary>
     <img src="diagrams/C3.png" style="zoom: 67%;" />
 </details>
-
-
-### Code (C4) - Class diagram
+### C4 - Code (Class diagram)
 
 *TODO*
 
-## Applied research
+## Gitlab Pipeline setup
 
-### Main Question
-
-
-
+<details>
+    <summary>Click to expand</summary>
+    <div style="text-align:center;">
+  		<img src="./diagrams/pipeline_setup.png" style="zoom: 70%;" />
+    </div>
+</details>
