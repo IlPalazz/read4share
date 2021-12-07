@@ -47,7 +47,7 @@ install:
 backend-build:
   stage: build
   extends: .backend
-  needs: []
+  needs: ["install"]
   before_script:
   - cd `pwd`/read4share
   - export GRADLE_USER_HOME=.gradle
@@ -89,7 +89,7 @@ backend-test:
 frontend-build:
   stage: build
   extends: .frontend
-  needs: []
+  needs: ["install"]
   before_script:
     - cd `pwd`/read4share-frontend
   script:
