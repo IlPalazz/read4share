@@ -105,8 +105,9 @@ frontend-test:
   needs: ["frontend-build"]
   before_script:
     - cd `pwd`/read4share-frontend
+    - export CHROME_BIN=/usr/bin/chromium-browser
   script:
-    - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+    - npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
   cache:
     untracked: true
     key: ${CI_COMMIT_SHORT_SHA}
