@@ -3,6 +3,9 @@ package track.individual.read4share.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,6 +27,9 @@ public class Category {
     @Column(name = "cat_id")
     private Long id;
     @Column(name = "name", nullable = false)
+    @Size(min = 1, max = 255)
+    @NotBlank
+    @NotNull
     private String name;
 
 }

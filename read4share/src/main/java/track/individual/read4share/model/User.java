@@ -3,6 +3,9 @@ package track.individual.read4share.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Set;
 
@@ -23,10 +26,19 @@ public class User {
     @Column(name = "user_id")
     private Long id;
     @Column(name = "username", nullable = false)
+    @Size(min = 5, max = 64)
+    @NotNull
+    @NotBlank
     private String username;
     @Column(name = "passw", nullable = false)
+    @Size(min = 8, max = 64)
+    @NotNull
+    @NotBlank
     private String password;
     @Column(name = "email_addr", nullable = false)
+    @Size(min = 5, max = 255)
+    @NotNull
+    @NotBlank
     private String email;
 
     /**

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity(name = "Condition")
 @Table(name = "condition")
@@ -20,11 +22,16 @@ public class Condition {
     private Long id;
     @Column(name = "cond_code", length = 2)
     @Enumerated(EnumType.STRING)
+    @NotNull
+    @NotBlank
     private Conditions code;
     @Column(name = "pen_underln", nullable = false)
+    @NotNull
     private boolean pen_underln;
     @Column(name = "penc_underln", nullable = false)
+    @NotNull
     private boolean penc_underln;
     @Column(name = "highl_underln", nullable = false)
+    @NotNull
     private boolean highl_underln;
 }

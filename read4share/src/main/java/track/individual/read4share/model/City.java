@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity(name = "City")
 @Table(name = "city",
@@ -23,5 +26,8 @@ public class City {
     @Column(name = "city_id")
     private Long id;
     @Column(name = "name", nullable = false)
+    @Size(min = 1, max = 255)
+    @NotBlank
+    @NotNull
     private String name;
 }

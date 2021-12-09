@@ -3,6 +3,8 @@ package track.individual.read4share.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity(name="Role")
 @Table(name="role")
@@ -20,5 +22,7 @@ public class Role {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "name", length = 20)
+    @NotNull
+    @NotBlank
     private ERole name;
 }

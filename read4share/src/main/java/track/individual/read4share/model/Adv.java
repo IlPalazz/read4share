@@ -3,6 +3,8 @@ package track.individual.read4share.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,12 +34,17 @@ public class Adv {
     @Column(name = "adv_id")
     private Long id;
     @Column(name = "descr", nullable = false, columnDefinition = "TEXT")
+    @Size(max = 500)
+    @NotNull
     private String descr;
     @Column(name = "price", nullable = false)
+    @NotNull
     private double price;
     @Column(name = "ship_cost")
+    @NotNull
     private double shipCost;
     @Column(name = "publ_date", nullable = false)
+    @NotNull
     private LocalDateTime publDate;
     @Column(name = "sale_date")
     private LocalDateTime saleDate;

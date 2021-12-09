@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity(name = "Message")
@@ -19,12 +22,17 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mess_id")
     private Long id;
-    @Lob
     @Column(name = "text", nullable = false)
+    @Size(min = 1, max = 255)
+    @NotNull
+    @NotBlank
     private String text;
     @Column(name = "timestamp", nullable = false)
+    @NotBlank
+    @NotNull
     private LocalDateTime timestamp;
     @Column(name = "read", nullable = false)
+    @NotNull
     private boolean read;
 
     /**
