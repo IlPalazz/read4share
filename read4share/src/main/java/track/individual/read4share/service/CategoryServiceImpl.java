@@ -2,12 +2,10 @@ package track.individual.read4share.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import track.individual.read4share.exception.CategoryAlreadyExistingException;
-import track.individual.read4share.exception.CategoryNotFoundException;
+import track.individual.read4share.exception.ItemAlreadyExistingException;
 import track.individual.read4share.model.Category;
 import track.individual.read4share.repository.CategoryRepo;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +43,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void addCategory(String name) {
         if (this.isPresent(name))
-            throw new CategoryAlreadyExistingException("A category with the given name already exists");
+            throw new ItemAlreadyExistingException("A category with the given name already exists");
         catRepo.save(Category.builder().name(name).build());
     }
 }

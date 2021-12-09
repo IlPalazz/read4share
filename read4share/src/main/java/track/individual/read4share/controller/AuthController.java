@@ -9,11 +9,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import track.individual.read4share.dto.request.LoginRequest;
 import track.individual.read4share.dto.request.RegisterRequest;
 import track.individual.read4share.dto.response.JwtResponse;
-import track.individual.read4share.dto.response.MessageResponse;
+import track.individual.read4share.dto.response.ErrorResponse;
 import track.individual.read4share.model.ERole;
 import track.individual.read4share.model.Role;
 import track.individual.read4share.model.User;
@@ -22,6 +23,7 @@ import track.individual.read4share.repository.UserRepo;
 import track.individual.read4share.security.jwt.JwtUtils;
 import track.individual.read4share.security.service.UserDetailsImpl;
 
+import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +33,7 @@ import java.util.stream.Collectors;
 @RestController()
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@Validated
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
@@ -41,23 +44,25 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
 
-        if (registerRequest.getUsername()== null ||
-                registerRequest.getEmail()== null ||
-                registerRequest.getPassword() == null)
-            return ResponseEntity.badRequest().body(new MessageResponse("Invalid data: fields cannot be null!"));
+//        String[] credentials = {registerRequest.getUsername(), registerRequest.getEmail(), registerRequest.getPassword()};
 
-        if (userRepo.existsByUsernameIgnoreCase(registerRequest.getUsername())) {
+//        for (String value : credentials)
+//            if (value == null || value.isBlank() || value.isEmpty())
+//                return ResponseEntity.badRequest().body(
+//                        new HttpMessageResponse("Invalid data: fields cannot be null or Empty!"));
+
+        if (userRepo.existsByUsername(registerRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
+                    .body(new ErrorResponse("Error: Username is already taken!"));
         }
 
-        if (userRepo.existsByEmailIgnoreCase(registerRequest.getEmail())) {
+        if (userRepo.existsByEmail(registerRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+                    .body(new ErrorResponse("Error: Email is already in use!"));
         }
 
         Set<Role> roles = new HashSet<>();
@@ -70,7 +75,7 @@ public class AuthController {
         // Save the user
         userRepo.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseEntity.ok(new ErrorResponse("User registered successfully!"));
     }
 
     @PostMapping("/registerAdmin")

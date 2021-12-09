@@ -1,9 +1,7 @@
 package track.individual.read4share.security.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import track.individual.read4share.model.User;
@@ -13,7 +11,7 @@ import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserAuthServiceImpl implements UserAuthService {
 
     private final UserRepo userRepo;
 

@@ -3,6 +3,7 @@ package track.individual.read4share.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -36,9 +37,9 @@ public class User {
     @NotBlank
     private String password;
     @Column(name = "email_addr", nullable = false)
-    @Size(min = 5, max = 255)
     @NotNull
     @NotBlank
+    @Email
     private String email;
 
     /**

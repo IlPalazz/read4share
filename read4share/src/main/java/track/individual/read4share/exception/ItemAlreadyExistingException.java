@@ -4,10 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class CategoryNotFoundException extends RuntimeException{
+public class ItemAlreadyExistingException extends RuntimeException{
 
-    private String message;
+    private String errorMessage;
+
 }
