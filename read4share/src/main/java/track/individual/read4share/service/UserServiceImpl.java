@@ -1,12 +1,14 @@
 package track.individual.read4share.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import track.individual.read4share.exception.ItemNotFoundException;
 import track.individual.read4share.model.User;
 import track.individual.read4share.repository.UserRepo;
+import track.individual.read4share.security.UserDetailsImpl;
 
-import java.util.Optional;
+import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,17 +17,26 @@ public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
 
     @Override
-    public User getById(Long id) {
-
-        Optional<User> user = userRepo.findById(id);
-        if (user.isEmpty()) throw new ItemNotFoundException("User with specified id: " + id + " not found!");
-        return user.get();
+    @Transactional
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepo.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(
+                        "User with username: " + username + " not found"));
+        return UserDetailsImpl.build(user);
     }
 
     @Override
-    public User getByUsername(String username) throws ItemNotFoundException {
-        Optional<User> user = userRepo.findByUsername(username);
-        if (user.isEmpty()) throw new ItemNotFoundException("User with specified username: " + username + " not found!");
-        return user.get();
+    public boolean existsByUsername(String username) {
+        return userRepo.existsByUsername(username);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return userRepo.existsByEmail(email);
+    }
+
+    @Override
+    public User addUser(User user) {
+        return userRepo.save(user);
     }
 }

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
-import { User } from '../interfaces/UserData';
+import { UserData } from '../interfaces/UserData';
 
 const API_URL = 'http://localhost:8080/api/auth';
 
@@ -42,8 +42,8 @@ export class AuthService {
    * Send a request to obtain information about a specific user
    * @returns User's data (if the token is valid)
    */
-  getUserData(): Observable<User> {
-    return this.http.get<User>(API_URL); //.pipe(shareReplay(1));
+  getUserData(): Observable<UserData> {
+    return this.http.get<UserData>(API_URL); //.pipe(shareReplay(1));
   }
 
   /**
@@ -71,6 +71,6 @@ export class AuthService {
    * @returns HTTP response
    */
   checkUsername(username: string): Observable<any> {
-    return this.http.get<User>(API_URL + `/${username}`);
+    return this.http.get<UserData>(API_URL + `/${username}`);
   }
 }

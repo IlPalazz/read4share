@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import track.individual.read4share.security.jwt.AuthEntryPointJwt;
 import track.individual.read4share.security.jwt.AuthTokenFilter;
-import track.individual.read4share.security.service.UserAuthServiceImpl;
+import track.individual.read4share.service.UserServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -25,7 +25,7 @@ import track.individual.read4share.security.service.UserAuthServiceImpl;
         prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    UserAuthServiceImpl userDetailsService;
+    UserServiceImpl userDetailsService;
 
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;

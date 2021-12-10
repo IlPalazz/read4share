@@ -1,8 +1,7 @@
-package track.individual.read4share.security.service;
+package track.individual.read4share.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,12 +10,13 @@ import track.individual.read4share.model.User;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
-    private Long id;
+    private UUID id;
     private String username;
     private String email;
     @JsonIgnore
@@ -39,7 +39,7 @@ public class UserDetailsImpl implements UserDetails {
         return authorities;
     }
 
-    public Long getId() { return id; }
+    public UUID getId() { return id; }
 
     public String getEmail() { return email; }
 

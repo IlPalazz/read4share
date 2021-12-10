@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import track.individual.read4share.dto.response.HttpMessageResponse;
+import track.individual.read4share.exception.auth.EmailAlreadyExistsException;
+import track.individual.read4share.exception.auth.UsernameAlreadyExistsException;
 
 import javax.validation.ConstraintViolationException;
 
@@ -19,20 +22,38 @@ public class ErrorHandlingController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ItemNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<String> handleItemNotFoundException(ItemNotFoundException exception) {
+    public ResponseEntity<HttpMessageResponse> handleItemNotFoundException(ItemNotFoundException exception) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body(exception.getErrorMessage());
+                .body(new HttpMessageResponse(exception.getErrorMessage()));
     }
 
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<HttpMessageResponse> handleEmailAlreadyExistsException(EmailAlreadyExistsException exception) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(new HttpMessageResponse(exception.getErrorMessage()));
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<HttpMessageResponse> handleUsernameAlreadyExistsException(UsernameAlreadyExistsException exception) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(new HttpMessageResponse(exception.getErrorMessage()));
+    }
+
+    // Thrown when one or more parameters in the URL of an HTTP request are invalid
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<String> handleInvalidParameterException(ConstraintViolationException exception) {
+    public ResponseEntity<HttpMessageResponse> handleInvalidParameterException(ConstraintViolationException exception) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body("Invalid URL parameters!");
+                .body(new HttpMessageResponse("Invalid URL parameters!"));
     }
 
+    // Thrown when one or more fields in the body of an HTTP request are invalid
     @Override
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
@@ -40,16 +61,16 @@ public class ErrorHandlingController extends ResponseEntityExceptionHandler {
             HttpStatus status, WebRequest request) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body("Invalid request body fields!");
+                .body(new HttpMessageResponse("Invalid request body fields!"));
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<String> handleAllUncaughtException(Exception exception) {
+    public ResponseEntity<HttpMessageResponse> handleAllUncaughtException(Exception exception) {
         log.error("Unknown error occurred", exception);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Unknown error occurred");
+                .body(new HttpMessageResponse("Unknown error occurred"));
     }
 
 }
