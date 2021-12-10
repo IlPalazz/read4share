@@ -1,14 +1,21 @@
 package track.individual.read4share.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import track.individual.read4share.dto.response.JwtResponse;
+import track.individual.read4share.dto.response.UserDetailsResponse;
 import track.individual.read4share.model.User;
 import track.individual.read4share.repository.UserRepo;
 import track.individual.read4share.security.UserDetailsImpl;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -39,4 +46,23 @@ public class UserServiceImpl implements UserService {
     public User addUser(User user) {
         return userRepo.save(user);
     }
+
+    @Override
+    public UserDetailsResponse getUserDetails() {
+        // Get user details
+        UserDetailsImpl userDetails =
+                (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // Turn roles into a List of String
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+
+        return UserDetailsResponse.builder()
+                .id(userDetails.getId())
+                .username(userDetails.getUsername())
+                .email(userDetails.getEmail())
+                .roles(roles)
+                .build();
+    }
+
 }

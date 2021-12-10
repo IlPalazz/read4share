@@ -8,6 +8,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -118,6 +119,12 @@ public class AuthController {
                 .email(userDetails.getEmail())
                 .roles(roles)
                 .build());
+    }
+
+    @GetMapping("/details")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<?> getUserDetails() {
+        return ResponseEntity.ok().body(userService.getUserDetails());
     }
 
 }
