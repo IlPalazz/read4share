@@ -1,21 +1,17 @@
 package track.individual.read4share.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import track.individual.read4share.model.User;
 
-import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
 
-    boolean existsByEmailIgnoreCase(String email);
+    boolean existsByEmail(String email);
 
-    boolean existsByUsernameIgnoreCase(String username);
+    boolean existsByUsername(String username);
 
     Optional<User> findById(Long id);
 

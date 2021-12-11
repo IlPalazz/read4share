@@ -1,27 +1,32 @@
 package track.individual.read4share.service;
 
-import track.individual.read4share.exception.UserNotFoundException;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import track.individual.read4share.dto.response.UserDetailsResponse;
 import track.individual.read4share.model.User;
 
-import java.util.List;
-import java.util.Optional;
+public interface UserService extends UserDetailsService {
 
-public interface UserService {
-
-    /**
-     * Return a particular user
-     * @param id User id
-     * @return User with the specified id
-     * @exception UserNotFoundException Threw if user is not found
-     */
-    User getById(Long id) throws UserNotFoundException;
+    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
     /**
-     * Return a particular user
+     * Check if a user with the specified username already exists
      * @param username Username
-     * @return User with the specified username
-     * @exception UserNotFoundException Threw if user is not found
+     * @return True if the user exists, false otherwise
      */
-    User getByUsername(String username) throws UserNotFoundException;
+    boolean existsByUsername(String username);
 
+    /**
+     * Check if a user with the specified email already exists
+     * @param email User email
+     * @return True if the user exists, false otherwise
+     */
+    boolean existsByEmail(String email);
+
+
+    User addUser(User user);
+
+    UserDetailsResponse getUserDetails();
 }

@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
     passwordCheck: null,
   };
   isRegistered = false;
-  //isLoginFailed = false;
+  isRegistrationFailed: boolean = false;
   errorMessage = '';
 
   constructor(private authService: AuthService) {}
@@ -22,8 +22,20 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
+    console.log('Ci entro');
     const { username, email, password, passwordCheck } = this.form;
-    console.log(this.form);
+    this.authService.registerUser(username, email, password).subscribe(
+      (response) => {
+        console.log(response);
+        this.isRegistrationFailed = false;
+        this.isRegistered = true;
+      },
+      (err) => {
+        console.log(err);
+        this.errorMessage = err.error.message;
+        this.isRegistrationFailed = true;
+      }
+    );
   }
 
   reloadPage(): void {

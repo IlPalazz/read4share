@@ -8,69 +8,72 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import track.individual.read4share.dto.request.LoginRequest;
 import track.individual.read4share.dto.request.RegisterRequest;
+import track.individual.read4share.dto.response.HttpMessageResponse;
 import track.individual.read4share.dto.response.JwtResponse;
-import track.individual.read4share.dto.response.MessageResponse;
+import track.individual.read4share.exception.auth.EmailAlreadyExistsException;
+import track.individual.read4share.exception.auth.UsernameAlreadyExistsException;
 import track.individual.read4share.model.ERole;
 import track.individual.read4share.model.Role;
 import track.individual.read4share.model.User;
-import track.individual.read4share.repository.RoleRepo;
-import track.individual.read4share.repository.UserRepo;
 import track.individual.read4share.security.jwt.JwtUtils;
-import track.individual.read4share.security.service.UserDetailsImpl;
+import track.individual.read4share.service.UserService;
+import track.individual.read4share.security.UserDetailsImpl;
+import track.individual.read4share.service.RoleService;
 
+import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController()
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@Validated
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
-    private final UserRepo userRepo;
-    private final RoleRepo roleRepo;
     private final PasswordEncoder encoder;
     private final JwtUtils jwtUtils;
+    private final UserService userService;
+    private final RoleService roleService;
 
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
 
-        if (registerRequest.getUsername()== null ||
-                registerRequest.getEmail()== null ||
-                registerRequest.getPassword() == null)
-            return ResponseEntity.badRequest().body(new MessageResponse("Invalid data: fields cannot be null!"));
+        // Username check
+        if (userService.existsByUsername(registerRequest.getUsername()))
+            throw new UsernameAlreadyExistsException("Error: Username " + registerRequest.getUsername() +
+                    " already exists! Choose another one");
 
-        if (userRepo.existsByUsernameIgnoreCase(registerRequest.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
-        }
-
-        if (userRepo.existsByEmailIgnoreCase(registerRequest.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
-        }
+        // Email check
+        if (userService.existsByEmail(registerRequest.getEmail()))
+            throw new EmailAlreadyExistsException("Error: A user with the specified email already exists!");
 
         Set<Role> roles = new HashSet<>();
-        roles.add(roleRepo.findByName(ERole.ROLE_USER)
-                .orElseThrow(() -> new RuntimeException("Error: Role is not found.")));
+        roles.add(roleService.findByName(ERole.ROLE_USER));
 
         // Create new user's account
-        User user = User.builder().username(registerRequest.getUsername()).email(registerRequest.getEmail())
-                .password(encoder.encode(registerRequest.getPassword())).roles(roles).build();
+        User user = User.builder()
+                .id(UUID.randomUUID())
+                .username(registerRequest.getUsername())
+                .email(registerRequest.getEmail())
+                .password(encoder.encode(registerRequest.getPassword()))
+                .roles(roles)
+                .build();
         // Save the user
-        userRepo.save(user);
+        userService.addUser(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseEntity.ok(new HttpMessageResponse("User registered successfully!"));
     }
 
     @PostMapping("/registerAdmin")
@@ -111,9 +114,17 @@ public class AuthController {
 
         return ResponseEntity.ok(JwtResponse.builder()
                 .token(jwt)
+                .id(userDetails.getId())
                 .username(userDetails.getUsername())
+                .email(userDetails.getEmail())
                 .roles(roles)
                 .build());
+    }
+
+    @GetMapping("/details")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<?> getUserDetails() {
+        return ResponseEntity.ok().body(userService.getUserDetails());
     }
 
 }

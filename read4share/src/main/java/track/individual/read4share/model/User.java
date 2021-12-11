@@ -3,11 +3,13 @@ package track.individual.read4share.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity(name = "User")
 @Table(name = "users", uniqueConstraints = {
@@ -22,23 +24,23 @@ import java.util.Set;
 @NoArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long id;
+    private UUID id;
     @Column(name = "username", nullable = false)
     @Size(min = 5, max = 64)
     @NotNull
     @NotBlank
     private String username;
     @Column(name = "passw", nullable = false)
-    @Size(min = 8, max = 64)
+    @Size(min = 5, max = 64)
     @NotNull
     @NotBlank
     private String password;
     @Column(name = "email_addr", nullable = false)
-    @Size(min = 5, max = 255)
     @NotNull
     @NotBlank
+    @Email
     private String email;
 
     /**
@@ -69,7 +71,7 @@ public class User {
     /**
      * User's roles
      */
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../interfaces/UserData';
+import { UserData } from '../interfaces/UserData';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -41,7 +41,7 @@ export class TokenStorageService {
    * Save the info of a particular User inside the local storage
    * @param user Interface containing the user info
    */
-  public saveUser(user: User): void {
+  public saveUser(user: UserData): void {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
@@ -50,7 +50,7 @@ export class TokenStorageService {
    * Return the user info saved in the local storage
    * @returns User info, null if not present
    */
-  public getUser(): User | null {
+  public getUser(): UserData | null {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {
       return JSON.parse(user);

@@ -1,11 +1,7 @@
 <mat-card class="login-card">
-  <form
-    *ngIf="!isLoggedIn"
-    #f="ngForm"
-    (ngSubmit)="f.form.valid && onSubmit()"
-    novalidate
-  >
-    <mat-form-field class="login-field" appearance="fill" hideRequiredMarker>
+  <label class="form-title">Login</label>
+  <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
+    <mat-form-field class="form-field" appearance="fill" hideRequiredMarker>
       <mat-label>Username</mat-label>
       <input
         required
@@ -23,7 +19,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="login-field" appearance="fill" hideRequiredMarker>
+    <mat-form-field class="form-field" appearance="fill" hideRequiredMarker>
       <mat-label>Password</mat-label>
       <input
         required
@@ -43,12 +39,10 @@
     </mat-form-field>
 
     <mat-card-actions align="end">
-      <button mat-button disabled>Forgot password?</button>
       <button mat-raised-button color="primary">Login</button>
     </mat-card-actions>
     <div class="alert" *ngIf="f.submitted && isLoginFailed">
       Login failed: {{ errorMessage }}
     </div>
   </form>
-  <div class="alert" *ngIf="isLoggedIn">Successfully logged in</div>
 </mat-card>

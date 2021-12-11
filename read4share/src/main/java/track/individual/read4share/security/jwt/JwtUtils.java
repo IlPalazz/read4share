@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import track.individual.read4share.config.GlobalConstants;
-import track.individual.read4share.security.service.UserDetailsImpl;
+import track.individual.read4share.security.UserDetailsImpl;
 
 import java.util.Date;
 

@@ -1,7 +1,7 @@
 -- Book data
 
 -- Computer & IT books
-INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, publisher, fk_cat_id) VALUES
+INSERT INTO book (isbn, title, author, avg_rating, cover_url, lang, publ_date, publisher, fk_cat_id) VALUES
     ('9780201728286',
     'Programmer''s Guide to Java Certification',
     'Khalid A. Mughal, Rolf W. Rasmussen',
@@ -12,7 +12,7 @@ INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, 
     'Addison-wesley Longman, Amsterdam',
     '12');
 
-INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, publisher, fk_cat_id) VALUES
+INSERT INTO book (isbn, title, author, avg_rating, cover_url, lang, publ_date, publisher, fk_cat_id) VALUES
     ('9781119416852',
      'CompTIA Security+ Deluxe Study Guide',
      'Emmett Dulaney',
@@ -23,7 +23,7 @@ INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, 
      'John Wiley & Sons Inc',
      '12');
 
-INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, publisher, fk_cat_id) VALUES
+INSERT INTO book (isbn, title, author, avg_rating, cover_url, lang, publ_date, publisher, fk_cat_id) VALUES
     ('9781449369415',
      'Introduction to Machine Learning with Python',
      'Sarah Guido',
@@ -35,7 +35,7 @@ INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, 
      '12');
 
 -- Architecture books
-INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, publisher, fk_cat_id) VALUES
+INSERT INTO book (isbn, title, author, avg_rating, cover_url, lang, publ_date, publisher, fk_cat_id) VALUES
     ('9781432612399',
      'The Church of Sancta Sophia, Constantinople a Study of Byzantine Building',
      'W. R. Lethaby, Harold Swainson',
@@ -46,7 +46,7 @@ INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, 
      'Kessinger Publishing',
      '4');
 
-INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, publisher, fk_cat_id) VALUES
+INSERT INTO book (isbn, title, author, avg_rating, cover_url, lang, publ_date, publisher, fk_cat_id) VALUES
     ('9781983875359',
      'Engineering & Architectural Quotes: Insightful Statements by Historical Figures about Engineering & Architecture',
      'Joanne Moreno',
@@ -57,7 +57,7 @@ INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, 
      'Createspace Independent Publishing Platform',
      '4');
 
-INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, publisher, fk_cat_id) VALUES
+INSERT INTO book (isbn, title, author, avg_rating, cover_url, lang, publ_date, publisher, fk_cat_id) VALUES
     ('9781981231560',
      'Architect & Developer: A Guide to Self-Initiating Projects',
      'James Petty Aia',
@@ -69,7 +69,7 @@ INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, 
      '4');
 
 -- Mathematics books
-INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, publisher, fk_cat_id) VALUES
+INSERT INTO book (isbn, title, author, avg_rating, cover_url, lang, publ_date, publisher, fk_cat_id) VALUES
     ('9780190602062',
      'Getting Started with MATLAB',
      'Rudra Pratap',
@@ -80,7 +80,7 @@ INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, 
      'Oxford University Press Inc',
      '25');
 
-INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, publisher, fk_cat_id) VALUES
+INSERT INTO book (isbn, title, author, avg_rating, cover_url, lang, publ_date, publisher, fk_cat_id) VALUES
     ('9781848828902',
      'Elementary Differential Geometry',
      'A. N. Pressley',
@@ -91,7 +91,7 @@ INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, 
      'Springer-Verlag GmbH',
      '25');
 
-INSERT INTO book (isbn, title, author, avg_rating, cover_path, lang, publ_date, publisher, fk_cat_id) VALUES
+INSERT INTO book (isbn, title, author, avg_rating, cover_url, lang, publ_date, publisher, fk_cat_id) VALUES
     ('9781441928191',
      'Basic Topology',
      'M. A. Armstrong',

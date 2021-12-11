@@ -11,4 +11,5 @@ public class GlobalConstants {
      * JWT expiration time represented in milliseconds
      */
     public static int jwtExpirationMs = 3600000;
+
 }
