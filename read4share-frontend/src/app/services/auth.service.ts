@@ -25,7 +25,7 @@ export class AuthService {
    * @param password Password
    * @returns Authentication response
    */
-  getToken(username: string, password: string): Observable<any> {
+  loginUser(username: string, password: string): Observable<any> {
     return this.http
       .post<any>(
         API_URL + '/login',
@@ -43,7 +43,7 @@ export class AuthService {
    * @returns User's data (if the token is valid)
    */
   getUserData(): Observable<UserData> {
-    return this.http.get<UserData>(API_URL); //.pipe(shareReplay(1));
+    return this.http.get<UserData>(API_URL + '/details'); //.pipe(shareReplay(1));
   }
 
   /**
@@ -53,7 +53,11 @@ export class AuthService {
    * @param password Password
    * @returns HTTP request status
    */
-  register(username: string, email: string, password: string): Observable<any> {
+  registerUser(
+    username: string,
+    email: string,
+    password: string
+  ): Observable<any> {
     return this.http.post(
       API_URL + '/register',
       {
@@ -63,14 +67,5 @@ export class AuthService {
       },
       httpOptions
     );
-  }
-
-  /**
-   * Check the availability of a username
-   * @param username Username to check
-   * @returns HTTP response
-   */
-  checkUsername(username: string): Observable<any> {
-    return this.http.get<UserData>(API_URL + `/${username}`);
   }
 }

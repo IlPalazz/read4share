@@ -23,22 +23,15 @@ export class AppComponent {
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      console.log('User details from app-component:');
-      console.log(user);
-      this.roles = user!.roles;
-      console.log(this.roles);
-      this.showAdminBoard = this.roles!.includes('ROLE_ADMIN');
-      console.log(this.showAdminBoard);
+      this.showAdminBoard = user!.roles!.includes('ROLE_ADMIN');
       this.username = user!.username;
-      console.log(user);
+      this.router.navigate(['/home']);
     }
   }
 
   logout(): void {
     this.tokenStorageService.signOut();
-    setTimeout(() => {
-      this.router.navigate(['/home']);
-    }, 1000);
+    this.router.navigate(['/home']);
     window.location.reload();
   }
 }

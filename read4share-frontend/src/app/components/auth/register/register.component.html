@@ -5,7 +5,8 @@
     (ngSubmit)="f.form.valid && onSubmit()"
     novalidate
   >
-    <mat-form-field class="login-field" appearance="fill">
+    <label class="form-title">Register</label>
+    <mat-form-field class="form-field" appearance="fill" hideRequiredMarker>
       <mat-label>Username</mat-label>
       <input
         required
@@ -18,20 +19,18 @@
         placeholder="john.doe"
       />
       <mat-icon matSuffix>person</mat-icon>
-      <mat-error
-        *ngIf="username.errors?.required && !f.submitted && username.touched"
-      >
+      <mat-error *ngIf="username.errors?.required && username.touched">
         Username is required
       </mat-error>
-      <mat-error *ngIf="username.errors?.minlength && !f.submitted">
+      <mat-error *ngIf="username.errors?.minlength">
         Username too short (min 5 characters)
       </mat-error>
-      <mat-error *ngIf="username.errors?.maxlength && !f.submitted">
+      <mat-error *ngIf="username.errors?.maxlength">
         Username too long (max 30 characters)
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="login-field" appearance="fill">
+    <mat-form-field class="form-field" appearance="fill" hideRequiredMarker>
       <mat-label>E-mail</mat-label>
       <input
         required
@@ -44,20 +43,18 @@
         placeholder="my.email@domain.com"
       />
       <mat-icon matSuffix>email</mat-icon>
-      <mat-error
-        *ngIf="email.errors?.required && !f.submitted && email.touched"
-      >
+      <mat-error *ngIf="email.errors?.required && email.touched">
         E-mail is required
       </mat-error>
-      <mat-error *ngIf="email.errors?.minlength && !f.submitted">
+      <mat-error *ngIf="email.errors?.minlength">
         E-mail too short (min 5 characters)
       </mat-error>
-      <mat-error *ngIf="email.errors?.maxlength && !f.submitted">
+      <mat-error *ngIf="email.errors?.maxlength">
         E-mail too long (max 255 characters)
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="login-field" appearance="fill">
+    <mat-form-field class="form-field" appearance="fill" hideRequiredMarker>
       <mat-label>Password</mat-label>
       <input
         required
@@ -71,20 +68,18 @@
         placeholder="******"
       />
       <mat-icon matSuffix>password</mat-icon>
-      <mat-error
-        *ngIf="password.errors?.required && !f.submitted && password.touched"
-      >
+      <mat-error *ngIf="password.errors?.required && password.touched">
         Password is required
       </mat-error>
-      <mat-error *ngIf="password.errors?.minlength && !f.submitted">
+      <mat-error *ngIf="password.errors?.minlength">
         Password too short (min 5 characters)
       </mat-error>
-      <mat-error *ngIf="password.errors?.maxlength && !f.submitted">
+      <mat-error *ngIf="password.errors?.maxlength">
         Password too long (max 64 characters)
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="login-field" appearance="fill">
+    <mat-form-field class="form-field" appearance="fill" hideRequiredMarker>
       <mat-label>Repeat Password</mat-label>
       <input
         required
@@ -98,24 +93,27 @@
         placeholder="******"
       />
       <mat-error
-        *ngIf="
-          passwordCheck.errors?.required &&
-          !f.submitted &&
-          passwordCheck.touched
-        "
+        *ngIf="passwordCheck.errors?.required && passwordCheck.touched"
       >
         You have to reinsert your password
       </mat-error>
-      <mat-error *ngIf="passwordCheck.errors?.minlength && !f.submitted">
-        Password too short (min 5 characters)
+      <mat-error *ngIf="f.value.password != f.value.passwordCheck">
+        Passwords do not match
       </mat-error>
-      <mat-error *ngIf="passwordCheck.errors?.maxlength && !f.submitted">
-        Password too long (max 64 characters)
-      </mat-error>
-      <mat-error *ngIf="true"> Passwords do not match </mat-error>
     </mat-form-field>
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary">Register</button>
+    </mat-card-actions>
+    <div>
+      Form valid? {{ f.valid }} {{ f.form.valid }} <br />
+      {{ f.submitted }}
+    </div>
+    <div class="alert" *ngIf="f.submitted && isRegistrationFailed">
+      Registration failed: {{ errorMessage }}
+    </div>
   </form>
-  <mat-card-actions align="end">
-    <button mat-raised-button color="primary">Register</button>
-  </mat-card-actions>
+  <div *ngIf="isRegistered">
+    Successfully registered! <br /><br />
+    Now you can <a routerLink="/login">login</a> to your account
+  </div>
 </mat-card>

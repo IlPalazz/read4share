@@ -4,7 +4,14 @@
   padding: 40px;
 }
 
-.login-field {
+.form-title {
+  font-size: x-large;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.form-field {
   width: 100%;
   margin-bottom: 18px;
 }
