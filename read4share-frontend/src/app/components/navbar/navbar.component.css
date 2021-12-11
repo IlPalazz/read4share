@@ -1,0 +1,73 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  padding: 0px;
+  align-items: center;
+}
+
+.login-signup-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.login {
+  margin-right: 10px;
+}
+
+.banner {
+  display: block;
+  padding: 0px;
+  margin-left: 10px;
+  margin-top: 5px;
+  color: white;
+}
+
+.banner:hover {
+  cursor: pointer;
+}
+
+.menu {
+  font-weight: 500;
+  font-size: medium;
+  margin-right: 20px;
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}

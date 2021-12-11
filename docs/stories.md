@@ -31,8 +31,6 @@
 - contact a seller so that I can get more info about the book and eventually buy it
   1. **Given that** I am logged in, **when** I click the *Contact button* in order to talk to a seller **then** the system opens the chat panel and starts a chat with the specified seller.
   2. **Given that** I am not logged in, **when** I click the contact button in order to talk to a seller **then** the system redirects me to the *Login / Register* page.
-- submit a purchase proposal so that I can buy the book I was looking for
-  1. **Given that** I am logged in and I have already contacted the seller, **when** I click the *Submit a purchase proposal button* in the chat panel **then** the system notifies the seller and it prints a message inside the chat.
 - visualize the chat panel so that I can scroll and read the chat history with all the sellers that I have contacted
   1. **Given that** I am logged in and I have never contacted a seller, **when** I click the *Chat button* **then** the system opens the chat panel with the empty template.
   2. **Given that** I am logged in and I have contacted at least one seller, **when** I click the *Chat button* **then** the system opens the chat panel and shows me the chat history.
@@ -58,17 +56,6 @@
      - redirects me to the *My sales* page
      - notifies me in case of either success or error during the request handling
   3.  **Given that** I have clicked the *New Advertisement button* and I have not inserted all the required info, **when** I press the *Post advertisement button* **then** the system notifies me of some missing fields to complete.
-- accept a purchase proposal so that I can sell the book to the buyer
-  1. **Given that** I receive a purchase proposal from a user, **when** I click the *Accept proposal button* **then** the system:
-     - marks the book as sold
-     - removes the advertisement from the active ones on the platform
-     - adds the book to the seller's personal list of sold items
-     - notifies the buyer that the seller has accepted the request
-- decline a purchase proposal so that I can reject offers I am not interested in
-  1. **Given that** I receive a purchase proposal from a user, **when** I click the *Reject proposal button* **then** the system:
-     - notifies the buyer that the seller has rejected the proposal
-     - prints a message in the chat between the two users
-     - ends the chat
 - visualize the list of previous books sold
   1. **Given that** I am logged in and I have sold at least one book, **when** I click the *Sales history button* **then** the system shows a page containing all the books previously sold by me.
   2. **Given that** I am logged in and I have never sold a book, **when** I click the *Sales history button* **then** the system shows a page with an empty sales list.
@@ -79,7 +66,5 @@
   1. **Given that** I am logged in with a valid admin account, **when** I access the admin control panel **then** the system allows me to add a new user to the platform, delete an existing one, view and update an existing user's info.
 - edit the book categories so that I can add new categories that are not present in the platform yet
   1. **Given that** I am logged in with a valid admin account, **when** I access the admin control panel **then** the system allows me to add new books categories and to update their info.
-- have the possibility to delete users' reviews so that I can remove inappropriate content 
-  1. **Given that** I am logged in with a valid admin account, **when** I visualize a book's reviews section **then** the system allows me to delete a user's review.
 - visualize global stats regarding the system so that I can monitor the traffic on the website
   1. **Given that** I am logged in with a valid admin account, **when** I access the admin control panel **then** the system allows me to visualize a serie of global stats regarding web traffic (number of users), purchases and sales (number of books being sold/bought).

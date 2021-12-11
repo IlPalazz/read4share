@@ -1,0 +1,71 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home">Home</a>
+      <a mat-list-item routerLink="/marketplace">Advertisements</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="toolbar">
+      <div class="header-container">
+        <div class="logo-container">
+          <button
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()"
+            *ngIf="isHandset$ | async"
+          >
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+          <a routerLink="/home">
+            <label class="banner" value="banner">Read4Share</label>
+            <!-- <img class="banner" src="assets/logo.png" /> -->
+          </a>
+        </div>
+        <div class="login-signup-container">
+          <label class="menu" *ngIf="isLoggedIn && showAdminBoard"
+            >(ADMIN)</label
+          >
+          <label class="menu" *ngIf="isLoggedIn">User: {{ username }}</label>
+          <button
+            *ngIf="!isLoggedIn"
+            class="login"
+            mat-raised-button
+            color="secondary"
+            routerLink="/login"
+          >
+            Login
+          </button>
+          <button
+            *ngIf="!isLoggedIn"
+            class="login"
+            mat-raised-button
+            color="secondary"
+            routerLink="/register"
+          >
+            Register
+          </button>
+          <button
+            *ngIf="isLoggedIn"
+            class="login"
+            mat-raised-button
+            color="secondary"
+            (click)="onLogout()"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

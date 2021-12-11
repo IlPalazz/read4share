@@ -1,32 +1,61 @@
-# This is the Gradle build system for JVM applications
-# https://gradle.org/
-# https://github.com/gradle/gradle
+.base-rules:
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - $RULES_CHANGES_PATH
+    - when: manual
+      allow_failure: true
 
-image: gradle:alpine
+.backend:
+  extends: .base-rules
+  variables:
+    RULES_CHANGES_PATH: "read4share/**/*"
 
-# Disable the Gradle daemon for Continuous Integration servers as correctness
-# is usually a priority over speed in CI environments. Using a fresh
-# runtime for each build is more reliable since the runtime is completely
-# isolated from any previous builds.
-variables:
-  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+.frontend:
+  extends: .base-rules
+  variables:
+    RULES_CHANGES_PATH: "read4share-frontend/**/*"
 
-before_script:
-  - cd `pwd`/read4share
-  - export GRADLE_USER_HOME=.gradle
-  # Inject variables in application.properties file
-  - mkdir src/main/resources
-  - echo "$DB_URL" >> src/main/resources/application.properties
-  - echo "$DB_USER" >> src/main/resources/application.properties
-  - echo "$DB_PSW" >> src/main/resources/application.properties
 
 stages:
+ - setup
  - build
  - test
 # - analyze
 
-build:
+install:
+  stage: setup
+  extends: .base-rules
+  before_script:
+    - cd `pwd`/read4share-frontend
+  script:
+    - npm ci # Install npm dependecies
+  cache:
+    untracked: true
+    policy: push
+    key: ${CI_COMMIT_SHORT_SHA}
+    paths:
+      - node_modules/
+
+
+backend-build:
   stage: build
+  extends: .backend
+  needs: ["install"]
+  before_script:
+  - cd `pwd`/read4share
+  - export GRADLE_USER_HOME=.gradle
+  # Inject variables in application.properties file
+  - echo "$DB_URL" >> src/main/resources/application.properties
+  - echo "$DB_USER" >> src/main/resources/application.properties
+  - echo "$DB_PSW" >> src/main/resources/application.properties
+  - echo "$JWT_KEY" >> src/main/resources/application.properties
   script:
     - gradle --build-cache assemble
   cache:
@@ -36,8 +65,17 @@ build:
       - build
       - .gradle
 
-test:
+backend-test:
   stage: test
+  extends: .backend
+  needs: ["backend-build"]
+  before_script:
+    - cd `pwd`/read4share
+    - export GRADLE_USER_HOME=.gradle
+    # Create application.properties file for tests
+    - mkdir src/test/resources
+    - echo "$TEST_CONFIG" >> src/test/resources/application.properties
+    - echo "$JWT_KEY" >> src/test/resources/application.properties
   script:
     - echo "Running tests"
     - gradle check
@@ -47,6 +85,34 @@ test:
     paths:
       - build
       - .gradle
+
+frontend-build:
+  stage: build
+  extends: .frontend
+  needs: ["install"]
+  before_script:
+    - cd `pwd`/read4share-frontend
+  script:
+    - npm run build --prod
+  cache:
+    untracked: true
+    key: ${CI_COMMIT_SHORT_SHA}
+    policy: pull
+
+frontend-test:
+  stage: test
+  extends: .frontend
+  needs: ["frontend-build"]
+  before_script:
+    - cd `pwd`/read4share-frontend
+    - export CHROME_BIN=/usr/bin/chromium-browser
+  script:
+    - npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
+  cache:
+    untracked: true
+    key: ${CI_COMMIT_SHORT_SHA}
+    policy: pull
+
 
 #sonarqube:
 #  stage: analyze
