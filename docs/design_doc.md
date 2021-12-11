@@ -67,6 +67,13 @@ The application has been built following a client-server architecture and it pre
 
 *TODO*
 
+### UML Use Case Diagram
+
+<details>
+    <summary>Click to expand</summary>
+    <img src="./diagrams/Use_Case.png" style="zoom: 67%;" />
+</details>
+
 ## Gitlab Pipeline setup
 
 <details>

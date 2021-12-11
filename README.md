@@ -52,22 +52,20 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
 - [Design document](./docs/design_doc.md)
 - [Applied research document](./docs/applied_research.md)
 
-## UML Diagrams
+## Test plan
 
-### Use Case
-
-<details>
-    <summary>Click to expand</summary>
-    <img src="./docs/diagrams/Use_Case.png" style="zoom: 67%;" />
-</details>
+[Click to view](docs/testplan.md)
 
 ## Endpoints
 
 [Click to view](docs/endpoints.md)
 
-## Test plan
+## UI Mockups
 
-[Click to view](docs/testplan.md)
+<details>
+    <summary>Homepage</summary>
+    <img src="./docs/img/mockups/homepage.png" style="zoom: 67%;" />
+</details>
 
 ## SonarQube Scan
 
