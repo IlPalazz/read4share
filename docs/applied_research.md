@@ -130,6 +130,3 @@ JWT is a very popular standard which can be used to trust requests through signa
 - *LogRocket, (2021, March 1), "**How to secure a REST API using JWT**", https://blog.logrocket.com/how-to-secure-a-rest-api-using-jwt-7efd83e71432/*
 - *Namsu Hong, Mansik Kim, Moon-Seog Jun and Jungho Kang, (2017, June 23), "A Study on a JWT-Based User Authentication and API Assessment Scheme Using IMEI in a Smart Home Environment", https://pdfs.semanticscholar.org/3780/2344036753d63ae4bbca074d3cd19e4d2b33.pdf*
 - *Divya Shankari N, (2021, July 1), "Hacking JSON Web Tokens", https://long-80.com/blog/hacking-json-web-tokens/*
-
-​	
-

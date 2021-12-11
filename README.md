@@ -73,8 +73,9 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
 
 <details>
     <summary>Click to expand</summary>
-    <img src="./docs/diagrams/sonar_scan_1.png" style="zoom: 67%;" />
+    <img src="./docs/img/sonar_scan_1.png" style="zoom: 67%;" />
 </details>
+
 ## External resources
 
 - [Jira Software](https://strykerstorm.atlassian.net/jira/software/projects/R4S/boards/2/roadmap?shared=&atlOrigin=eyJpIjoiYjQzM2IwMDIxZDFiNDdkYzg5N2ZmNjU4ZTdlZGJjNTciLCJwIjoiaiJ9) - issue tracking product
