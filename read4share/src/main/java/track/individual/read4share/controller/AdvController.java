@@ -7,6 +7,7 @@ import track.individual.read4share.dto.response.AdvOverviewResponse;
 import track.individual.read4share.service.AdvService;
 import track.individual.read4share.service.CategoryService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")

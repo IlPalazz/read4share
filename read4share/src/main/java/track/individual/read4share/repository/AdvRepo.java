@@ -18,7 +18,7 @@ public interface AdvRepo extends JpaRepository<Adv, Long> {
      * @param page Page and number of records to return
      * @return List of AdvOverview
      */
-    @EntityGraph(value = "graph.AdvOverview")
+    @EntityGraph(value = "graph.AdvUserCityBookCategory")
     @Query("select adv from Adv adv where adv.saleDate is null " +
             "order by adv.publDate desc")
     List<Adv> findLatest(Pageable page);
@@ -38,7 +38,7 @@ public interface AdvRepo extends JpaRepository<Adv, Long> {
      * @param page Page and number of records to return
      * @return List of AdvOverview
      */
-    @EntityGraph(value = "graph.AdvOverview")
+    @EntityGraph(value = "graph.AdvUserCityBookCategory")
     @Query("select adv from Adv adv where adv.saleDate is null " +
             "and adv.price = 0.0 " +
             "order by adv.publDate desc")
@@ -49,7 +49,7 @@ public interface AdvRepo extends JpaRepository<Adv, Long> {
      * @param page Page and number of records to return
      * @return List of AdvOverview
      */
-    @EntityGraph(value = "graph.AdvOverview")
+    @EntityGraph(value = "graph.AdvUserCityBookCategory")
     @Query("select adv from Adv adv where adv.saleDate is null " +
             "and adv.shipCost = 0.0 " +
             "order by adv.publDate desc")
@@ -60,7 +60,7 @@ public interface AdvRepo extends JpaRepository<Adv, Long> {
      * @param page Page and number of records to return
      * @return List of AdvOverview
      */
-    @EntityGraph(value = "graph.AdvOverview")
+    @EntityGraph(value = "graph.AdvUserCityBookCategory")
     @Query("select adv from Adv adv where adv.saleDate is null " +
             "and adv.condition.code = 'AN' " +
             "order by adv.publDate desc")
@@ -72,7 +72,7 @@ public interface AdvRepo extends JpaRepository<Adv, Long> {
      * @param page Page and number of records to return
      * @return List of AdvOverview
      */
-    @EntityGraph(value = "graph.AdvOverview")
+    @EntityGraph(value = "graph.AdvUserCityBookCategory")
     @Query("select adv from Adv adv where adv.saleDate is null and adv.book.category.id = ?1" +
             "order by adv.publDate desc")
     List<Adv> findByCatId(Long catId, Pageable page);
