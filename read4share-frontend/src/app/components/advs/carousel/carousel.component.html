@@ -1,0 +1,38 @@
+<mat-card class="container">
+  <swiper
+    [navigation]="true"
+    [slidesPerView]="1"
+    [spaceBetween]="30"
+    [pagination]="{
+      clickable: true
+    }"
+    [breakpoints]="{
+      '640': {
+        slidesPerView: 2,
+        spaceBetween: 20
+      },
+      '768': {
+        slidesPerView: 4,
+        spaceBetween: 40
+      },
+      '1024': {
+        slidesPerView: 5,
+        spaceBetween: 50
+      }
+    }"
+    class="mySwiper"
+    *ngIf="advs"
+  >
+    <ng-template swiperSlide *ngFor="let adv of advs">
+      <app-adv-overview
+        [bookTitle]="adv.bookTitle"
+        [bookAuthor]="adv.bookAuthor"
+        [sellerUsername]="adv.sellerUsername"
+        [advLocation]="adv.advLocation"
+        [advPublDate]="adv.advPublDate"
+        [advPrice]="adv.advPrice"
+        [bookCoverUrl]="adv.bookCoverUrl"
+      ></app-adv-overview>
+    </ng-template>
+  </swiper>
+</mat-card>

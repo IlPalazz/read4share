@@ -57,4 +57,8 @@ export class TokenStorageService {
     }
     return null;
   }
+
+  public isUserLoggedIn(): boolean {
+    return !!this.getToken();
+  }
 }

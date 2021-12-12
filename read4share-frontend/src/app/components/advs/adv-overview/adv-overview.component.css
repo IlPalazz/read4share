@@ -1,0 +1,15 @@
+.container {
+  border: 1px solid green;
+  width: 200px;
+}
+
+span {
+  display: block;
+}
+img {
+  display: block;
+  border: 1px solid orange;
+  width: 180px;
+  height: 200px;
+  margin: 10 auto;
+}
