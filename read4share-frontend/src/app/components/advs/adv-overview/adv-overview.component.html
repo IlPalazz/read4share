@@ -1,14 +1,11 @@
-<div class="container">
+<div>
   <div class="img-container">
-    <a class="img-link">
-      <img
-        src="{{ bookCoverUrl }}"
-        alt="{{ bookTitle }}"
-        title="{{ bookTitle }}"
-      />
+    <!-- TODO: Insert link to the Adv details page -->
+    <a class="img-link" routerLink="">
+      <img src="{{ bookCoverUrl }}" alt="{{ bookTitle }}" class="adv-img" />
     </a>
   </div>
-  <div class="title-label">
+  <div class="title-label" title="{{ bookTitle }}">
     {{ bookTitle }}
   </div>
   <div class="author-label truncate-line">

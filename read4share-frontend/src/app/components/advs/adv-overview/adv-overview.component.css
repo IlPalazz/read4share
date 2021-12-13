@@ -1,12 +1,18 @@
-.container {
+/* .adv-overview-container {
   width: 190px;
-}
+} */
 
 .img-container {
-  width: 160px;
-  height: 190px;
+  width: 125px;
+  height: 160px;
   margin-bottom: 10px;
   box-shadow: 5px 5px 5px grey;
+}
+
+.adv-img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
 }
 
 .img-link:hover {

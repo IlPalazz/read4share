@@ -104,10 +104,6 @@
     <mat-card-actions align="end">
       <button mat-raised-button color="primary">Register</button>
     </mat-card-actions>
-    <div>
-      Form valid? {{ f.valid }} {{ f.form.valid }} <br />
-      {{ f.submitted }}
-    </div>
     <div class="alert" *ngIf="f.submitted && isRegistrationFailed">
       Registration failed: {{ errorMessage }}
     </div>

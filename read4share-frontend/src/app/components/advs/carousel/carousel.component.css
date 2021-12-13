@@ -1,7 +1,22 @@
 .container {
   width: 80%;
+  height: 415px;
   margin: 20px auto;
   z-index: 0;
+}
+
+.adv-overview {
+  width: 190px;
+  margin: 0;
+}
+
+.carousel-title {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  /* text-shadow: 1px 1px 1px gray; */
+  margin-left: 4%;
+  margin-bottom: 15px;
 }
 
 .swiper {
