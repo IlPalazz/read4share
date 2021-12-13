@@ -1,5 +1,33 @@
 <div class="container">
-  <img src="{{ bookCoverUrl }}" />
-  <span>{{ bookTitle }}</span>
-  <span>{{ sellerUsername }}</span>
+  <div class="img-container">
+    <a class="img-link">
+      <img
+        src="{{ bookCoverUrl }}"
+        alt="{{ bookTitle }}"
+        title="{{ bookTitle }}"
+      />
+    </a>
+  </div>
+  <div class="title-label">
+    {{ bookTitle }}
+  </div>
+  <div class="author-label truncate-line">
+    {{ bookAuthor }}
+  </div>
+  <div class="adv-info truncate-line">
+    <mat-icon class="adv-icon" aria-label="Advertisement seller"
+      >person</mat-icon
+    >
+    <span class="adv-info-label">{{ sellerUsername }}</span>
+  </div>
+  <div class="adv-info truncate-line">
+    <mat-icon class="adv-icon" aria-label="Advertisement location"
+      >place</mat-icon
+    >
+    <span class="adv-info-label">{{ advLocation }}</span>
+  </div>
+  <div class="adv-info truncate-line">
+    <mat-icon class="adv-icon" aria-label="Advertisement price">euro</mat-icon>
+    <span class="adv-info-label">{{ advPrice | number: "1.2-2" }}</span>
+  </div>
 </div>

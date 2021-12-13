@@ -6,7 +6,10 @@
     [pagination]="{
       clickable: true
     }"
-    [breakpoints]="{
+    class="mySwiper"
+    *ngIf="advs"
+  >
+    <!-- [breakpoints]="{
       '640': {
         slidesPerView: 2,
         spaceBetween: 20
@@ -19,10 +22,7 @@
         slidesPerView: 5,
         spaceBetween: 50
       }
-    }"
-    class="mySwiper"
-    *ngIf="advs"
-  >
+    }" -->
     <ng-template swiperSlide *ngFor="let adv of advs">
       <app-adv-overview
         [bookTitle]="adv.bookTitle"

@@ -1,15 +1,64 @@
 .container {
-  border: 1px solid green;
-  width: 200px;
+  width: 190px;
 }
 
-span {
-  display: block;
+.img-container {
+  width: 160px;
+  height: 190px;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px 5px grey;
 }
-img {
+
+.img-link:hover {
+  cursor: pointer;
+}
+
+.truncate-line {
   display: block;
-  border: 1px solid orange;
-  width: 180px;
-  height: 200px;
-  margin: 10 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.title-label {
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: left;
+  max-height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  margin-bottom: 4px;
+}
+
+.author-label {
+  font-style: italic;
+  font-weight: lighter;
+  text-align: left;
+  font-size: 0.1rem;
+  text-indent: 2px;
+}
+
+.adv-info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin: 3px 0;
+}
+
+.adv-info:hover {
+}
+
+.adv-info-label {
+  align-self: flex-end;
+}
+
+.adv-icon {
+  margin-right: 5px;
 }
