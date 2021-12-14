@@ -29,7 +29,7 @@
   align-items: center;
 }
 
-.login-signup-container {
+.topbar-menu-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -56,6 +56,24 @@
   font-size: medium;
   margin-right: 20px;
 }
+
+.icon-container {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar-icon {
+  font-size: 2rem;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+
+.topbar-icon:hover {
+  cursor: pointer;
+}
+
 a:link {
   text-decoration: none;
 }
