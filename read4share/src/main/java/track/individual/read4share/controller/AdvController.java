@@ -77,7 +77,7 @@ public class AdvController {
      * @param size Number of elements to return to the client
      * @return List of Advertisements
      */
-    @GetMapping("/cat") // TODO: Implement method in AdvServiceImpl
+    @GetMapping("/cat")
     public ResponseEntity<List<AdvOverviewResponse>> getByCategory(@RequestParam("id") Long catId,
                                                                    @RequestParam int page,
                                                                    @RequestParam int size) {

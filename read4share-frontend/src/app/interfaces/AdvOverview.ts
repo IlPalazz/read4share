@@ -1,4 +1,5 @@
 export interface AdvOverview {
+  advId: number;
   bookTitle: string;
   bookAuthor: string;
   sellerUsername: string;

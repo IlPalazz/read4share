@@ -2,6 +2,7 @@ import { AdvOverview } from './app/interfaces/AdvOverview';
 
 export const mockAdvOverview: AdvOverview[] = [
   {
+    advId: 1,
     bookTitle:
       'Engineering & Architectural Quotes: Insightful Statements by Historical Figures about Engineering & Architecture',
     bookAuthor: 'Joanne Moreno',
@@ -13,6 +14,7 @@ export const mockAdvOverview: AdvOverview[] = [
       'http://books.google.com/books/content?id=J0iQDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
   },
   {
+    advId: 2,
     bookTitle: 'Introduction to Machine Learning with Python',
     bookAuthor: 'Sarah Guido',
     sellerUsername: 'testuser6',
@@ -23,6 +25,7 @@ export const mockAdvOverview: AdvOverview[] = [
       'http://books.google.com/books/content?id=vbQlDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
   },
   {
+    advId: 3,
     bookTitle: "Programmer's Guide to Java Certification",
     bookAuthor: 'Khalid A. Mughal, Rolf W. Rasmussen',
     sellerUsername: 'testuser2',
@@ -33,6 +36,7 @@ export const mockAdvOverview: AdvOverview[] = [
       'http://books.google.com/books/content?id=Q0Xm0o8n-WYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
   },
   {
+    advId: 4,
     bookTitle: 'Basic Topology',
     bookAuthor: 'M. A. Armstrong',
     sellerUsername: 'testuser4',
@@ -43,6 +47,7 @@ export const mockAdvOverview: AdvOverview[] = [
       'http://books.google.com/books/content?id=NJbuBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
   },
   {
+    advId: 5,
     bookTitle: 'Elementary Differential Geometry',
     bookAuthor: 'A. N. Pressley',
     sellerUsername: 'testuser4',
@@ -53,6 +58,7 @@ export const mockAdvOverview: AdvOverview[] = [
       'http://books.google.com/books/content?id=agXpBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
   },
   {
+    advId: 6,
     bookTitle: 'Basic Topology',
     bookAuthor: 'M. A. Armstrong',
     sellerUsername: 'testuser2',
@@ -63,6 +69,7 @@ export const mockAdvOverview: AdvOverview[] = [
       'http://books.google.com/books/content?id=NJbuBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
   },
   {
+    advId: 7,
     bookTitle: 'Architect & Developer: A Guide to Self-Initiating Projects',
     bookAuthor: 'James Petty Aia',
     sellerUsername: 'testuser7',
@@ -73,6 +80,7 @@ export const mockAdvOverview: AdvOverview[] = [
       'http://books.google.com/books/content?id=_F-ZCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
   },
   {
+    advId: 8,
     bookTitle:
       'The Church of Sancta Sophia, Constantinople a Study of Byzantine Building',
     bookAuthor: 'W. R. Lethaby, Harold Swainson',
@@ -84,6 +92,7 @@ export const mockAdvOverview: AdvOverview[] = [
       'http://books.google.com/books/content?id=xxlUAAAAMAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
   },
   {
+    advId: 9,
     bookTitle: 'Elementary Differential Geometry',
     bookAuthor: 'A. N. Pressley',
     sellerUsername: 'testuser3',
@@ -94,6 +103,7 @@ export const mockAdvOverview: AdvOverview[] = [
       'http://books.google.com/books/content?id=agXpBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
   },
   {
+    advId: 10,
     bookTitle: 'Elementary Differential Geometry',
     bookAuthor: 'A. N. Pressley',
     sellerUsername: 'testuser8',

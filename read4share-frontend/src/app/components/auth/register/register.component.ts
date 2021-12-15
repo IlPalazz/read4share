@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
     passwordCheck: null,
   };
   isRegistered = false;
-  isRegistrationFailed: boolean = false;
+  isRegistrationFailed = false;
   errorMessage = '';
 
   constructor(
@@ -31,11 +31,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('Ci entro');
-    const { username, email, password, passwordCheck } = this.form;
+    const { username, email, password } = this.form;
     this.authService.registerUser(username, email, password).subscribe(
-      (response) => {
-        console.log(response);
+      () => {
         this.isRegistrationFailed = false;
         this.isRegistered = true;
       },
@@ -45,9 +43,5 @@ export class RegisterComponent implements OnInit {
         this.isRegistrationFailed = true;
       }
     );
-  }
-
-  reloadPage(): void {
-    window.location.reload();
   }
 }

@@ -19,6 +19,7 @@ public class ConverterImpl implements Converter {
      */
     private AdvOverviewResponse fromAdvToAdvOverviewDTO(Adv adv) {
         return AdvOverviewResponse.builder()
+                .advId(adv.getId())
                 .bookTitle(adv.getBook().getTitle())
                 .bookAuthor(adv.getBook().getAuthor())
                 .sellerUsername(adv.getSeller().getUsername())

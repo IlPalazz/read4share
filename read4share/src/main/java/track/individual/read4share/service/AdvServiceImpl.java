@@ -56,7 +56,7 @@ public class AdvServiceImpl implements AdvService {
             throw new ItemNotFoundException("Category with specified id not found");
         // Get the advertisements list
         return converter.convert(advRepo.findByCatId(
-                id, PageRequest.of(0, this.validateRecordsNumber(size))));
+                id, PageRequest.of(page, this.validateRecordsNumber(size))));
     }
 
 
