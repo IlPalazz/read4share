@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     const { username, password } = this.form;
 
     // Get the token
-    this.authService.loginUser(username, password).subscribe(
+    this.authService.login(username, password).subscribe(
       (response) => {
         // Save the token in the local storage
         if (response.token) this.tokenStorageService.saveToken(response.token);
