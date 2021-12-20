@@ -31,13 +31,13 @@ public class AdvServiceMockTest {
     @BeforeEach
     void initAdvService() {
         // Enable Mockito annotations
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         // Inject mock repository
         advService = new AdvServiceImpl(advRepo, converter, catService);
     }
 
     @Test
-    @DisplayName("Should return the latest published advertisements")
+    @DisplayName("It should return the latest published advertisements")
     void getLatest() {
 
         // ARRANGE
@@ -57,7 +57,7 @@ public class AdvServiceMockTest {
         Assertions.assertThat(results.size()).isEqualTo(2);
 
         // Verify number of calls to the convert method
-        verify(converter, times(1)).convert(anyListOf(Adv.class));
+        verify(converter, times(1)).convert(anyList());
     }
 
 }

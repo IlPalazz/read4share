@@ -47,15 +47,6 @@ public class ErrorHandlingController extends ResponseEntityExceptionHandler {
                 .body(new HttpMessageResponse(exception.getErrorMessage()));
     }
 
-    // Thrown when one or more parameters in the URL of an HTTP request are invalid
-//    @ExceptionHandler(ConstraintViolationException.class)
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    public ResponseEntity<HttpMessageResponse> handleInvalidParameterException(ConstraintViolationException exception) {
-//        return ResponseEntity
-//                .status(HttpStatus.BAD_REQUEST)
-//                .body(new HttpMessageResponse("Invalid URL parameters!"));
-//    }
-
     @Override
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
