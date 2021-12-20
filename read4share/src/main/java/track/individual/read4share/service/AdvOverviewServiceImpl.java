@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AdvServiceImpl implements AdvService {
+public class AdvOverviewServiceImpl implements AdvOverviewService {
 
     private final AdvRepo advRepo;
     private final Converter converter;
@@ -21,31 +21,31 @@ public class AdvServiceImpl implements AdvService {
 
     @Override
     public List<AdvOverviewResponse> getLatest(int size) {
-        return converter.convert(advRepo.findLatest(
+        return converter.toAdvOverviewResponse(advRepo.findLatest(
                 PageRequest.of(0, this.validateRecordsNumber(size))));
     }
 
     @Override
     public List<AdvOverviewResponse> getBestRating(int size) {
-        return converter.convert(advRepo.findBestRating(
+        return converter.toAdvOverviewResponse(advRepo.findBestRating(
                 PageRequest.of(0, this.validateRecordsNumber(size))));
     }
 
     @Override
     public List<AdvOverviewResponse> getFree(int size) {
-        return converter.convert(advRepo.findFree(
+        return converter.toAdvOverviewResponse(advRepo.findFree(
                 PageRequest.of(0, this.validateRecordsNumber(size))));
     }
 
     @Override
     public List<AdvOverviewResponse> getFreeDel(int size) {
-        return converter.convert(advRepo.findFreeDel(
+        return converter.toAdvOverviewResponse(advRepo.findFreeDel(
                 PageRequest.of(0, this.validateRecordsNumber(size))));
     }
 
     @Override
     public List<AdvOverviewResponse> getAsNew(int size) {
-        return converter.convert(advRepo.findAsNew(
+        return converter.toAdvOverviewResponse(advRepo.findAsNew(
                 PageRequest.of(0, this.validateRecordsNumber(size))));
     }
 
@@ -55,7 +55,7 @@ public class AdvServiceImpl implements AdvService {
         if (!catService.isValid(id))
             throw new ItemNotFoundException("Category with specified id not found");
         // Get the advertisements list
-        return converter.convert(advRepo.findByCatId(
+        return converter.toAdvOverviewResponse(advRepo.findByCatId(
                 id, PageRequest.of(page, this.validateRecordsNumber(size))));
     }
 

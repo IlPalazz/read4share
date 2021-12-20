@@ -4,20 +4,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import track.individual.read4share.dto.response.AdvOverviewResponse;
-import track.individual.read4share.service.AdvService;
-import track.individual.read4share.service.CategoryService;
+import track.individual.read4share.service.AdvOverviewService;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController()
 @RequestMapping("/api/adv")
 @RequiredArgsConstructor
-public class AdvController {
+public class AdvOverviewController {
 
-    private final AdvService advService;
-    private final CategoryService categoryService;
+    private final AdvOverviewService advService;
 
     /**
      * Overview of the most recently posted advertisements
@@ -83,4 +80,5 @@ public class AdvController {
                                                                    @RequestParam int size) {
         return ResponseEntity.ok().body(advService.getByCategoryId(catId, page, size));
     }
+
 }

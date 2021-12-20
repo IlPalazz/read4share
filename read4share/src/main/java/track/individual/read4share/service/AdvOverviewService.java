@@ -4,7 +4,7 @@ import track.individual.read4share.dto.response.AdvOverviewResponse;
 
 import java.util.List;
 
-public interface AdvService {
+public interface AdvOverviewService {
 
     /**
      * Most recently posted advertisements
