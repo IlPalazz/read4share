@@ -76,6 +76,7 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
     <summary>Click to expand</summary>
     <img src="./docs/img/sonar_scan_1.png" style="zoom: 67%;" />
 </details>
+
 ## OWASP Security report
 
 [Click to view](docs/owasp_report.md)
