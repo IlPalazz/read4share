@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import track.individual.read4share.dto.response.AdvOverviewResponse;
-import track.individual.read4share.model.Adv;
 import track.individual.read4share.repository.AdvRepo;
 import track.individual.read4share.dto.Converter;
 
@@ -16,14 +15,14 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-public class AdvServiceMockTest {
+public class AdvOverviewServiceMockTest {
 
     // Mock creation
     @Mock
     private AdvRepo advRepo;
     @Mock
     private Converter converter;
-    private AdvService advService;
+    private AdvOverviewService advService;
     @Mock
     private CategoryService catService;
 
@@ -31,13 +30,13 @@ public class AdvServiceMockTest {
     @BeforeEach
     void initAdvService() {
         // Enable Mockito annotations
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         // Inject mock repository
-        advService = new AdvServiceImpl(advRepo, converter, catService);
+        advService = new AdvOverviewServiceImpl(advRepo, converter, catService);
     }
 
     @Test
-    @DisplayName("Should return the latest published advertisements")
+    @DisplayName("It should return the latest published advertisements")
     void getLatest() {
 
         // ARRANGE
@@ -57,7 +56,7 @@ public class AdvServiceMockTest {
         Assertions.assertThat(results.size()).isEqualTo(2);
 
         // Verify number of calls to the convert method
-        verify(converter, times(1)).convert(anyListOf(Adv.class));
+        verify(converter, times(1)).toAdvOverviewResponse(anyList());
     }
 
 }

@@ -1,0 +1,25 @@
+<mat-card class="container">
+  <div class="carousel-title">Recently added</div>
+  <div>
+    <swiper
+      id="container"
+      [config]="config"
+      (swiper)="onSwiper($event)"
+      (slideChange)="onSlideChange()"
+      *ngIf="advs"
+    >
+      <ng-template swiperSlide *ngFor="let adv of advs">
+        <app-adv-overview
+          class="adv-overview"
+          [bookTitle]="adv.bookTitle"
+          [bookAuthor]="adv.bookAuthor"
+          [sellerUsername]="adv.sellerUsername"
+          [advLocation]="adv.advLocation"
+          [advPublDate]="adv.advPublDate"
+          [advPrice]="adv.advPrice"
+          [bookCoverUrl]="adv.bookCoverUrl"
+        ></app-adv-overview>
+      </ng-template>
+    </swiper>
+  </div>
+</mat-card>

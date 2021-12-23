@@ -1,49 +1,15 @@
 package track.individual.read4share.service;
 
-import track.individual.read4share.dto.response.AdvOverviewResponse;
-
-import java.util.List;
+import track.individual.read4share.dto.response.ActiveAdvResponse;
+import track.individual.read4share.exception.ItemNotFoundException;
 
 public interface AdvService {
 
     /**
-     * Most recently posted advertisements
-     * @param size Number of elements to return to the client
-     * @return List of Advertisements Overview
+     * Return a DTO response of the adv with the given id
+     * @param id Adv id
+     * @return ActiveAdvResponse of the requested adv
+     * @throws ItemNotFoundException Whether the adv with the given id does not exist
      */
-    List<AdvOverviewResponse> getLatest(int size);
-
-    /**
-     * Advertisements with the best rated books
-     * @param size Number of elements to return to the client
-     * @return List of Advertisements Overview
-     */
-    List<AdvOverviewResponse> getBestRating(int size);
-
-    /**
-     * Latest free advertisements
-     * @param size Number of elements to return to the client
-     * @return List of Advertisements Overview
-     */
-    List<AdvOverviewResponse> getFree(int size);
-
-    /**
-     * Latest advertisements with no delivery fees
-     * @param size Number of elements to return to the client
-     * @return List of Advertisements Overview
-     */
-    List<AdvOverviewResponse> getFreeDel(int size);
-
-    /**
-     * Advertisements with books marked as new
-     * @param size Number of elements to return to the client
-     * @return List of Advertisements Overview
-     */
-    List<AdvOverviewResponse> getAsNew(int size);
-
-    /**
-     * Advertisements with books that belong to a specific category
-     * @return List of Advertisements Overview
-     */
-    List<AdvOverviewResponse> getByCategoryId(Long id, int page, int size);
+    ActiveAdvResponse getById(Long id) throws ItemNotFoundException;
 }

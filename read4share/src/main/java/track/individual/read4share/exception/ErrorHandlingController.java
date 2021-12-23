@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -46,14 +47,12 @@ public class ErrorHandlingController extends ResponseEntityExceptionHandler {
                 .body(new HttpMessageResponse(exception.getErrorMessage()));
     }
 
-    // Thrown when one or more parameters in the URL of an HTTP request are invalid
-    @ExceptionHandler(ConstraintViolationException.class)
+    @Override
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<HttpMessageResponse> handleInvalidParameterException(ConstraintViolationException exception) {
+    protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(new HttpMessageResponse("Invalid URL parameters!"));
-    }
+                .body(new HttpMessageResponse("Invalid URL parameters!"));    }
 
     // Thrown when one or more fields in the body of an HTTP request are invalid
     @Override

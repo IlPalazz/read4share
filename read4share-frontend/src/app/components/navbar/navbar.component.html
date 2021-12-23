@@ -31,38 +31,46 @@
             <!-- <img class="banner" src="assets/logo.png" /> -->
           </a>
         </div>
-        <div class="login-signup-container">
-          <label class="menu" *ngIf="isLoggedIn && showAdminBoard"
-            >(ADMIN)</label
-          >
-          <label class="menu" *ngIf="isLoggedIn">User: {{ username }}</label>
-          <button
-            *ngIf="!isLoggedIn"
-            class="login"
-            mat-raised-button
-            color="secondary"
-            routerLink="/login"
-          >
-            Login
-          </button>
-          <button
-            *ngIf="!isLoggedIn"
-            class="login"
-            mat-raised-button
-            color="secondary"
-            routerLink="/register"
-          >
-            Register
-          </button>
-          <button
-            *ngIf="isLoggedIn"
-            class="login"
-            mat-raised-button
-            color="secondary"
-            (click)="onLogout()"
-          >
-            Logout
-          </button>
+        <div class="topbar-menu-container">
+          <ng-container *ngIf="!isLoggedIn">
+            <button
+              class="login"
+              mat-raised-button
+              color="secondary"
+              routerLink="/login"
+            >
+              Login
+            </button>
+            <button
+              class="login"
+              mat-raised-button
+              color="secondary"
+              routerLink="/register"
+            >
+              Register
+            </button>
+          </ng-container>
+          <ng-container *ngIf="isLoggedIn">
+            <label class="menu" *ngIf="showAdminBoard">(ADMIN)</label>
+            <div class="icon-container">
+              <mat-icon class="topbar-icon" aria-label="Post new advertisement"
+                >sell</mat-icon
+              >
+            </div>
+            <div class="icon-container">
+              <mat-icon
+                class="topbar-icon"
+                aria-label="User account"
+                (click)="onLogout()"
+                >account_circle</mat-icon
+              >
+            </div>
+            <div class="icon-container">
+              <mat-icon class="topbar-icon account-icon" aria-label="User chats"
+                >chat_bubble</mat-icon
+              >
+            </div>
+          </ng-container>
         </div>
       </div>
     </mat-toolbar>

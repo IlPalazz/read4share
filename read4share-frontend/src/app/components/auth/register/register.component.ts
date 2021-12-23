@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-register',
@@ -14,19 +16,24 @@ export class RegisterComponent implements OnInit {
     passwordCheck: null,
   };
   isRegistered = false;
-  isRegistrationFailed: boolean = false;
+  isRegistrationFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private tokenStorageService: TokenStorageService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // If the user is logged in redirect to home
+    if (!!this.tokenStorageService.getToken()) this.router.navigate(['/home']);
+  }
 
   onSubmit(): void {
-    console.log('Ci entro');
-    const { username, email, password, passwordCheck } = this.form;
-    this.authService.registerUser(username, email, password).subscribe(
-      (response) => {
-        console.log(response);
+    const { username, email, password } = this.form;
+    this.authService.register(username, email, password).subscribe(
+      () => {
         this.isRegistrationFailed = false;
         this.isRegistered = true;
       },
@@ -36,9 +43,5 @@ export class RegisterComponent implements OnInit {
         this.isRegistrationFailed = true;
       }
     );
-  }
-
-  reloadPage(): void {
-    window.location.reload();
   }
 }

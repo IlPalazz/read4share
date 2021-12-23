@@ -12,10 +12,11 @@ import java.util.List;
 @Entity(name = "Adv")
 @Table(name = "adv")
 @NamedEntityGraph(
-        name = "graph.AdvUserCityBookCategory",
+        name = "graph.AdvUserCityBookCategoryCondition",
         attributeNodes = {
                 @NamedAttributeNode(value = "seller", subgraph = "subgraph.seller"),
                 @NamedAttributeNode(value = "city"),
+                @NamedAttributeNode(value = "condition"),
                 @NamedAttributeNode(value = "book", subgraph = "subgraph.book")
         },
         subgraphs = {

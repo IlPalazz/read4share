@@ -26,6 +26,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
 	//implementation 'com.auth0:java-jwt:3.18.2'
 	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation('org.springframework.boot:spring-boot-starter-validation')
 
 	compileOnly 'org.projectlombok:lombok:1.18.22'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
@@ -33,16 +35,20 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql:42.3.1'
 	runtimeOnly 'com.h2database:h2:1.4.200'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
+	testImplementation('org.springframework.boot:spring-boot-starter-test:2.5.6') {
+		exclude group: 'org.junit', module: 'junit'
+		exclude group: 'org.mockito', module: 'mockito-core'
+		exclude group: 'org.mockito', module: 'mockito-all'
+	}
+	testImplementation 'org.mockito:mockito-core:3.12.4'
+
 	testImplementation 'org.springframework.security:spring-security-test:5.5.1'
 	// https://mvnrepository.com/artifact/org.assertj/assertj-core
 	testImplementation 'org.assertj:assertj-core:3.21.0'
+
 	// https://mvnrepository.com/artifact/org.mockito/mockito-all
-	testImplementation 'org.mockito:mockito-all:1.10.19'
-	// https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
-	testImplementation 'org.mockito:mockito-junit-jupiter:4.1.0'
-	//testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.8.1')
-	implementation('org.springframework.boot:spring-boot-starter-validation')
+	//testImplementation 'org.mockito:mockito-all:1.10.19'
+
 
 
 }

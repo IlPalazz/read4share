@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 public class AdvOverviewResponse {
 
+    private Long advId;
     private String bookTitle;
     private String bookAuthor;
     private String sellerUsername;
