@@ -6,6 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./adv-overview.component.css'],
 })
 export class AdvOverviewComponent implements OnInit {
+  @Input() advId!: number;
   @Input() bookTitle!: string;
   @Input() bookAuthor!: string;
   @Input() sellerUsername!: string;

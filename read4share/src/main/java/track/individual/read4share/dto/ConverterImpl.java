@@ -2,12 +2,9 @@ package track.individual.read4share.dto;
 
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-import track.individual.read4share.dto.response.ActiveAdvResponse;
+import track.individual.read4share.dto.response.AdvDetailsResponse;
 import track.individual.read4share.dto.response.AdvOverviewResponse;
 import track.individual.read4share.model.Adv;
-import track.individual.read4share.model.Book;
-import track.individual.read4share.model.Category;
-import track.individual.read4share.model.Condition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,23 +36,24 @@ public class ConverterImpl implements Converter {
     }
 
     @Override
-    public List<ActiveAdvResponse> toActiveAdvResponse(List<Adv> advs) {
-        List<ActiveAdvResponse> listDto = new ArrayList<>();
+    public List<AdvDetailsResponse> toActiveAdvResponse(List<Adv> advs) {
+        List<AdvDetailsResponse> listDto = new ArrayList<>();
         for (Adv adv : advs)
             listDto.add(this.toActiveAdvResponse(adv));
         return listDto;
     }
 
     @Override
-    public ActiveAdvResponse toActiveAdvResponse(Adv adv) {
-        return ActiveAdvResponse.builder()
+    public AdvDetailsResponse toActiveAdvResponse(Adv adv) {
+        return AdvDetailsResponse.builder()
                 .advId(adv.getId())
                 .advDescr(adv.getDescr())
                 .advPrice(adv.getPrice())
                 .advShipCost(adv.getShipCost())
                 .advPublDate(adv.getPublDate())
+                .advSaleDate(adv.getSaleDate())
                 .advPicPath(adv.getPicPath())
-                .advLocation(adv.getCity().getName())
+                .advLocation(adv.getCity())
                 .book(adv.getBook())
                 .condition(adv.getCondition())
                 .sellerUsername(adv.getSeller().getUsername())

@@ -1,6 +1,6 @@
 package track.individual.read4share.dto;
 
-import track.individual.read4share.dto.response.ActiveAdvResponse;
+import track.individual.read4share.dto.response.AdvDetailsResponse;
 import track.individual.read4share.dto.response.AdvOverviewResponse;
 import track.individual.read4share.model.Adv;
 
@@ -27,12 +27,12 @@ public interface Converter {
      * @param advs List of Adv to convert
      * @return List of ActiveAdvResponse
      */
-    List<ActiveAdvResponse> toActiveAdvResponse(List<Adv> advs);
+    List<AdvDetailsResponse> toActiveAdvResponse(List<Adv> advs);
 
     /**
      * Convert an Adv object into an ActiveAdvResponse object
      * @param adv Advertisement to convert
      * @return ActiveAdvResponse object
      */
-    ActiveAdvResponse toActiveAdvResponse(Adv adv);
+    AdvDetailsResponse toActiveAdvResponse(Adv adv);
 }
