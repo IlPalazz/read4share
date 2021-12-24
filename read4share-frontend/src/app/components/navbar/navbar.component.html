@@ -50,27 +50,31 @@
               Register
             </button>
           </ng-container>
-          <ng-container *ngIf="isLoggedIn">
-            <label class="menu" *ngIf="showAdminBoard">(ADMIN)</label>
+          <div *ngIf="isLoggedIn" class="icons-container">
+            <!-- <label class="menu" *ngIf="showAdminBoard">(ADMIN)</label> -->
             <div class="icon-container">
               <mat-icon class="topbar-icon" aria-label="Post new advertisement"
                 >sell</mat-icon
               >
+              <label class="icon-text">Publish</label>
             </div>
             <div class="icon-container">
+              <!-- TODO: Move logout to tooltip menu -->
               <mat-icon
                 class="topbar-icon"
                 aria-label="User account"
                 (click)="onLogout()"
                 >account_circle</mat-icon
               >
+              <label class="icon-text">Account</label>
             </div>
             <div class="icon-container">
               <mat-icon class="topbar-icon account-icon" aria-label="User chats"
                 >chat_bubble</mat-icon
               >
+              <label class="icon-text">Chat</label>
             </div>
-          </ng-container>
+          </div>
         </div>
       </div>
     </mat-toolbar>
