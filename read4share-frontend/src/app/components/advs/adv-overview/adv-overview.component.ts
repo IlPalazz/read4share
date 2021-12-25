@@ -18,4 +18,8 @@ export class AdvOverviewComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onClick() {
+    // TODO: Add router redirection to /advs/{id}
+  }
 }
