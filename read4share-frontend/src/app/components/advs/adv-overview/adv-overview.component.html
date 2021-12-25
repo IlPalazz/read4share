@@ -1,7 +1,6 @@
-<div (click)="onClick()">
+<div>
   <div class="img-container">
-    <!-- TODO: Insert link to the Adv details page -->
-    <a class="img-link" routerLink="">
+    <a class="img-link" [routerLink]="['/home/advs', advId]">
       <img src="{{ bookCoverUrl }}" alt="{{ bookTitle }}" class="adv-img" />
     </a>
   </div>
