@@ -14,7 +14,8 @@ SwiperCore.use([Pagination]);
 })
 export class CarouselComponent implements OnInit {
   // List of Advs Overview to display in the carousel
-  @Input() advs?: AdvOverview[];
+  @Input() advs!: AdvOverview[];
+  @Input() title!: string;
   swiper: any;
 
   config: SwiperOptions = {
@@ -58,6 +59,6 @@ export class CarouselComponent implements OnInit {
   onSlideChange() {
     //let element = document.getElementById('container');
     //console.log('Width: ' + element!.offsetWidth + 'px');
-    console.log(window.innerWidth);
+    //console.log(window.innerWidth);
   }
 }

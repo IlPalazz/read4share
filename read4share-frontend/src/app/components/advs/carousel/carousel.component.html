@@ -1,5 +1,5 @@
 <mat-card class="container">
-  <div class="carousel-title">Recently added</div>
+  <div class="carousel-title">{{ title }}</div>
   <div>
     <swiper
       id="container"
@@ -11,6 +11,7 @@
       <ng-template swiperSlide *ngFor="let adv of advs">
         <app-adv-overview
           class="adv-overview"
+          [advId]="adv.advId"
           [bookTitle]="adv.bookTitle"
           [bookAuthor]="adv.bookAuthor"
           [sellerUsername]="adv.sellerUsername"
