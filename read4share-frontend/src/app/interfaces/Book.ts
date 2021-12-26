@@ -5,7 +5,7 @@ export interface Book {
   isbn: string;
   title: string;
   author: string;
-  publDate: Date;
+  publDate: string;
   publisher: string;
   language: string;
   coverUrl: string;

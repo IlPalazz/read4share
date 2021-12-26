@@ -1,5 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AdvDetails } from 'src/app/interfaces/AdvDetails';
+import { AdvService } from 'src/app/services/adv.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-adv-details',
@@ -7,13 +11,25 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./adv-details.component.css'],
 })
 export class AdvDetailsComponent implements OnInit {
-  advId!: number;
+  advDetails?: Observable<AdvDetails>;
+  condition?: string;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private advService: AdvService,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     // Get the adv id from the current route.
     const routeParams = this.route.snapshot.paramMap;
-    this.advId = Number(routeParams.get('advId'));
+    let advId = Number(routeParams.get('advId'));
+
+    // Get the adv details
+    this.advDetails = this.advService.getDetails(advId);
+  }
+
+  onBack() {
+    this.location.back();
   }
 }

@@ -7,8 +7,8 @@ export interface AdvDetails {
   advDescr: string;
   advPrice: number;
   advShipCost: number;
-  advPublDate: Date;
-  advSaleDate: Date;
+  advPublDate: string;
+  advSaleDate: string | null;
   advPicPath: string;
   advLocation: City;
   book: Book;

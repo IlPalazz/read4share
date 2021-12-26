@@ -4,17 +4,18 @@ import { AdvDetailsComponent } from './components/advs/adv-details/adv-details.c
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HomeComponent } from './components/home/home.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'home',
     component: HomeComponent,
-    // children: [{ path: 'advs/:advId', component: AdvDetailsComponent }],
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home/advs/:advId', component: AdvDetailsComponent },
+  { path: 'chat', component: ChatComponent },
 ];
 
 @NgModule({
