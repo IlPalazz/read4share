@@ -37,6 +37,8 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { CarouselComponent } from './components/advs/carousel/carousel.component';
 import { AdvOverviewComponent } from './components/advs/adv-overview/adv-overview.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AdvDetailsComponent } from './components/advs/adv-details/adv-details.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   // Only for components
@@ -49,6 +51,8 @@ import { FooterComponent } from './components/footer/footer.component';
     CarouselComponent,
     AdvOverviewComponent,
     FooterComponent,
+    AdvDetailsComponent,
+    ChatComponent,
   ],
   // Only for modules
   imports: [

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AdvOverview } from '../interfaces/AdvOverview';
+import { AdvDetails } from '../interfaces/AdvDetails';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const API_URL = 'http://localhost:8080/api/adv';
@@ -51,5 +52,9 @@ export class AdvService {
     &page=${page}
     &size=${size}`
     );
+  }
+
+  getDetails(advId: number): Observable<AdvDetails> {
+    return this.http.get<AdvDetails>(API_URL + `/details/${advId}`);
   }
 }
