@@ -105,7 +105,7 @@
       <button mat-raised-button color="primary">Register</button>
     </mat-card-actions>
     <div class="alert" *ngIf="f.submitted && isRegistrationFailed">
-      Registration failed: {{ errorMessage }}
+      {{ errorMessage }}
     </div>
     <div class="alert" *ngIf="f.submitted && isPasswordMatchFailed">
       Password do not match!

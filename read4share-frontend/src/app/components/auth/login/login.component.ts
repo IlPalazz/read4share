@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       (err) => {
         if (err.error.message) {
           this.errorMessage = err.error.message;
-        } else this.errorMessage = 'Connection to the server failed';
+        } else this.errorMessage = 'Error: connection to the server failed';
         this.isLoginFailed = true;
       }
     );
