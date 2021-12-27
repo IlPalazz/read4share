@@ -45,7 +45,9 @@ export class LoginComponent implements OnInit {
         window.location.reload();
       },
       (err) => {
-        this.errorMessage = err.error.message;
+        if (err.error.message) {
+          this.errorMessage = err.error.message;
+        } else this.errorMessage = 'Connection to the server failed';
         this.isLoginFailed = true;
       }
     );

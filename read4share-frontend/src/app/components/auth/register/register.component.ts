@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   isRegistered = false;
   isRegistrationFailed = false;
   errorMessage = '';
+  isPasswordMatchFailed = false;
 
   constructor(
     private authService: AuthService,
@@ -31,7 +32,13 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { username, email, password } = this.form;
+    const { username, email, password, passwordCheck } = this.form;
+
+    if (!(password === passwordCheck)) {
+      this.isPasswordMatchFailed = true;
+      return;
+    } else this.isPasswordMatchFailed = false;
+
     this.authService.register(username, email, password).subscribe(
       () => {
         this.isRegistrationFailed = false;
@@ -39,7 +46,8 @@ export class RegisterComponent implements OnInit {
       },
       (err) => {
         console.log(err);
-        this.errorMessage = err.error.message;
+        if (err.error.message) this.errorMessage = err.error.message;
+        else this.errorMessage = 'Connection to the server failed';
         this.isRegistrationFailed = true;
       }
     );
