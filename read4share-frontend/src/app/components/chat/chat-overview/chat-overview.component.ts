@@ -13,6 +13,7 @@ import { UserData } from 'src/app/interfaces/UserData';
 export class ChatOverviewComponent implements OnInit {
   chatPreviews?: Observable<ChatPreview[]>;
   user!: UserData | null;
+  // textFieldWidth: number = 150;
 
   constructor(
     private chatService: ChatService,

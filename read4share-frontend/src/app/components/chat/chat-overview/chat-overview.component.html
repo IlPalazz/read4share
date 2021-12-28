@@ -47,22 +47,28 @@
       </div>
 
       <div class="message-text-container">
-        <mat-form-field class="text-input" appearance="outline">
-          <textarea
-            matInput
-            type="text"
-            placeholder="Enter your message"
-            cdkTextareaAutosize
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"
-          ></textarea>
-        </mat-form-field>
-        <mat-icon
-          class="send-icon"
-          aria-label="Send message"
-          (click)="onSendMessage()"
-          >send</mat-icon
-        >
+        <div class="text-input-container">
+          <mat-form-field class="text-input" appearance="outline">
+            <!--           [ngStyle]="{ 'width.px': textFieldWidth }"
+ -->
+            <textarea
+              matInput
+              type="text"
+              placeholder="Enter your message"
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5"
+            ></textarea>
+          </mat-form-field>
+        </div>
+        <div class="icon-container">
+          <mat-icon
+            class="send-icon"
+            aria-label="Send message"
+            (click)="onSendMessage()"
+            >send</mat-icon
+          >
+        </div>
       </div>
     </div>
   </div>
