@@ -2,20 +2,67 @@
   <div class="title-container">
     <label class="title">Chats</label>
   </div>
-  <mat-divider [inset]="true"></mat-divider>
   <div class="body-container">
-    <div class="chat-items-container">
-      <app-chat-item></app-chat-item>
-    </div>
+    <mat-list
+      *ngIf="chatPreviews | async as previews"
+      class="chat-items-container"
+      role="list"
+    >
+      <mat-list-item
+        *ngFor="let preview of previews; let previewIndex = index; last as last"
+        class="list-item pointer"
+        role="listitem"
+      >
+        <div class="chat-item">
+          <div class="img-container">
+            <div class="img-circle pointer">
+              <a
+                class="img-link pointer"
+                [routerLink]="['/home/advs', preview.advId]"
+              >
+                <img
+                  src="{{ preview.bookCoverUrl }}"
+                  alt="{{ preview.bookTitle }}"
+                  class="adv-img"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="chat-preview-info pointer">
+            <div class="preview-book pointer truncate-line">
+              {{ preview.bookTitle }}
+            </div>
+            <div class="preview-user pointer truncate-line">
+              {{ preview.userName }}
+            </div>
+          </div>
+        </div>
+        <mat-divider [inset]="true"></mat-divider>
+      </mat-list-item>
+    </mat-list>
     <mat-divider [vertical]="true"></mat-divider>
     <div class="messages-container">
       <div class="message-list-container">
-        <app-message-list></app-message-list>
+        <app-message></app-message>
       </div>
-      <mat-divider [inset]="true"></mat-divider>
 
-      <div class="message-field-container">
-        <app-message-field></app-message-field>
+      <div class="message-text-container">
+        <mat-form-field class="text-input" appearance="outline">
+          <textarea
+            matInput
+            type="text"
+            placeholder="Enter your message"
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"
+          ></textarea>
+        </mat-form-field>
+        <mat-icon
+          class="send-icon"
+          aria-label="Send message"
+          (click)="onSendMessage()"
+          >send</mat-icon
+        >
       </div>
     </div>
   </div>
