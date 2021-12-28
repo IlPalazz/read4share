@@ -38,7 +38,11 @@ import { CarouselComponent } from './components/advs/carousel/carousel.component
 import { AdvOverviewComponent } from './components/advs/adv-overview/adv-overview.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AdvDetailsComponent } from './components/advs/adv-details/adv-details.component';
-import { ChatComponent } from './components/chat/chat.component';
+import { ChatOverviewComponent } from './components/chat/chat-overview/chat-overview.component';
+import { ChatItemComponent } from './components/chat/chat-item/chat-item.component';
+import { MessageListComponent } from './components/chat/message-list/message-list.component';
+import { MessageComponent } from './components/chat/message/message.component';
+import { MessageFieldComponent } from './components/chat/message-field/message-field.component';
 
 @NgModule({
   // Only for components
@@ -52,7 +56,11 @@ import { ChatComponent } from './components/chat/chat.component';
     AdvOverviewComponent,
     FooterComponent,
     AdvDetailsComponent,
-    ChatComponent,
+    ChatOverviewComponent,
+    ChatItemComponent,
+    MessageListComponent,
+    MessageComponent,
+    MessageFieldComponent,
   ],
   // Only for modules
   imports: [

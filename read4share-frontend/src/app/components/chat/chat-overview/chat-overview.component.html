@@ -1,0 +1,22 @@
+<mat-card class="chats-container">
+  <div class="title-container">
+    <label class="title">Chats</label>
+  </div>
+  <mat-divider [inset]="true"></mat-divider>
+  <div class="body-container">
+    <div class="chat-items-container">
+      <app-chat-item></app-chat-item>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="messages-container">
+      <div class="message-list-container">
+        <app-message-list></app-message-list>
+      </div>
+      <mat-divider [inset]="true"></mat-divider>
+
+      <div class="message-field-container">
+        <app-message-field></app-message-field>
+      </div>
+    </div>
+  </div>
+</mat-card>
