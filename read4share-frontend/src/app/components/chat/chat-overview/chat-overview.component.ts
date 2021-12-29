@@ -37,7 +37,7 @@ export class ChatOverviewComponent implements OnInit {
       return;
     }
 
-    this.chatPreviews = this.chatService.getChatPreview(this.user.id);
+    this.chatPreviews = this.chatService.getChatPreview();
   }
 
   onSendMessage() {

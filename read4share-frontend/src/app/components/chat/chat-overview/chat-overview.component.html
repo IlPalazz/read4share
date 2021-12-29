@@ -35,9 +35,9 @@
               {{ preview.bookTitle }}
             </div>
             <div class="preview-user pointer truncate-line">
-              {{ preview.userName }}
+              {{ preview.recipientUsername }}
             </div>
-            <div style="display: none">{{ preview.userId }}</div>
+            <div style="display: none">{{ preview.recipientId }}</div>
             <div style="display: none">{{ preview.advId }}</div>
           </div>
         </div>
@@ -69,6 +69,7 @@
               cdkAutosizeMinRows="1"
               cdkAutosizeMaxRows="5"
               [(ngModel)]="message"
+              [disabled]="selectedChatIndex == null"
             ></textarea>
           </mat-form-field>
         </div>

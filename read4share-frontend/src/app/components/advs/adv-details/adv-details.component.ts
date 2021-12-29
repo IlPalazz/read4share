@@ -17,6 +17,7 @@ export class AdvDetailsComponent implements OnInit {
   advDetails?: Observable<AdvDetails>;
   condition?: string;
   user?: UserData | null;
+  advId!: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,10 +31,10 @@ export class AdvDetailsComponent implements OnInit {
   ngOnInit(): void {
     // Get the adv id from the current route.
     const routeParams = this.route.snapshot.paramMap;
-    let advId = Number(routeParams.get('advId'));
+    this.advId = Number(routeParams.get('advId'));
 
     // Get the adv details
-    this.advDetails = this.advService.getDetails(advId);
+    this.advDetails = this.advService.getDetails(this.advId);
 
     // Get user details
     this.user = this.tokenStorageService.getUser();
@@ -49,9 +50,18 @@ export class AdvDetailsComponent implements OnInit {
     if (this.user == null) this.router.navigate(['/login']);
     else {
       // 2. Create chat between buyer and seller
-      // this.chatService.create()
+      this.chatService.startChat(this.user.id, this.advId).subscribe(
+        () => {
+          this.router.navigate(['/chat']);
+        },
+        (err) => {
+          console.log(err.error.message);
+        }
+      );
     }
   }
 
-  onHandleAdv() {}
+  onHandleAdv() {
+    // TODO: add route link to myAdvs page
+  }
 }

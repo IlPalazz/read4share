@@ -5,12 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class ChatPreviewResponse {
-    private String recipientId;
+    private UUID recipientId;
     private String recipientUsername;
     private String bookTitle;
     private String bookCoverUrl;

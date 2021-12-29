@@ -6,6 +6,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import track.individual.read4share.dto.response.UserDetailsResponse;
 import track.individual.read4share.model.User;
 
+import java.util.UUID;
+
 public interface UserService extends UserDetailsService {
 
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
@@ -28,4 +30,6 @@ public interface UserService extends UserDetailsService {
     User registerUser(User user);
 
     UserDetailsResponse getUserDetails();
+
+    User getById(UUID id);
 }

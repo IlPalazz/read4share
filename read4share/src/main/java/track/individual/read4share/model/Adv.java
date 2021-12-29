@@ -14,14 +14,14 @@ import java.util.List;
 @NamedEntityGraph(
         name = "graph.AdvUserCityBookCategoryCondition",
         attributeNodes = {
-                @NamedAttributeNode(value = "seller", subgraph = "subgraph.seller"),
+                @NamedAttributeNode(value = "seller"), //subgraph = "subgraph.seller"),
                 @NamedAttributeNode(value = "city"),
                 @NamedAttributeNode(value = "condition"),
                 @NamedAttributeNode(value = "book", subgraph = "subgraph.book")
         },
         subgraphs = {
                 @NamedSubgraph(name = "subgraph.book", attributeNodes = @NamedAttributeNode(value = "category")),
-                @NamedSubgraph(name = "subgraph.seller", attributeNodes = @NamedAttributeNode(value = "username"))
+                //@NamedSubgraph(name = "subgraph.seller", attributeNodes = @NamedAttributeNode(value = "username"))
         }
 )
 @Getter

@@ -11,6 +11,18 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
+@NamedEntityGraph(
+        name = "graph.MessageAdvBookUser",
+        attributeNodes = {
+                @NamedAttributeNode(value = "sender"),
+                @NamedAttributeNode(value = "adv", subgraph = "subgraph.book"),
+                @NamedAttributeNode(value = "adv", subgraph = "subgraph.user"),
+        },
+        subgraphs = {
+                @NamedSubgraph(name = "subgraph.user", attributeNodes = @NamedAttributeNode(value = "seller")),
+                @NamedSubgraph(name = "subgraph.book", attributeNodes = @NamedAttributeNode(value = "book")),
+        }
+)
 @Entity(name = "Message")
 @Table(name = "mess")
 @Data
@@ -28,7 +40,6 @@ public class Message {
     @NotBlank
     private String text;
     @Column(name = "timestamp", nullable = false)
-    @NotBlank
     @NotNull
     private LocalDateTime timestamp;
     @Column(name = "read", nullable = false)

@@ -1,6 +1,6 @@
 export interface ChatPreview {
-  userId: string;
-  userName: string;
+  recipientId: string;
+  recipientUsername: string;
   bookTitle: string;
   bookCoverUrl: string;
   advId: number;

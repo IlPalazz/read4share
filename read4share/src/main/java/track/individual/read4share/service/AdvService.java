@@ -2,6 +2,7 @@ package track.individual.read4share.service;
 
 import track.individual.read4share.dto.response.AdvDetailsResponse;
 import track.individual.read4share.exception.ItemNotFoundException;
+import track.individual.read4share.model.Adv;
 
 public interface AdvService {
 
@@ -11,5 +12,13 @@ public interface AdvService {
      * @return ActiveAdvResponse of the requested adv
      * @throws ItemNotFoundException Whether the adv with the given id does not exist
      */
-    AdvDetailsResponse getById(Long id) throws ItemNotFoundException;
+    AdvDetailsResponse getDetailsById(Long id) throws ItemNotFoundException;
+
+    /**
+     * Return a specific Advertisement
+     * @param id Advertisement id
+     * @return Advertisement object
+     * @throws ItemNotFoundException If the item does not exist
+     */
+    Adv getById(Long id) throws ItemNotFoundException;
 }

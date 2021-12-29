@@ -16,6 +16,6 @@ public class AdvController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AdvDetailsResponse> getById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok().body(this.advService.getById(id));
+        return ResponseEntity.ok().body(this.advService.getDetailsById(id));
     }
 }

@@ -4,10 +4,13 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import track.individual.read4share.dto.response.AdvDetailsResponse;
 import track.individual.read4share.dto.response.AdvOverviewResponse;
+import track.individual.read4share.dto.response.ChatPreviewResponse;
 import track.individual.read4share.model.Adv;
+import track.individual.read4share.model.Message;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 @NoArgsConstructor
@@ -59,5 +62,33 @@ public class ConverterImpl implements Converter {
                 .sellerUsername(adv.getSeller().getUsername())
                 .build();
     }
+
+    @Override
+    public List<ChatPreviewResponse> toChatPreviewResponse(UUID userId, List<Message> chats) {
+        List<ChatPreviewResponse> listDTO = new ArrayList<>();
+        for (Message chat : chats)
+            listDTO.add(this.toChatPreviewResponse(userId, chat));
+        return listDTO;
+    }
+
+    @Override
+    public ChatPreviewResponse toChatPreviewResponse(UUID userId, Message chat) {
+        ChatPreviewResponse chatPreview = ChatPreviewResponse.builder()
+                .advId(chat.getAdv().getId())
+                .bookTitle(chat.getAdv().getBook().getTitle())
+                .bookCoverUrl(chat.getAdv().getBook().getCoverUrl())
+                .build();
+        // If the message sender is the client of the request, then take the id on the adv side
+        if (chat.getSender().getId().equals(userId)) {
+            chatPreview.setRecipientId(chat.getAdv().getSeller().getId());
+            chatPreview.setRecipientUsername(chat.getAdv().getSeller().getUsername());
+        }
+        else {
+            chatPreview.setRecipientId(chat.getSender().getId());
+            chatPreview.setRecipientUsername(chat.getSender().getUsername());
+        }
+        return chatPreview;
+    }
+
 
 }
