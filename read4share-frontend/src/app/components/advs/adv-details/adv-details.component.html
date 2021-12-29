@@ -158,9 +158,23 @@
   </div>
 
   <footer class="contact-footer">
-    <button class="contact" mat-raised-button>
+    <button
+      *ngIf="user === null || user!.username != adv.sellerUsername"
+      class="contact"
+      mat-raised-button
+      (click)="onContactSeller()"
+    >
       <mat-icon class="icon" aria-label="Contact seller">sms</mat-icon>
       Contact seller
+    </button>
+    <button
+      *ngIf="user != null && user.username === adv.sellerUsername"
+      class="contact"
+      mat-raised-button
+      (click)="onHandleAdv()"
+    >
+      <mat-icon class="icon" aria-label="Manage advertisements">edit</mat-icon>
+      Manage your advs
     </button>
   </footer>
 </ng-container>
