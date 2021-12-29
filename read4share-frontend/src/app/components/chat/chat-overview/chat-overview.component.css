@@ -102,6 +102,11 @@
   height: 100%;
 }
 
+.selectedChat {
+  background-color: #ff4081;
+  color: #fff;
+}
+
 .truncate-line {
   display: block;
   overflow: hidden;
@@ -136,10 +141,28 @@
   display: flex;
   flex-flow: column;
   flex-grow: 3;
+  min-height: 500px;
+  max-height: 550px;
 }
 
 .message-list-container {
+  display: flex;
+  flex-flow: column;
   flex: 1 1 auto;
+  align-items: flex-start;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+}
+.message-list-container::-webkit-scrollbar {
+  display: none;
+}
+
+.message {
+  max-width: 80%;
+}
+
+.is-sender {
+  align-self: flex-end;
 }
 
 .message-text-container {

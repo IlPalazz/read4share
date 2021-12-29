@@ -13,7 +13,13 @@ import { UserData } from 'src/app/interfaces/UserData';
 export class ChatOverviewComponent implements OnInit {
   chatPreviews?: Observable<ChatPreview[]>;
   user!: UserData | null;
-  // textFieldWidth: number = 150;
+  selectedChatIndex?: number;
+  selectedChat = {
+    userId: null,
+    userName: '',
+    advId: null,
+  };
+  message: string = '';
 
   constructor(
     private chatService: ChatService,
@@ -34,5 +40,12 @@ export class ChatOverviewComponent implements OnInit {
     this.chatPreviews = this.chatService.getChatPreview(this.user.id);
   }
 
-  onSendMessage() {}
+  onSendMessage() {
+    console.log(this.message);
+  }
+
+  onSelectChat(index: number, chatPreview: ChatPreview) {
+    this.selectedChatIndex = index;
+    // TODO: Websockets call to get all messages
+  }
 }

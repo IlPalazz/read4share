@@ -12,8 +12,10 @@
         *ngFor="let preview of previews; let previewIndex = index; last as last"
         class="list-item pointer"
         role="listitem"
+        [ngClass]="{ selectedChat: previewIndex == selectedChatIndex }"
+        (click)="onSelectChat(previewIndex, preview)"
       >
-        <div class="chat-item">
+        <div class="chat-item" name="chat-item">
           <div class="img-container">
             <div class="img-circle pointer">
               <a
@@ -35,22 +37,79 @@
             <div class="preview-user pointer truncate-line">
               {{ preview.userName }}
             </div>
+            <div style="display: none">{{ preview.userId }}</div>
+            <div style="display: none">{{ preview.advId }}</div>
           </div>
         </div>
         <mat-divider [inset]="true"></mat-divider>
       </mat-list-item>
     </mat-list>
     <mat-divider [vertical]="true"></mat-divider>
+
     <div class="messages-container">
       <div class="message-list-container">
-        <app-message></app-message>
+        <!-- if isSender, then align-items: flex-end -->
+        <app-message
+          class="message is-sender"
+          [isSender]="true"
+          [ngClass]="{ 'is-sender': true }"
+          [message]="'Yeah it works'"
+          [timestamp]="'2021-11-16T15:00:00'"
+        ></app-message>
+        <app-message
+          class="message is-sender"
+          [isSender]="true"
+          [ngClass]="{ 'is-sender': true }"
+          [message]="'Yeah it works'"
+          [timestamp]="'2021-11-16T15:00:00'"
+        ></app-message>
+        <app-message
+          class="message is-sender"
+          [isSender]="false"
+          [ngClass]="{ 'is-sender': false }"
+          [message]="'Yeah it works'"
+          [timestamp]="'2021-11-16T15:00:00'"
+        ></app-message>
+        <app-message
+          class="message is-sender"
+          [isSender]="false"
+          [ngClass]="{ 'is-sender': false }"
+          [message]="'Yeah it works'"
+          [timestamp]="'2021-11-16T15:00:00'"
+        ></app-message>
+        <app-message
+          class="message is-sender"
+          [isSender]="true"
+          [ngClass]="{ 'is-sender': true }"
+          [message]="'Yeah it works'"
+          [timestamp]="'2021-11-16T15:00:00'"
+        ></app-message>
+        <app-message
+          class="message is-sender"
+          [isSender]="true"
+          [ngClass]="{ 'is-sender': true }"
+          [message]="'Yeah it works'"
+          [timestamp]="'2021-11-16T15:00:00'"
+        ></app-message>
+        <app-message
+          class="message is-sender"
+          [isSender]="false"
+          [ngClass]="{ 'is-sender': false }"
+          [message]="'Yeah it works'"
+          [timestamp]="'2021-11-16T15:00:00'"
+        ></app-message>
+        <app-message
+          class="message is-sender"
+          [isSender]="true"
+          [ngClass]="{ 'is-sender': true }"
+          [message]="'Yeah it works'"
+          [timestamp]="'2021-11-16T15:00:00'"
+        ></app-message>
       </div>
 
       <div class="message-text-container">
         <div class="text-input-container">
           <mat-form-field class="text-input" appearance="outline">
-            <!--           [ngStyle]="{ 'width.px': textFieldWidth }"
- -->
             <textarea
               matInput
               type="text"
@@ -58,6 +117,7 @@
               cdkTextareaAutosize
               cdkAutosizeMinRows="1"
               cdkAutosizeMaxRows="5"
+              [(ngModel)]="message"
             ></textarea>
           </mat-form-field>
         </div>
