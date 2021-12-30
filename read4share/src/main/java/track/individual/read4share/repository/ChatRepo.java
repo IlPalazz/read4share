@@ -23,7 +23,7 @@ public interface ChatRepo extends JpaRepository<Message, Long> {
      * @return Message object whether the chat exists, null otherwise
      */
     @Query("select mess from Message mess where mess.sender.id=:buyerId and " +
-            "mess.adv.seller.id=:sellerId and mess.adv.id=:advId and " +
+            "mess.recipient.id=:sellerId and mess.adv.id=:advId and " +
             "mess.text=concat('START_', :buyerId,'_', :sellerId, '_', :advId) ")
     Optional<Message> findFirstMessage(UUID sellerId, UUID buyerId, Long advId);
 
@@ -34,12 +34,25 @@ public interface ChatRepo extends JpaRepository<Message, Long> {
      */
     @EntityGraph(value = "graph.MessageAdvBookUser")
     @Query("select mess from Message mess where (mess.sender.id=:userId " +
-            "or mess.adv.seller.id=:userId) and mess.text like concat('START_%', :userId ,'%') ")
+            "or mess.recipient.id=:userId) and mess.text like concat('START_%', :userId ,'%') ")
     List<Message> getAllChats(UUID userId);
 
+    /**
+     * Delete a chat between two users
+     * @param senderId Request sender id
+     * @param recipientId Recipient id
+     * @param advId Advertisement id
+     */
     @Modifying
     @Transactional
     @Query("delete from Message mess where mess.adv.id=:advId and " +
-            "(mess.sender.id=:senderId or mess.sender.id=:recipientId)")
+            "((mess.sender.id=:senderId and mess.recipient.id=:recipientId) or " +
+            "(mess.sender.id=:recipientId and mess.recipient.id=:senderId))")
     void deleteChat(UUID senderId, UUID recipientId, Long advId);
+
+    @EntityGraph(value = "graph.MessageAdvBookUser")
+    @Query("select mess from Message mess where mess.adv.id=:advId and " +
+            "((mess.sender.id=:senderId and mess.recipient.id=:recipientId) or " +
+            "(mess.sender.id=:recipientId and mess.recipient.id=:senderId))")
+    List<Message> getChat(UUID senderId, UUID recipientId, Long advId);
 }

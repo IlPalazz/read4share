@@ -43,6 +43,7 @@ public class ChatServiceImpl implements ChatService {
                 .timestamp(LocalDateTime.now())
                 .read(true)
                 .sender(buyer)
+                .recipient(seller)
                 .adv(adv)
                 .build();
         chatRepo.save(firstMess);

@@ -54,6 +54,13 @@ public class Message {
     private User sender;
 
     /**
+     * User who has received the message
+     */
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_recipient_id", referencedColumnName = "user_id")
+    private User recipient;
+
+    /**
      * Advertisement related to the message
      */
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
