@@ -2,10 +2,12 @@ package track.individual.read4share.repository;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import track.individual.read4share.model.Message;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -35,4 +37,9 @@ public interface ChatRepo extends JpaRepository<Message, Long> {
             "or mess.adv.seller.id=:userId) and mess.text like concat('START_%', :userId ,'%') ")
     List<Message> getAllChats(UUID userId);
 
+    @Modifying
+    @Transactional
+    @Query("delete from Message mess where mess.adv.id=:advId and " +
+            "(mess.sender.id=:senderId or mess.sender.id=:recipientId)")
+    void deleteChat(UUID senderId, UUID recipientId, Long advId);
 }

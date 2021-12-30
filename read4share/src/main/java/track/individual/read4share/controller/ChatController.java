@@ -6,6 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import track.individual.read4share.dto.request.CreateChatRequest;
+import track.individual.read4share.dto.request.DeleteChatRequest;
 import track.individual.read4share.dto.response.ChatPreviewResponse;
 import track.individual.read4share.security.UserDetailsImpl;
 import track.individual.read4share.service.AdvService;
@@ -38,6 +39,12 @@ public class ChatController {
 
         // Create the chat
         chatService.startChat(sellerId, request.getBuyerId(), request.getAdvId());
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/delete")
+    public ResponseEntity<?> deleteChat(@RequestBody DeleteChatRequest request) {
+        chatService.deleteChat(request.getSenderId(), request.getRecipientId(), request.getAdvId());
         return ResponseEntity.ok().build();
     }
 }

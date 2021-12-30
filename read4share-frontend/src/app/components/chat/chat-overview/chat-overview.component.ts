@@ -58,6 +58,20 @@ export class ChatOverviewComponent implements OnInit {
   }
 
   onDeleteChat() {
-    // TODO: Backend call
+    if (this.hoverChat == null) return;
+    this.chatService
+      .deleteChat(
+        this.user!.id,
+        this.hoverChat.recipientId,
+        this.hoverChat.advId
+      )
+      .subscribe(
+        () => {
+          window.location.reload();
+        },
+        (err) => {
+          console.log(err.error.message);
+        }
+      );
   }
 }

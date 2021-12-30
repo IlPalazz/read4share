@@ -3,60 +3,62 @@
     <label class="title">Chats</label>
   </div>
   <div class="body-container">
-    <mat-list
-      *ngIf="chatPreviews | async as previews"
-      class="chat-items-container"
-      role="list"
-    >
-      <mat-list-item
-        *ngFor="let preview of previews; let previewIndex = index"
-        class="list-item pointer"
-        role="listitem"
-        [ngClass]="{ selectedChat: previewIndex == selectedChatIndex }"
-        (click)="onSelectChat(previewIndex, preview)"
-        (mouseenter)="showBin(previewIndex, preview)"
-        (mouseleave)="hideBin()"
+    <ng-container *ngIf="chatPreviews | async as previews">
+      <mat-list
+        class="chat-items-container"
+        role="list"
+        *ngIf="previews.length > 0"
       >
-        <div class="chat-item" name="chat-item">
-          <div class="img-container">
-            <div class="img-circle pointer">
-              <a
-                class="img-link pointer"
-                [routerLink]="['/home/advs', preview.advId]"
-              >
-                <img
-                  src="{{ preview.bookCoverUrl }}"
-                  alt="{{ preview.bookTitle }}"
-                  class="adv-img"
-                />
-              </a>
-            </div>
-          </div>
-          <div class="chat-preview-info pointer">
-            <div class="preview-book pointer truncate-line">
-              {{ preview.bookTitle }}
-            </div>
-            <div class="recipient-container">
-              <div class="preview-user pointer truncate-line">
-                {{ preview.recipientUsername }}
-              </div>
-              <div
-                class="delete-chat"
-                [ngClass]="{ 'show-bin': binIndex == previewIndex }"
-                (click)="onDeleteChat()"
-              >
-                <mat-icon id="delete-icon">delete</mat-icon>
+        <mat-list-item
+          *ngFor="let preview of previews; let previewIndex = index"
+          class="list-item pointer"
+          role="listitem"
+          [ngClass]="{ selectedChat: previewIndex == selectedChatIndex }"
+          (click)="onSelectChat(previewIndex, preview)"
+          (mouseenter)="showBin(previewIndex, preview)"
+          (mouseleave)="hideBin()"
+        >
+          <div class="chat-item" name="chat-item">
+            <div class="img-container">
+              <div class="img-circle pointer">
+                <a
+                  class="img-link pointer"
+                  [routerLink]="['/home/advs', preview.advId]"
+                >
+                  <img
+                    src="{{ preview.bookCoverUrl }}"
+                    alt="{{ preview.bookTitle }}"
+                    class="adv-img"
+                  />
+                </a>
               </div>
             </div>
+            <div class="chat-preview-info pointer">
+              <div class="preview-book pointer truncate-line">
+                {{ preview.bookTitle }}
+              </div>
+              <div class="recipient-container">
+                <div class="preview-user pointer truncate-line">
+                  {{ preview.recipientUsername }}
+                </div>
+                <div
+                  class="delete-chat"
+                  [ngClass]="{ 'show-bin': binIndex == previewIndex }"
+                  (click)="onDeleteChat()"
+                >
+                  <mat-icon id="delete-icon">delete</mat-icon>
+                </div>
+              </div>
 
-            <div style="display: none">{{ preview.recipientId }}</div>
-            <div style="display: none">{{ preview.advId }}</div>
+              <div style="display: none">{{ preview.recipientId }}</div>
+              <div style="display: none">{{ preview.advId }}</div>
+            </div>
           </div>
-        </div>
-        <mat-divider [inset]="true"></mat-divider>
-      </mat-list-item>
-    </mat-list>
-    <mat-divider [vertical]="true"></mat-divider>
+          <mat-divider [inset]="true"></mat-divider>
+        </mat-list-item>
+      </mat-list>
+      <mat-divider [vertical]="true"></mat-divider>
+    </ng-container>
 
     <div class="messages-container">
       <div class="message-list-container">

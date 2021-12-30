@@ -10,7 +10,6 @@ import track.individual.read4share.model.User;
 import track.individual.read4share.repository.ChatRepo;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -54,5 +53,10 @@ public class ChatServiceImpl implements ChatService {
         // Get all chat messages
         List<Message> chats = chatRepo.getAllChats(userId);
         return converter.toChatPreviewResponse(userId, chats);
+    }
+
+    @Override
+    public void deleteChat(UUID senderId, UUID recipientId, Long advId) {
+        chatRepo.deleteChat(senderId, recipientId, advId);
     }
 }
