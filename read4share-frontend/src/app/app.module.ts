@@ -24,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu';
 
 /**
  * CUSTOM COMPONENTS
@@ -76,6 +77,7 @@ import { MessageComponent } from './components/chat/message/message.component';
     MatTabsModule,
     MatRadioModule,
     SwiperModule,
+    MatMenuModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

@@ -14,12 +14,10 @@ export class ChatOverviewComponent implements OnInit {
   chatPreviews?: Observable<ChatPreview[]>;
   user!: UserData | null;
   selectedChatIndex?: number;
-  selectedChat = {
-    userId: null,
-    userName: '',
-    advId: null,
-  };
+  selectedChat?: ChatPreview;
+  hoverChat?: ChatPreview;
   message: string = '';
+  binIndex?: number;
 
   constructor(
     private chatService: ChatService,
@@ -47,5 +45,19 @@ export class ChatOverviewComponent implements OnInit {
   onSelectChat(index: number, chatPreview: ChatPreview) {
     this.selectedChatIndex = index;
     // TODO: Websockets call to get all messages
+  }
+
+  showBin(index: number, chatPreview: ChatPreview) {
+    this.binIndex = index;
+    this.hoverChat = chatPreview;
+  }
+
+  hideBin() {
+    this.binIndex = undefined;
+    this.hoverChat = undefined;
+  }
+
+  onDeleteChat() {
+    // TODO: Backend call
   }
 }
