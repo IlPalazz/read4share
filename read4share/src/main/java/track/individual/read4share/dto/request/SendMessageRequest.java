@@ -2,6 +2,7 @@ package track.individual.read4share.dto.request;
 
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
@@ -10,9 +11,14 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateChatRequest {
+public class SendMessageRequest {
     @NotNull
-    private UUID buyerId;
+    private UUID senderId;
+    @NotNull
+    private UUID recipientId;
     @NotNull
     private Long advId;
+    @NotNull
+    @NotBlank
+    private String text;
 }

@@ -3,6 +3,7 @@ package track.individual.read4share.dto;
 import track.individual.read4share.dto.response.AdvDetailsResponse;
 import track.individual.read4share.dto.response.AdvOverviewResponse;
 import track.individual.read4share.dto.response.ChatPreviewResponse;
+import track.individual.read4share.dto.response.ChatResponse;
 import track.individual.read4share.model.Adv;
 import track.individual.read4share.model.Message;
 
@@ -40,16 +41,30 @@ public interface Converter {
     AdvDetailsResponse toActiveAdvResponse(Adv adv);
 
     /**
-     * Convert a list of Messages into a list of ChatPreviewResponse
+     * Convert a list of Message into a list of ChatPreviewResponse
      * @param chats User's chats
      * @return List of ChatPreviewResponse
      */
     List<ChatPreviewResponse> toChatPreviewResponse(UUID userId, List<Message> chats);
 
     /**
-     * Convert an Message object into a ChatPreviewResponse object
+     * Convert a Message object into a ChatPreviewResponse object
      * @param chat Message to convert
      * @return ChatPreviewResponse object
      */
     ChatPreviewResponse toChatPreviewResponse(UUID userId, Message chat);
+
+    /**
+     * Convert a list of Message into a list of ChatResponse
+     * @param chat Chat messages
+     * @return List of ChatResponse
+     */
+    List<ChatResponse> toChatResponse(List<Message> chat);
+
+    /**
+     * Convert a Message object into a ChatResponse object
+     * @param chat Message to convert
+     * @return ChatResponse object
+     */
+    ChatResponse toChatResponse(Message chat);
 }

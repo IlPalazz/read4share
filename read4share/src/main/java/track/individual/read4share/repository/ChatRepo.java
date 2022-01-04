@@ -52,6 +52,7 @@ public interface ChatRepo extends JpaRepository<Message, Long> {
 
     @EntityGraph(value = "graph.MessageAdvBookUser")
     @Query("select mess from Message mess where mess.adv.id=:advId and " +
+            "mess.text not like 'START_%' and " +
             "((mess.sender.id=:senderId and mess.recipient.id=:recipientId) or " +
             "(mess.sender.id=:recipientId and mess.recipient.id=:senderId))")
     List<Message> getChat(UUID senderId, UUID recipientId, Long advId);

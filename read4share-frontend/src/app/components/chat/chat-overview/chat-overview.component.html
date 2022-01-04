@@ -62,6 +62,36 @@
 
     <div class="messages-container">
       <div class="message-list-container">
+        <ng-container *ngIf="chatPreviews | async as previews">
+          <div class="empty-chat" *ngIf="previews.length == 0">
+            <label
+              >You have not started a chat yet.<br />
+              You should contact a seller first :)</label
+            >
+            <button
+              mat-raised-button
+              color="secondary"
+              style="width: 180px"
+              (click)="onBack()"
+            >
+              <mat-icon class="icon" aria-label="Contact seller"
+                >arrow_back</mat-icon
+              >
+              Previous page
+            </button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="messages.length > 0">
+          <ng-container *ngFor="let mess of messages">
+            <app-message
+              class="message"
+              [isSender]="mess.senderId == user!.id"
+              [ngClass]="{ 'is-sender': mess.senderId == user!.id }"
+              [message]="mess.message"
+              [timestamp]="mess.timestamp"
+            ></app-message>
+          </ng-container>
+        </ng-container>
         <!-- if isSender, then align-items: flex-end -->
         <!-- <app-message
           class="message is-sender"
@@ -70,6 +100,9 @@
           [message]="'Yeah it works'"
           [timestamp]="'2021-11-16T15:00:00'"
         ></app-message> -->
+        <!-- <ng-container *ngIf="messages">
+          <ng-container *ngFor="let m of messages">{{ m }} <br /></ng-container>
+        </ng-container> -->
       </div>
 
       <div class="message-text-container">
@@ -82,18 +115,17 @@
               cdkTextareaAutosize
               cdkAutosizeMinRows="1"
               cdkAutosizeMaxRows="5"
-              [(ngModel)]="message"
+              [(ngModel)]="text"
               [disabled]="selectedChatIndex == null"
             ></textarea>
           </mat-form-field>
         </div>
         <div class="icon-container">
-          <mat-icon
-            class="send-icon"
-            aria-label="Send message"
-            (click)="onSendMessage()"
-            >send</mat-icon
-          >
+          <button mat-icon-button [disabled]="text === ''" color="primary">
+            <mat-icon aria-label="Send message" (click)="onSendMessage()"
+              >send</mat-icon
+            >
+          </button>
         </div>
       </div>
     </div>

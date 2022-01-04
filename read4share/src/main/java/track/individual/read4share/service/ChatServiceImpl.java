@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import track.individual.read4share.dto.Converter;
 import track.individual.read4share.dto.response.ChatPreviewResponse;
+import track.individual.read4share.dto.response.ChatResponse;
 import track.individual.read4share.model.Adv;
 import track.individual.read4share.model.Message;
 import track.individual.read4share.model.User;
@@ -36,7 +37,7 @@ public class ChatServiceImpl implements ChatService {
             return;
         // Insert the first message
         User buyer = userService.getById(buyerId);
-        User seller = userService.getById(sellerId);
+            User seller = userService.getById(sellerId);
         Adv adv = advService.getById(advId);
         Message firstMess = Message.builder()
                 .text("START_" + buyerId + "_" + sellerId + "_" + advId.toString())
@@ -59,5 +60,15 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public void deleteChat(UUID senderId, UUID recipientId, Long advId) {
         chatRepo.deleteChat(senderId, recipientId, advId);
+    }
+
+    @Override
+    public void saveMessage(Message mess) {
+        chatRepo.save(mess);
+    }
+
+    @Override
+    public List<ChatResponse> getChat(UUID senderId, UUID recipientId, Long advId) {
+        return converter.toChatResponse(chatRepo.getChat(senderId, recipientId, advId));
     }
 }

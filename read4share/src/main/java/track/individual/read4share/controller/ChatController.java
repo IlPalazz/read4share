@@ -2,12 +2,12 @@ package track.individual.read4share.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import track.individual.read4share.dto.request.CreateChatRequest;
 import track.individual.read4share.dto.request.DeleteChatRequest;
 import track.individual.read4share.dto.response.ChatPreviewResponse;
+import track.individual.read4share.dto.response.ChatResponse;
 import track.individual.read4share.security.UserDetailsImpl;
 import track.individual.read4share.service.AdvService;
 import track.individual.read4share.service.ChatService;
@@ -47,4 +47,5 @@ public class ChatController {
         chatService.deleteChat(request.getSenderId(), request.getRecipientId(), request.getAdvId());
         return ResponseEntity.ok().build();
     }
+
 }

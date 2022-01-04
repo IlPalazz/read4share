@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import track.individual.read4share.dto.response.AdvDetailsResponse;
 import track.individual.read4share.dto.response.AdvOverviewResponse;
 import track.individual.read4share.dto.response.ChatPreviewResponse;
+import track.individual.read4share.dto.response.ChatResponse;
 import track.individual.read4share.model.Adv;
 import track.individual.read4share.model.Message;
 
@@ -77,6 +78,7 @@ public class ConverterImpl implements Converter {
                 .advId(chat.getAdv().getId())
                 .bookTitle(chat.getAdv().getBook().getTitle())
                 .bookCoverUrl(chat.getAdv().getBook().getCoverUrl())
+                .sellerId(chat.getAdv().getSeller().getId())
                 .build();
         // If the message sender is the client of the request, then take the id on the adv side
         if (chat.getSender().getId().equals(userId)) {
@@ -88,6 +90,25 @@ public class ConverterImpl implements Converter {
             chatPreview.setRecipientUsername(chat.getSender().getUsername());
         }
         return chatPreview;
+    }
+
+    @Override
+    public List<ChatResponse> toChatResponse(List<Message> chat) {
+        List<ChatResponse> listDTO = new ArrayList<>();
+        for (Message mess : chat)
+            listDTO.add(this.toChatResponse(mess));
+        return listDTO;
+    }
+
+    @Override
+    public ChatResponse toChatResponse(Message chat) {
+        return ChatResponse.builder()
+                .senderId(chat.getSender().getId())
+                .recipientId(chat.getRecipient().getId())
+                .timestamp(chat.getTimestamp())
+                .read(chat.isRead())
+                .message(chat.getText())
+                .build();
     }
 
 

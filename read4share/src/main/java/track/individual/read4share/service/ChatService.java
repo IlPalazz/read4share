@@ -1,6 +1,8 @@
 package track.individual.read4share.service;
 
 import track.individual.read4share.dto.response.ChatPreviewResponse;
+import track.individual.read4share.dto.response.ChatResponse;
+import track.individual.read4share.model.Message;
 
 import java.util.List;
 import java.util.UUID;
@@ -38,4 +40,19 @@ public interface ChatService {
      * @param advId Advertisement id
      */
     void deleteChat(UUID senderId, UUID recipientId, Long advId);
+
+    /**
+     * Save a message inside the DB
+     * @param mess Message
+     */
+    void saveMessage(Message mess);
+
+    /**
+     * Get all the messages from a particular chat
+     * @param senderId Request sender id
+     * @param recipientId Conversation recipient id
+     * @param advId Advertisement id
+     * @return List of chat messages
+     */
+    List<ChatResponse> getChat(UUID senderId, UUID recipientId, Long advId);
 }

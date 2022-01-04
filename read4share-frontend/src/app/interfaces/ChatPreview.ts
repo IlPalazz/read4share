@@ -4,4 +4,5 @@ export interface ChatPreview {
   bookTitle: string;
   bookCoverUrl: string;
   advId: number;
+  sellerId: string;
 }

@@ -37,7 +37,6 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { CarouselComponent } from './components/advs/carousel/carousel.component';
 import { AdvOverviewComponent } from './components/advs/adv-overview/adv-overview.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { AdvDetailsComponent } from './components/advs/adv-details/adv-details.component';
 import { ChatOverviewComponent } from './components/chat/chat-overview/chat-overview.component';
 import { MessageComponent } from './components/chat/message/message.component';
@@ -52,7 +51,6 @@ import { MessageComponent } from './components/chat/message/message.component';
     RegisterComponent,
     CarouselComponent,
     AdvOverviewComponent,
-    FooterComponent,
     AdvDetailsComponent,
     ChatOverviewComponent,
     MessageComponent,
