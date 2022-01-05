@@ -1,0 +1,9 @@
+<div class="message-container" [ngClass]="{ 'is-sender': isSender }">
+  <div class="text-container">{{ message }}</div>
+  <div
+    class="timestamp-container"
+    [ngClass]="{ 'is-sender-timestamp': isSender }"
+  >
+    {{ timestamp | date: "HH:mm d-MM-yy" }}
+  </div>
+</div>

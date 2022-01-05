@@ -4,21 +4,21 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.UUID;
 
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginRequest {
-
+public class SendMessageRequest {
+    @NotNull
+    private UUID senderId;
+    @NotNull
+    private UUID recipientId;
+    @NotNull
+    private Long advId;
     @NotNull
     @NotBlank
-    @Size(min = 5, max = 64)
-    private String username;
-    @NotNull
-    @NotBlank
-    @Size(min = 5, max = 64)
-    private String password;
+    private String text;
 }

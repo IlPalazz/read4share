@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AdvOverview } from '../interfaces/AdvOverview';
 import { AdvDetails } from '../interfaces/AdvDetails';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 const API_URL = 'http://localhost:8080/api/adv';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'http://localhost:8080',
-  }),
-};
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'Content-Type': 'application/json',
+//     'Access-Control-Allow-Origin': 'http://localhost:8080',
+//   }),
+// };
 
 @Injectable({
   providedIn: 'root',

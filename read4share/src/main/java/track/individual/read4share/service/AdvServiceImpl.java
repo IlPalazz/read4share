@@ -18,10 +18,17 @@ public class AdvServiceImpl implements AdvService {
     private final Converter converter;
 
     @Override
-    public AdvDetailsResponse getById(Long id) throws ItemNotFoundException {
+    public AdvDetailsResponse getDetailsById(Long id) throws ItemNotFoundException {
         Optional<Adv> adv = this.advRepo.findById(id);
         if (adv.isEmpty())
             throw new ItemNotFoundException("Error: Adv with the given id does not exist!");
         return converter.toActiveAdvResponse(adv.get());
     }
+
+    @Override
+    public Adv getById(Long id) throws ItemNotFoundException {
+        Optional<Adv> adv = this.advRepo.findById(id);
+        if (adv.isEmpty())
+            throw new ItemNotFoundException("Error: Adv with the given id does not exist!");
+        return adv.get();    }
 }

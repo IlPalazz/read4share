@@ -1,0 +1,29 @@
+.message-container {
+  background-color: #c5cae9;
+  border-radius: 4px;
+  display: flex;
+  flex-flow: column;
+  margin: 5px 10px;
+}
+
+.is-sender {
+  background-color: #ff4081;
+  color: #fff;
+}
+
+.text-container {
+  margin: 5px 8px 0 8px;
+  align-self: flex-start;
+}
+
+.timestamp-container {
+  font-style: italic;
+  margin: 5px 5px 0 0;
+  color: #757575;
+  font-size: 0.8rem;
+  align-self: flex-end;
+}
+
+.is-sender-timestamp {
+  color: #f8bbd0;
+}

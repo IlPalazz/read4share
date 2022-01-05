@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // TODO: Implement Auth Guard
     // If the user is logged in redirect to home
     if (!!this.tokenStorageService.getToken()) this.router.navigate(['/home']);
   }

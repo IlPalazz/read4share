@@ -24,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu';
 
 /**
  * CUSTOM COMPONENTS
@@ -36,9 +37,9 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { CarouselComponent } from './components/advs/carousel/carousel.component';
 import { AdvOverviewComponent } from './components/advs/adv-overview/adv-overview.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { AdvDetailsComponent } from './components/advs/adv-details/adv-details.component';
-import { ChatComponent } from './components/chat/chat.component';
+import { ChatOverviewComponent } from './components/chat/chat-overview/chat-overview.component';
+import { MessageComponent } from './components/chat/message/message.component';
 
 @NgModule({
   // Only for components
@@ -50,9 +51,9 @@ import { ChatComponent } from './components/chat/chat.component';
     RegisterComponent,
     CarouselComponent,
     AdvOverviewComponent,
-    FooterComponent,
     AdvDetailsComponent,
-    ChatComponent,
+    ChatOverviewComponent,
+    MessageComponent,
   ],
   // Only for modules
   imports: [
@@ -74,6 +75,7 @@ import { ChatComponent } from './components/chat/chat.component';
     MatTabsModule,
     MatRadioModule,
     SwiperModule,
+    MatMenuModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

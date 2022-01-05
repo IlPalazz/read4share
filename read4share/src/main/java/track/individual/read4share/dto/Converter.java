@@ -2,14 +2,18 @@ package track.individual.read4share.dto;
 
 import track.individual.read4share.dto.response.AdvDetailsResponse;
 import track.individual.read4share.dto.response.AdvOverviewResponse;
+import track.individual.read4share.dto.response.ChatPreviewResponse;
+import track.individual.read4share.dto.response.ChatResponse;
 import track.individual.read4share.model.Adv;
+import track.individual.read4share.model.Message;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface Converter {
 
     /**
-     * Convert a List of Adv into a List of AdvOverviewResponse
+     * Convert a list of Adv into a list of AdvOverviewResponse
      * @param advs List of Adv to convert
      * @return List of AdvOverviewResponse
      */
@@ -23,7 +27,7 @@ public interface Converter {
     AdvOverviewResponse toAdvOverviewResponse(Adv adv);
 
     /**
-     * Convert a List of Adv into a List of ActiveAdvResponse
+     * Convert a list of Adv into a list of ActiveAdvResponse
      * @param advs List of Adv to convert
      * @return List of ActiveAdvResponse
      */
@@ -35,4 +39,32 @@ public interface Converter {
      * @return ActiveAdvResponse object
      */
     AdvDetailsResponse toActiveAdvResponse(Adv adv);
+
+    /**
+     * Convert a list of Message into a list of ChatPreviewResponse
+     * @param chats User's chats
+     * @return List of ChatPreviewResponse
+     */
+    List<ChatPreviewResponse> toChatPreviewResponse(UUID userId, List<Message> chats);
+
+    /**
+     * Convert a Message object into a ChatPreviewResponse object
+     * @param chat Message to convert
+     * @return ChatPreviewResponse object
+     */
+    ChatPreviewResponse toChatPreviewResponse(UUID userId, Message chat);
+
+    /**
+     * Convert a list of Message into a list of ChatResponse
+     * @param chat Chat messages
+     * @return List of ChatResponse
+     */
+    List<ChatResponse> toChatResponse(List<Message> chat);
+
+    /**
+     * Convert a Message object into a ChatResponse object
+     * @param chat Message to convert
+     * @return ChatResponse object
+     */
+    ChatResponse toChatResponse(Message chat);
 }

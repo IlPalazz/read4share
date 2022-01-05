@@ -9,12 +9,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import track.individual.read4share.dto.response.JwtResponse;
 import track.individual.read4share.dto.response.UserDetailsResponse;
+import track.individual.read4share.exception.ItemNotFoundException;
 import track.individual.read4share.model.User;
 import track.individual.read4share.repository.UserRepo;
 import track.individual.read4share.security.UserDetailsImpl;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -63,6 +66,14 @@ public class UserServiceImpl implements UserService {
                 .email(userDetails.getEmail())
                 .roles(roles)
                 .build();
+    }
+
+    @Override
+    public User getById(UUID id) {
+        Optional<User> user = userRepo.findById(id);
+        if (user.isEmpty())
+            throw new ItemNotFoundException("User with specified id doesn not exist!");
+        return user.get();
     }
 
 }

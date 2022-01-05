@@ -71,6 +71,8 @@
         <div class="sub-content-title">Description</div>
         <div>{{ adv.advDescr }}</div>
       </div>
+      <mat-divider class="divider"></mat-divider>
+
       <div class="sub-content">
         <div class="sub-content-title">Book additional info</div>
         <div class="sub-content-field"><b>ISBN:</b> {{ adv.book.isbn }}</div>
@@ -84,6 +86,8 @@
           <b>Language:</b> {{ adv.book.language }}
         </div>
       </div>
+      <mat-divider class="divider"></mat-divider>
+
       <!-- 
     Condition codes:
     - NW // new
@@ -154,9 +158,23 @@
   </div>
 
   <footer class="contact-footer">
-    <button class="contact" mat-raised-button>
+    <button
+      *ngIf="user === null || user!.username != adv.sellerUsername"
+      class="contact"
+      mat-raised-button
+      (click)="onContactSeller()"
+    >
       <mat-icon class="icon" aria-label="Contact seller">sms</mat-icon>
       Contact seller
+    </button>
+    <button
+      *ngIf="user != null && user.username === adv.sellerUsername"
+      class="contact"
+      mat-raised-button
+      (click)="onHandleAdv()"
+    >
+      <mat-icon class="icon" aria-label="Manage advertisements">edit</mat-icon>
+      Manage your advs
     </button>
   </footer>
 </ng-container>
