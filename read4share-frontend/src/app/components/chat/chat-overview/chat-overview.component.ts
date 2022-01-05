@@ -116,7 +116,6 @@ export class ChatOverviewComponent implements OnInit {
     this.chatHistory = this.client.subscribe(
       `/app/sub/${advId}/${sellerId}/${buyerId}`,
       (history) => {
-        console.log('Subscribed: ' + history.body);
         this.messages = JSON.parse(history.body) as Chat[];
       }
     );
@@ -125,7 +124,6 @@ export class ChatOverviewComponent implements OnInit {
     this.chatIncomingMess = this.client.subscribe(
       `/chats/message/${advId}/${sellerId}/${buyerId}`,
       (mess) => {
-        console.log('Received message: ' + mess.body);
         this.messages.push(JSON.parse(mess.body) as Chat);
       }
     );
