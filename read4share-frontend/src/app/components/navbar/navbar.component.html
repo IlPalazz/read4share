@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
+  <!-- <mat-sidenav
     #drawer
     class="sidenav"
     fixedInViewport
@@ -12,12 +12,12 @@
       <a mat-list-item routerLink="/home">Home</a>
       <a mat-list-item routerLink="/marketplace">Advertisements</a>
     </mat-nav-list>
-  </mat-sidenav>
+  </mat-sidenav> -->
   <mat-sidenav-content>
     <mat-toolbar color="primary" class="toolbar">
       <div class="header-container">
         <div class="logo-container">
-          <button
+          <!-- <button
             type="button"
             aria-label="Toggle sidenav"
             mat-icon-button
@@ -25,10 +25,9 @@
             *ngIf="isHandset$ | async"
           >
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-          </button>
+          </button> -->
           <a routerLink="/home">
             <label class="banner" value="banner">Read4Share</label>
-            <!-- <img class="banner" src="assets/logo.png" /> -->
           </a>
         </div>
         <div class="topbar-menu-container">
