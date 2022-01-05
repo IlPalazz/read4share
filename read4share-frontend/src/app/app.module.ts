@@ -25,6 +25,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatStepperModule } from '@angular/material/stepper';
 
 /**
  * CUSTOM COMPONENTS
@@ -40,6 +41,7 @@ import { AdvOverviewComponent } from './components/advs/adv-overview/adv-overvie
 import { AdvDetailsComponent } from './components/advs/adv-details/adv-details.component';
 import { ChatOverviewComponent } from './components/chat/chat-overview/chat-overview.component';
 import { MessageComponent } from './components/chat/message/message.component';
+import { PublishAdvComponent } from './components/advs/publish-adv/publish-adv.component';
 
 @NgModule({
   // Only for components
@@ -54,6 +56,7 @@ import { MessageComponent } from './components/chat/message/message.component';
     AdvDetailsComponent,
     ChatOverviewComponent,
     MessageComponent,
+    PublishAdvComponent,
   ],
   // Only for modules
   imports: [
@@ -76,6 +79,7 @@ import { MessageComponent } from './components/chat/message/message.component';
     MatRadioModule,
     SwiperModule,
     MatMenuModule,
+    MatStepperModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
