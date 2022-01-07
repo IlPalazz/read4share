@@ -125,6 +125,7 @@ frontend-test:
 
 docker-deployment:
   stage: deploy
+  extends: .base-rules
   before_script:
     - cd `pwd`
     # Inject variables in .env_backend file
