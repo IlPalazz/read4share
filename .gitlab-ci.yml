@@ -127,6 +127,17 @@ docker-deployment:
   stage: deploy
   needs: ["backend-test", "frontend-test"]
   before_script:
+    - cd `pwd`
+    # Inject variables in .env_backend file
+    - echo "$DB_URL" >> .env_backend
+    - echo "$DB_USER" >> .env_backend
+    - echo "$DB_PSW" >> .env_backend
+    - echo "$JWT_KEY" >> .env_backend
+    # Inject variables in .env_db file
+    - echo "$PSQL_USER" >> .env_db
+    - echo "$PSQL_PASSWORD" >> .env_db
+    - echo "$PSQL_DB" >> .env_db
+    # Build backend jar
     - cd `pwd`/read4share
     - ./gradlew build
     - rm build/libs/*-plain.jar
