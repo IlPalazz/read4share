@@ -25,13 +25,14 @@ export class AppComponent {
       const user = this.tokenStorageService.getUser();
       this.showAdminBoard = user!.roles!.includes('ROLE_ADMIN');
       this.username = user!.username;
-      this.router.navigate(['/home']);
     }
   }
 
   logout(): void {
     this.tokenStorageService.signOut();
+    this.isLoggedIn = false;
+    this.showAdminBoard = false;
     this.router.navigate(['/home']);
-    window.location.reload();
+    //window.location.reload();
   }
 }

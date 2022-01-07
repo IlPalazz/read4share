@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import track.individual.read4share.model.Adv;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AdvRepo extends JpaRepository<Adv, Long> {
@@ -16,9 +17,9 @@ public interface AdvRepo extends JpaRepository<Adv, Long> {
     /**
      * Overview of the most recently posted advertisements
      * @param page Page and number of records to return
-     * @return List of AdvOverview
+     * @return List of Adv
      */
-    @EntityGraph(value = "graph.AdvOverview")
+    @EntityGraph(value = "graph.AdvUserCityBookCategoryCondition")
     @Query("select adv from Adv adv where adv.saleDate is null " +
             "order by adv.publDate desc")
     List<Adv> findLatest(Pageable page);
@@ -26,9 +27,9 @@ public interface AdvRepo extends JpaRepository<Adv, Long> {
     /**
      * Advertisements with the best rated books
      * @param page Page and number of records to return
-     * @return List of AdvOverview
+     * @return List of Adv
      */
-    @EntityGraph(value = "graph.AdvUserCityBookCategory")
+    @EntityGraph(value = "graph.AdvUserCityBookCategoryCondition")
     @Query("select adv from Adv adv where adv.saleDate is null " +
             "order by adv.book.avgRating desc, adv.publDate desc")
     List<Adv> findBestRating(Pageable page);
@@ -36,9 +37,9 @@ public interface AdvRepo extends JpaRepository<Adv, Long> {
     /**
      * Latest free advertisements
      * @param page Page and number of records to return
-     * @return List of AdvOverview
+     * @return List of Adv
      */
-    @EntityGraph(value = "graph.AdvOverview")
+    @EntityGraph(value = "graph.AdvUserCityBookCategoryCondition")
     @Query("select adv from Adv adv where adv.saleDate is null " +
             "and adv.price = 0.0 " +
             "order by adv.publDate desc")
@@ -47,9 +48,9 @@ public interface AdvRepo extends JpaRepository<Adv, Long> {
     /**
      * Latest advertisements with no delivery fees
      * @param page Page and number of records to return
-     * @return List of AdvOverview
+     * @return List of Adv
      */
-    @EntityGraph(value = "graph.AdvOverview")
+    @EntityGraph(value = "graph.AdvUserCityBookCategoryCondition")
     @Query("select adv from Adv adv where adv.saleDate is null " +
             "and adv.shipCost = 0.0 " +
             "order by adv.publDate desc")
@@ -58,9 +59,9 @@ public interface AdvRepo extends JpaRepository<Adv, Long> {
     /**
      * Advertisements with books marked as new
      * @param page Page and number of records to return
-     * @return List of AdvOverview
+     * @return List of Adv
      */
-    @EntityGraph(value = "graph.AdvOverview")
+    @EntityGraph(value = "graph.AdvUserCityBookCategoryCondition")
     @Query("select adv from Adv adv where adv.saleDate is null " +
             "and adv.condition.code = 'AN' " +
             "order by adv.publDate desc")
@@ -70,10 +71,14 @@ public interface AdvRepo extends JpaRepository<Adv, Long> {
      * Advertisements with books that belong to a particular category
      * @param catId Category id
      * @param page Page and number of records to return
-     * @return List of AdvOverview
+     * @return List of Adv
      */
-    @EntityGraph(value = "graph.AdvOverview")
+    @EntityGraph(value = "graph.AdvUserCityBookCategoryCondition")
     @Query("select adv from Adv adv where adv.saleDate is null and adv.book.category.id = ?1" +
             "order by adv.publDate desc")
     List<Adv> findByCatId(Long catId, Pageable page);
+
+    @EntityGraph(value = "graph.AdvUserCityBookCategoryCondition")
+    Optional<Adv> findById(Long advId);
+
 }

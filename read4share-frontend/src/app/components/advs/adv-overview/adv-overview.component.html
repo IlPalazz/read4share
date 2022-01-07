@@ -1,0 +1,29 @@
+<div>
+  <div class="img-container">
+    <a class="img-link" [routerLink]="['/home/advs', advId]">
+      <img src="{{ bookCoverUrl }}" alt="{{ bookTitle }}" class="adv-img" />
+    </a>
+  </div>
+  <div class="title-label" title="{{ bookTitle }}">
+    {{ bookTitle }}
+  </div>
+  <div class="author-label truncate-line">
+    {{ bookAuthor }}
+  </div>
+  <div class="adv-info truncate-line">
+    <mat-icon class="adv-icon" aria-label="Advertisement seller"
+      >person</mat-icon
+    >
+    <span class="adv-info-label">{{ sellerUsername }}</span>
+  </div>
+  <div class="adv-info truncate-line">
+    <mat-icon class="adv-icon" aria-label="Advertisement location"
+      >place</mat-icon
+    >
+    <span class="adv-info-label">{{ advLocation }}</span>
+  </div>
+  <div class="adv-info truncate-line">
+    <mat-icon class="adv-icon" aria-label="Advertisement price">euro</mat-icon>
+    <span class="adv-info-label">{{ advPrice | number: "1.2-2" }}</span>
+  </div>
+</div>

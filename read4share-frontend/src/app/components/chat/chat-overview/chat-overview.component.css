@@ -1,0 +1,242 @@
+.chats-container {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+  margin: 20px auto;
+  min-width: 400px;
+  width: 90%;
+  padding: 0;
+}
+
+.title-container {
+  display: flex;
+  flex: 0 1 40px;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #3f51b5;
+  border-radius: 4px 4px 0 0;
+}
+
+.title {
+  display: block;
+  font-size: larger;
+  font-weight: 400;
+  color: #ffffff;
+  margin-left: 20px;
+}
+
+.body-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row;
+  flex: 1 1 auto;
+}
+
+.chat-items-container {
+  padding: 0;
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+  width: 30%;
+  min-width: 200px;
+  max-width: 300px;
+  min-height: 500px;
+  max-height: 550px;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+}
+
+.chat-items-container::-webkit-scrollbar {
+  display: none;
+}
+
+.list-item {
+  height: 75px;
+}
+
+.chat-item {
+  height: 75px;
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 112%;
+  height: 100%;
+  margin-left: -16px;
+}
+
+.list-item:hover {
+  background-color: #ff4081;
+  color: #fff;
+}
+
+.img-circle {
+  width: 60px;
+  height: 60px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  overflow: hidden;
+  flex-grow: 0;
+  margin-left: 8px;
+}
+
+.adv-img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+
+.img-circle:hover {
+  border: 2px solid #ff4081;
+}
+
+.chat-preview-info {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 10px;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+}
+
+.selectedChat {
+  background-color: #ff4081;
+  color: #fff;
+}
+
+.truncate-line {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.preview-book {
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: left;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.recipient-container {
+  overflow: hidden;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.preview-user {
+  font-style: italic;
+  font-weight: 300;
+  text-align: left;
+  font-size: 0.9rem;
+  text-indent: 2px;
+  margin-top: 3px;
+  height: 23px;
+  flex-grow: 1;
+}
+
+.delete-chat {
+  margin-right: 3px;
+  display: none;
+  flex-grow: 0;
+  height: 100%;
+}
+
+.show-bin {
+  display: block;
+}
+
+#delete-icon {
+  font-size: 20px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.messages-container {
+  display: flex;
+  flex-flow: column;
+  flex-grow: 3;
+  min-height: 500px;
+  max-height: 550px;
+  overflow: hidden;
+}
+
+.message-list-container {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+}
+.message-list-container::-webkit-scrollbar {
+  display: none;
+}
+
+.message {
+  min-width: 20%;
+  max-width: 80%;
+}
+
+.is-sender {
+  align-self: flex-end;
+}
+
+.message-text-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  flex: 0 1 50px;
+}
+
+.text-input-container {
+  flex: 1 1 auto;
+  margin-left: 10px;
+  max-width: 90%;
+  overflow: hidden;
+}
+
+.text-input {
+  width: 100%;
+}
+
+mat-form-field.text-input {
+  font-size: 16px;
+  margin-bottom: -16px;
+}
+
+.icon-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex: 0 1 20px;
+  margin: 0 5px;
+}
+
+.send-icon:hover {
+  cursor: pointer;
+  color: #ff4081;
+}
+
+.empty-chat {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  margin: auto auto;
+  width: 70%;
+  height: 100px;
+  font-size: large;
+  justify-content: space-between;
+  align-items: center;
+}

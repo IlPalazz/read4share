@@ -1,0 +1,133 @@
+<mat-card class="chats-container">
+  <div class="title-container">
+    <label class="title">Chats</label>
+  </div>
+  <div class="body-container">
+    <ng-container *ngIf="chatPreviews | async as previews">
+      <mat-list
+        class="chat-items-container"
+        role="list"
+        *ngIf="previews.length > 0"
+      >
+        <mat-list-item
+          *ngFor="let preview of previews; let previewIndex = index"
+          class="list-item pointer"
+          role="listitem"
+          [ngClass]="{ selectedChat: previewIndex == selectedChatIndex }"
+          (click)="onSelectChat(previewIndex, preview)"
+          (mouseenter)="showBin(previewIndex, preview)"
+          (mouseleave)="hideBin()"
+        >
+          <div class="chat-item" name="chat-item">
+            <div class="img-container">
+              <div class="img-circle pointer">
+                <a
+                  class="img-link pointer"
+                  [routerLink]="['/home/advs', preview.advId]"
+                >
+                  <img
+                    src="{{ preview.bookCoverUrl }}"
+                    alt="{{ preview.bookTitle }}"
+                    class="adv-img"
+                  />
+                </a>
+              </div>
+            </div>
+            <div class="chat-preview-info pointer">
+              <div class="preview-book pointer truncate-line">
+                {{ preview.bookTitle }}
+              </div>
+              <div class="recipient-container">
+                <div class="preview-user pointer truncate-line">
+                  {{ preview.recipientUsername }}
+                </div>
+                <div
+                  class="delete-chat"
+                  [ngClass]="{ 'show-bin': binIndex == previewIndex }"
+                  (click)="onDeleteChat()"
+                >
+                  <mat-icon id="delete-icon">delete</mat-icon>
+                </div>
+              </div>
+
+              <div style="display: none">{{ preview.recipientId }}</div>
+              <div style="display: none">{{ preview.advId }}</div>
+            </div>
+          </div>
+          <mat-divider [inset]="true"></mat-divider>
+        </mat-list-item>
+      </mat-list>
+      <mat-divider [vertical]="true"></mat-divider>
+    </ng-container>
+
+    <div class="messages-container">
+      <div class="message-list-container">
+        <ng-container *ngIf="chatPreviews | async as previews">
+          <div class="empty-chat" *ngIf="previews.length == 0">
+            <label
+              >You have not started a chat yet.<br />
+              You should contact a seller first :)</label
+            >
+            <button
+              mat-raised-button
+              color="secondary"
+              style="width: 180px"
+              (click)="onBack()"
+            >
+              <mat-icon class="icon" aria-label="Contact seller"
+                >arrow_back</mat-icon
+              >
+              Previous page
+            </button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="messages.length > 0">
+          <ng-container *ngFor="let mess of messages">
+            <app-message
+              class="message"
+              [isSender]="mess.senderId == user!.id"
+              [ngClass]="{ 'is-sender': mess.senderId == user!.id }"
+              [message]="mess.message"
+              [timestamp]="mess.timestamp"
+            ></app-message>
+          </ng-container>
+        </ng-container>
+        <!-- if isSender, then align-items: flex-end -->
+        <!-- <app-message
+          class="message is-sender"
+          [isSender]="true"
+          [ngClass]="{ 'is-sender': true }"
+          [message]="'Yeah it works'"
+          [timestamp]="'2021-11-16T15:00:00'"
+        ></app-message> -->
+        <!-- <ng-container *ngIf="messages">
+          <ng-container *ngFor="let m of messages">{{ m }} <br /></ng-container>
+        </ng-container> -->
+      </div>
+
+      <div class="message-text-container">
+        <div class="text-input-container">
+          <mat-form-field class="text-input" appearance="outline">
+            <textarea
+              matInput
+              type="text"
+              placeholder="Enter your message"
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5"
+              [(ngModel)]="text"
+              [disabled]="selectedChatIndex == null"
+            ></textarea>
+          </mat-form-field>
+        </div>
+        <div class="icon-container">
+          <button mat-icon-button [disabled]="text === ''" color="primary">
+            <mat-icon aria-label="Send message" (click)="onSendMessage()"
+              >send</mat-icon
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>

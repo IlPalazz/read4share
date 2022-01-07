@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { SwiperModule } from 'swiper/angular';
 
 /**
  * MATERIAL COMPONENTS
@@ -23,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu';
 
 /**
  * CUSTOM COMPONENTS
@@ -33,14 +35,26 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-//import { HomeComponent } from './components/home/home.component';
-//import { LoginComponent } from './components/auth/login/login.component';
-//import { RegisterComponent } from './components/auth/register/register.component';
-//import { NavbarComponent } from './components/navbar/navbar.component';
+import { CarouselComponent } from './components/advs/carousel/carousel.component';
+import { AdvOverviewComponent } from './components/advs/adv-overview/adv-overview.component';
+import { AdvDetailsComponent } from './components/advs/adv-details/adv-details.component';
+import { ChatOverviewComponent } from './components/chat/chat-overview/chat-overview.component';
+import { MessageComponent } from './components/chat/message/message.component';
 
 @NgModule({
   // Only for components
-  declarations: [AppComponent, HomeComponent, NavbarComponent, LoginComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    NavbarComponent,
+    LoginComponent,
+    RegisterComponent,
+    CarouselComponent,
+    AdvOverviewComponent,
+    AdvDetailsComponent,
+    ChatOverviewComponent,
+    MessageComponent,
+  ],
   // Only for modules
   imports: [
     BrowserModule,
@@ -60,10 +74,8 @@ import { RegisterComponent } from './components/auth/register/register.component
     MatAutocompleteModule,
     MatTabsModule,
     MatRadioModule,
-    //LoginComponent,
-    //RegisterComponent,
-    //HomeComponent,
-    //NavbarComponent,
+    SwiperModule,
+    MatMenuModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

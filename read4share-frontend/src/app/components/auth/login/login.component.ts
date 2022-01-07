@@ -1,7 +1,6 @@
-import { Component, Directive, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-import { UserData } from 'src/app/interfaces/UserData';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,44 +13,42 @@ export class LoginComponent implements OnInit {
     username: null,
     password: null,
   };
-  //isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
 
   constructor(
     private authService: AuthService,
-    private tokenStorage: TokenStorageService,
+    private tokenStorageService: TokenStorageService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    // if (this.tokenStorage.getToken()) {
-    //   this.isLoggedIn = true;
-    // }
+    // TODO: Implement Auth Guard
+    // If the user is logged in redirect to home
+    if (!!this.tokenStorageService.getToken()) this.router.navigate(['/home']);
   }
 
   onSubmit(): void {
     const { username, password } = this.form;
 
-    // 1. Get the token
-    this.authService.loginUser(username, password).subscribe(
+    // Get the token
+    this.authService.login(username, password).subscribe(
       (response) => {
         // Save the token in the local storage
-        console.log('Response:');
-        console.log(response);
-        if (response.token) this.tokenStorage.saveToken(response.token);
+        if (response.token) this.tokenStorageService.saveToken(response.token);
         else throw Error('Received null token');
         // Save the user info in the local storage
-        this.tokenStorage.saveUser(response);
-        console.log('User info:');
-        console.log(this.tokenStorage.getUser());
+        this.tokenStorageService.saveUser(response);
         // Login succeded
         this.isLoginFailed = false;
+        localStorage.setItem('redirectToHome', 'true');
         // Reload the page to update the status
         window.location.reload();
       },
       (err) => {
-        this.errorMessage = err.error.message;
+        if (err.error.message) {
+          this.errorMessage = err.error.message;
+        } else this.errorMessage = 'Error: connection to the server failed';
         this.isLoginFailed = true;
       }
     );

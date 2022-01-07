@@ -24,6 +24,10 @@ export class NavbarComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+  ngOnInit(): void {
+    // TODO: Implement incoming messages check
+  }
+
   onLogout(): void {
     this.logoutClick.emit(); // Emit the event
   }

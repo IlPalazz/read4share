@@ -1,0 +1,140 @@
+.container {
+  min-width: 400px;
+  width: 80%;
+  height: auto;
+  margin: 20px auto;
+  z-index: 0;
+}
+
+.back {
+  margin-bottom: 10px;
+}
+
+.img-container {
+  margin: 15px 20px 10px 0;
+  min-width: 170px;
+  min-height: 240px;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px 5px grey;
+}
+
+.adv-img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+
+.img-link:hover {
+  cursor: pointer;
+}
+
+.main-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.title-container {
+  max-width: 58%;
+  margin-top: 30px;
+}
+
+.truncate-line {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.title-label {
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-align: left;
+  max-height: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  margin-bottom: 4px;
+}
+
+.author-label {
+  margin: 5px 0;
+  font-style: italic;
+  font-weight: lighter;
+  text-align: left;
+  font-size: 1rem;
+  text-indent: 2px;
+}
+
+.adv-info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 5px 0;
+}
+
+.adv-info-label {
+  align-self: flex-end;
+}
+
+.adv-icon {
+  margin-right: 5px;
+}
+
+.divider {
+  margin: 25px auto;
+}
+
+#publ-date-container {
+  display: flex;
+  align-items: center;
+  font-style: italic;
+  font-weight: 400;
+  color: #bdbdbd;
+}
+
+.sub-content {
+  margin-top: 15px;
+}
+
+.sub-content-title {
+  font-size: large;
+  margin-bottom: 5px;
+}
+
+.sub-content-field {
+  margin-bottom: 5px;
+}
+
+.contact-footer {
+  width: 100%;
+  height: 75px;
+  position: sticky;
+  background-color: #3f51b5;
+  bottom: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact {
+  height: 50px;
+  width: 65%;
+  display: block;
+  background-color: #ff4081;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: large;
+}
+
+.icon {
+  margin-right: 5px;
+}

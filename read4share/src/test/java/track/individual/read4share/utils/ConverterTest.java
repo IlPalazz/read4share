@@ -47,7 +47,7 @@ class ConverterTest {
         );
 
         // ACT
-        List<AdvOverviewResponse> advDTOList = converter.convert(advList);
+        List<AdvOverviewResponse> advDTOList = converter.toAdvOverviewResponse(advList);
 
         // ASSERT
         Assertions.assertThat(advDTOList.size()).isEqualTo(2);
@@ -66,7 +66,7 @@ class ConverterTest {
         Assertions.assertThatExceptionOfType(NullPointerException.class)
                 .isThrownBy(() -> {
                     // ACT
-                    List<AdvOverviewResponse> advDTOList = converter.convert(advList);
+                    List<AdvOverviewResponse> advDTOList = converter.toAdvOverviewResponse(advList);
         });
     }
 }

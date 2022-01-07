@@ -1,0 +1,180 @@
+<ng-container *ngIf="advDetails | async as adv">
+  <div class="container">
+    <div class="back">
+      <button mat-raised-button color="secondary" (click)="onBack()">
+        <mat-icon class="icon" aria-label="Contact seller">arrow_back</mat-icon>
+        Previous page
+      </button>
+    </div>
+    <div class="main-content">
+      <div class="img-container">
+        <a class="img-link">
+          <img
+            src="{{ adv.book.coverUrl }}"
+            alt="{{ adv.book.title }}"
+            class="adv-img"
+          />
+        </a>
+      </div>
+      <div class="title-container">
+        <div class="title-label" title="{{ adv.book.title }}">
+          {{ adv.book.title }}
+        </div>
+        <div class="author-label truncate-line">
+          {{ adv.book.author }}
+        </div>
+        <div class="adv-info truncate-line">
+          <mat-icon class="adv-icon" aria-label="Advertisement seller"
+            >person</mat-icon
+          >
+          <span class="adv-info-label">{{ adv.sellerUsername }}</span>
+        </div>
+        <div class="adv-info truncate-line">
+          <mat-icon class="adv-icon" aria-label="Advertisement location"
+            >place</mat-icon
+          >
+          <span class="adv-info-label">{{ adv.advLocation.name }}</span>
+        </div>
+        <div class="adv-info truncate-line">
+          <mat-icon class="adv-icon" aria-label="Advertisement price"
+            >euro</mat-icon
+          >
+          <span class="adv-info-label">{{
+            adv.advPrice | number: "1.2-2"
+          }}</span>
+        </div>
+        <div class="adv-info truncate-line">
+          <mat-icon class="adv-icon" aria-label="Advertisement shipping cost"
+            >local_shipping</mat-icon
+          >
+          <span *ngIf="adv.advShipCost > 0" class="adv-info-label">{{
+            adv.advShipCost | number: "1.2-2"
+          }}</span>
+          <span *ngIf="adv.advShipCost === 0.0" class="adv-info-label">
+            free
+          </span>
+          <span *ngIf="adv.advShipCost === -1" class="adv-info-label">
+            not available
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="sub-content-container">
+      <mat-divider class="divider"></mat-divider>
+      <div id="publ-date-container">
+        <mat-icon class="adv-icon" aria-label="Advertisement price"
+          >calendar_today</mat-icon
+        >
+        <span class="adv-info-label">{{ adv.advPublDate | date }}</span>
+      </div>
+      <div class="sub-content">
+        <div class="sub-content-title">Description</div>
+        <div>{{ adv.advDescr }}</div>
+      </div>
+      <mat-divider class="divider"></mat-divider>
+
+      <div class="sub-content">
+        <div class="sub-content-title">Book additional info</div>
+        <div class="sub-content-field"><b>ISBN:</b> {{ adv.book.isbn }}</div>
+        <div class="sub-content-field">
+          <b>Publication date:</b> {{ adv.book.publDate | date: "dd/MM/yyyy" }}
+        </div>
+        <div class="sub-content-field">
+          <b>Publisher:</b> {{ adv.book.publisher }}
+        </div>
+        <div class="sub-content-field">
+          <b>Language:</b> {{ adv.book.language }}
+        </div>
+      </div>
+      <mat-divider class="divider"></mat-divider>
+
+      <!-- 
+    Condition codes:
+    - NW // new
+    - AN // as new
+    - GD // good
+    - FR // fair
+    - PR // poor 
+    -->
+
+      <div class="sub-content">
+        <div class="sub-content-title">Book condition</div>
+        <ng-container *ngIf="adv.condition.code === 'NW'">
+          <div class="sub-content-field"><b>Condition:</b> New</div>
+        </ng-container>
+        <ng-container *ngIf="adv.condition.code === 'GD'">
+          <div class="sub-content-field"><b>Condition:</b> Good</div>
+          <div class="sub-content-field">
+            <b>Description:</b> It is "as new" but allowing for the normal
+            effects of time on an unused book that has been protected.
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="adv.condition.code === 'FR'">
+          <div class="sub-content-field"><b>Condition:</b> Fair</div>
+          <div class="sub-content-field">
+            <b>Description:</b> It shows wear and tear but all the text pages
+            and illustrations or maps are present. It may lack endpapers,
+            half-title, and even the title page.
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="adv.condition.code === 'PR'">
+          <div class="sub-content-field"><b>Condition:</b> Poor</div>
+          <div class="sub-content-field">
+            <b>Description:</b> It has the complete text but is so damaged that
+            it is only of interest to a buyer who seeks a reading copy.
+          </div>
+        </ng-container>
+        <div class="sub-content-field">
+          <b>Pen underlined: </b>
+          <mat-icon
+            *ngIf="adv.condition.pen_underln"
+            class="adv-icon"
+            aria-label="Pen underlined"
+            >check</mat-icon
+          >
+        </div>
+        <div class="sub-content-field">
+          <b>Pencil underlined: </b>
+          <mat-icon
+            *ngIf="adv.condition.penc_underln"
+            class="adv-icon"
+            aria-label="Pencil underlined"
+            >check</mat-icon
+          >
+        </div>
+        <div class="sub-content-field">
+          <b>Highlited: </b>
+          <mat-icon
+            *ngIf="adv.condition.highl_underln"
+            class="adv-icon"
+            aria-label="Highlited"
+            >check</mat-icon
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="contact-footer">
+    <button
+      *ngIf="user === null || user!.username != adv.sellerUsername"
+      class="contact"
+      mat-raised-button
+      (click)="onContactSeller()"
+    >
+      <mat-icon class="icon" aria-label="Contact seller">sms</mat-icon>
+      Contact seller
+    </button>
+    <button
+      *ngIf="user != null && user.username === adv.sellerUsername"
+      class="contact"
+      mat-raised-button
+      (click)="onHandleAdv()"
+    >
+      <mat-icon class="icon" aria-label="Manage advertisements">edit</mat-icon>
+      Manage your advs
+    </button>
+  </footer>
+</ng-container>

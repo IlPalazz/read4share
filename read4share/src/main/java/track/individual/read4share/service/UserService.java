@@ -1,11 +1,12 @@
 package track.individual.read4share.service;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import track.individual.read4share.dto.response.UserDetailsResponse;
 import track.individual.read4share.model.User;
+
+import java.util.UUID;
 
 public interface UserService extends UserDetailsService {
 
@@ -26,7 +27,9 @@ public interface UserService extends UserDetailsService {
     boolean existsByEmail(String email);
 
 
-    User addUser(User user);
+    User registerUser(User user);
 
     UserDetailsResponse getUserDetails();
+
+    User getById(UUID id);
 }

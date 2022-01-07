@@ -5,7 +5,7 @@
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false"
+    [opened]="false"
   >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
@@ -17,7 +17,7 @@
     <mat-toolbar color="primary" class="toolbar">
       <div class="header-container">
         <div class="logo-container">
-          <button
+          <!-- <button
             type="button"
             aria-label="Toggle sidenav"
             mat-icon-button
@@ -25,44 +25,55 @@
             *ngIf="isHandset$ | async"
           >
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-          </button>
+          </button> -->
           <a routerLink="/home">
             <label class="banner" value="banner">Read4Share</label>
-            <!-- <img class="banner" src="assets/logo.png" /> -->
           </a>
         </div>
-        <div class="login-signup-container">
-          <label class="menu" *ngIf="isLoggedIn && showAdminBoard"
-            >(ADMIN)</label
-          >
-          <label class="menu" *ngIf="isLoggedIn">User: {{ username }}</label>
-          <button
-            *ngIf="!isLoggedIn"
-            class="login"
-            mat-raised-button
-            color="secondary"
-            routerLink="/login"
-          >
-            Login
-          </button>
-          <button
-            *ngIf="!isLoggedIn"
-            class="login"
-            mat-raised-button
-            color="secondary"
-            routerLink="/register"
-          >
-            Register
-          </button>
-          <button
-            *ngIf="isLoggedIn"
-            class="login"
-            mat-raised-button
-            color="secondary"
-            (click)="onLogout()"
-          >
-            Logout
-          </button>
+        <div class="topbar-menu-container">
+          <ng-container *ngIf="!isLoggedIn">
+            <button
+              class="login"
+              mat-raised-button
+              color="secondary"
+              routerLink="/login"
+            >
+              Login
+            </button>
+            <button
+              class="login"
+              mat-raised-button
+              color="secondary"
+              routerLink="/register"
+            >
+              Register
+            </button>
+          </ng-container>
+          <div *ngIf="isLoggedIn" class="icons-container">
+            <!-- <label class="menu" *ngIf="showAdminBoard">(ADMIN)</label> -->
+            <div class="icon-container">
+              <mat-icon class="topbar-icon" aria-label="Post new advertisement"
+                >sell</mat-icon
+              >
+              <label class="icon-text">Publish</label>
+            </div>
+            <div class="icon-container">
+              <!-- TODO: Move logout to tooltip menu -->
+              <mat-icon
+                class="topbar-icon"
+                aria-label="User account"
+                (click)="onLogout()"
+                >account_circle</mat-icon
+              >
+              <label class="icon-text">Account</label>
+            </div>
+            <div class="icon-container" routerLink="/chat">
+              <mat-icon class="topbar-icon account-icon" aria-label="User chats"
+                >chat_bubble</mat-icon
+              >
+              <label class="icon-text">Chat</label>
+            </div>
+          </div>
         </div>
       </div>
     </mat-toolbar>

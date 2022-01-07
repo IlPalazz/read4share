@@ -25,7 +25,7 @@ export class AuthService {
    * @param password Password
    * @returns Authentication response
    */
-  loginUser(username: string, password: string): Observable<any> {
+  login(username: string, password: string): Observable<any> {
     return this.http
       .post<any>(
         API_URL + '/login',
@@ -53,11 +53,7 @@ export class AuthService {
    * @param password Password
    * @returns HTTP request status
    */
-  registerUser(
-    username: string,
-    email: string,
-    password: string
-  ): Observable<any> {
+  register(username: string, email: string, password: string): Observable<any> {
     return this.http.post(
       API_URL + '/register',
       {

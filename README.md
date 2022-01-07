@@ -15,6 +15,8 @@
 | 1.6     | 15/11/2021 | F. Palazzi | Added endpoints list                                      |
 | 1.7     | 26/11/2021 | F. Palazzi | Added test plan                                           |
 | 1.8     | 05/12/2021 | F. Palazzi | Added pipeline setup diagram, research document           |
+| 1.9     | 16/12/2021 | F. Palazzi | Added OWASP Security report                               |
+| 2.0     | 06/01/2022 | F. Palazzi | Added UX Feedback Report, Cultural awareness document     |
 
 ## Intro
 
@@ -67,12 +69,20 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
     <img src="./docs/img/mockups/homepage.png" style="zoom: 67%;" />
 </details>
 
+## UX feedback report
+
+[Click to view](docs/ux_report.md)
+
 ## SonarQube Scan
 
 <details>
     <summary>Click to expand</summary>
     <img src="./docs/img/sonar_scan_1.png" style="zoom: 67%;" />
 </details>
+
+## OWASP Security report
+
+[Click to view](docs/owasp_report.md)
 
 ## External resources
 

@@ -103,3 +103,7 @@ baseline.json
 
 # Application.properties
 **/resources/application.properties
+
+# Docker compose environment variables files
+.env_db
+.env_backend

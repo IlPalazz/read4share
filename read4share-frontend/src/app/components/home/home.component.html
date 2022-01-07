@@ -1,1 +1,33 @@
-<p>home works!</p>
+<div class="carousels-container">
+  <div *ngIf="advsLatest | async as advs" class="carousel">
+    <app-carousel
+      *ngIf="advs.length != 0"
+      [advs]="advs"
+      [title]="'Recently added'"
+    ></app-carousel>
+  </div>
+  <div *ngIf="advsBestRate | async as advs" class="carousel">
+    <app-carousel
+      *ngIf="advs.length != 0"
+      [advs]="advs"
+      [title]="'Best rated'"
+    ></app-carousel>
+  </div>
+  <div *ngIf="advsFreeDel | async as advs" class="carousel">
+    <app-carousel
+      *ngIf="advs.length != 0"
+      class="carousel"
+      [advs]="advs"
+      [title]="'Free delivery'"
+    ></app-carousel>
+  </div>
+  <div *ngIf="advsAsNew | async as advs" class="carousel">
+    <app-carousel
+      *ngIf="advs.length != 0"
+      class="carousel"
+      [advs]="advs"
+      [title]="'As new'"
+    >
+    </app-carousel>
+  </div>
+</div>
