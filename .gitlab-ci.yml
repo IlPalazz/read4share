@@ -22,12 +22,12 @@
   variables:
     RULES_CHANGES_PATH: "read4share-frontend/**/*"
 
-
 stages:
  - setup
  - build
  - test
 # - analyze
+ - deploy
 
 install:
   stage: setup
@@ -122,3 +122,16 @@ frontend-test:
 #  allow_failure: true
 #  only:
 #    - main # analyze only the main branch
+
+docker-deployment:
+  stage: deploy
+  needs: ["backend-test", "frontend-test"]
+  before_script:
+    - cd `pwd`/read4share
+    - ./gradlew build
+    - rm build/libs/*-plain.jar
+    - cd ..
+  script:
+    - echo "Running docker-compose..."
+    - docker-compose build
+
