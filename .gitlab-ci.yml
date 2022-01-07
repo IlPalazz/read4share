@@ -125,7 +125,7 @@ frontend-test:
 
 docker-deployment:
   stage: deploy
-  needs: ["backend-test", "frontend-test"]
+  needs: ["backend-test"]
   before_script:
     - cd `pwd`
     # Inject variables in .env_backend file
