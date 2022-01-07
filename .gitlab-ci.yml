@@ -138,10 +138,10 @@ docker-deployment:
     - echo "$PSQL_PASSWORD" >> .env_db
     - echo "$PSQL_DB" >> .env_db
     # Build backend jar
-    - cd `pwd`/read4share
-    - ./gradlew build
-    - rm build/libs/*-plain.jar
-    - cd ..
+    #- cd `pwd`/read4share
+    #- ./gradlew build
+    #- rm build/libs/*-plain.jar
+    #- cd ..
   script:
     - echo "Running docker-compose..."
     - docker-compose build
