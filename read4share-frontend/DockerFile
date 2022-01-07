@@ -1,7 +1,3 @@
-##FROM nginx:alpine
-##COPY /dist/read4share-frontend /usr/share/nginx/html
-##EXPOSE 80
-
 #### Stage 1: Build the angular application
 FROM node:14.18.2-alpine as build
 

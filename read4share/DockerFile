@@ -5,11 +5,5 @@ RUN  apk update \
   && apk add --update openjdk11 tzdata curl unzip bash \
   && rm -rf /var/cache/apk/*
 
-#### Stage 1: Build the application
-#FROM openjdk:11-jdk-slim as build
-
-#ARG JAR_FILE=target/*.jar
-
-#COPY ${JAR_FILE} app.jar
 COPY build/libs/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
