@@ -84,6 +84,10 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
 
 [Click to view](docs/owasp_report.md)
 
+## Cultural awareness document
+
+[Click to view](docs/cultural_awareness.md)
+
 ## External resources
 
 - [Jira Software](https://strykerstorm.atlassian.net/jira/software/projects/R4S/boards/2/roadmap?shared=&atlOrigin=eyJpIjoiYjQzM2IwMDIxZDFiNDdkYzg5N2ZmNjU4ZTdlZGJjNTciLCJwIjoiaiJ9) - issue tracking product
