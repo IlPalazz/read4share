@@ -25,7 +25,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatStepperModule } from '@angular/material/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 
 /**
  * CUSTOM COMPONENTS
@@ -42,6 +43,8 @@ import { AdvDetailsComponent } from './components/advs/adv-details/adv-details.c
 import { ChatOverviewComponent } from './components/chat/chat-overview/chat-overview.component';
 import { MessageComponent } from './components/chat/message/message.component';
 import { PublishAdvComponent } from './components/advs/publish-adv/publish-adv.component';
+import { BookCarouselComponent } from './components/advs/book-carousel/book-carousel.component';
+import { BookOverviewComponent } from './components/advs/book-overview/book-overview.component';
 
 @NgModule({
   // Only for components
@@ -57,6 +60,8 @@ import { PublishAdvComponent } from './components/advs/publish-adv/publish-adv.c
     ChatOverviewComponent,
     MessageComponent,
     PublishAdvComponent,
+    BookCarouselComponent,
+    BookOverviewComponent,
   ],
   // Only for modules
   imports: [
@@ -79,7 +84,8 @@ import { PublishAdvComponent } from './components/advs/publish-adv/publish-adv.c
     MatRadioModule,
     SwiperModule,
     MatMenuModule,
-    MatStepperModule,
+    MatCheckboxModule,
+    MatSelectModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

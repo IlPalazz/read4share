@@ -103,3 +103,6 @@ baseline.json
 
 # Application.properties
 **/resources/application.properties
+
+.env_backend
+.env_db

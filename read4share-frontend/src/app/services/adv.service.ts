@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AdvOverview } from '../interfaces/AdvOverview';
 import { AdvDetails } from '../interfaces/AdvDetails';
 import { HttpClient } from '@angular/common/http';
+import { SearchBookResult } from '../interfaces/SearchBookResult';
 
 const API_URL = 'http://localhost:8080/api/adv';
 
@@ -20,7 +21,6 @@ export class AdvService {
   constructor(private http: HttpClient) {}
 
   getLatest(size: number): Observable<AdvOverview[]> {
-    //return of(mockAdvOverview);
     return this.http.get<AdvOverview[]>(API_URL + `/latest?size=${size}`);
   }
 
@@ -56,5 +56,66 @@ export class AdvService {
 
   getDetails(advId: number): Observable<AdvDetails> {
     return this.http.get<AdvDetails>(API_URL + `/details/${advId}`);
+  }
+
+  searchBook(title: string, author: string): Observable<SearchBookResult[]> {
+    let response: SearchBookResult[] = [
+      {
+        isbn: '1111111111111',
+        title: 'Atomic Habits 1',
+        author: 'James Clear',
+        publDate: '2018',
+        publisher: 'Avery',
+        language: 'en',
+        coverUrl:
+          'http://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+        avgRating: 4,
+      },
+      {
+        isbn: '1111111111111',
+        title: 'Atomic Habits 2',
+        author: 'James Clear',
+        publDate: '2018',
+        publisher: 'Avery',
+        language: 'en',
+        coverUrl:
+          'http://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+        avgRating: 4,
+      },
+      {
+        isbn: '1111111111111',
+        title: 'Atomic Habits 3',
+        author: 'James Clear',
+        publDate: '2018',
+        publisher: 'Avery',
+        language: 'en',
+        coverUrl:
+          'http://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+        avgRating: 4,
+      },
+      {
+        isbn: '1111111111111',
+        title: 'Atomic Habits 4',
+        author: 'James Clear',
+        publDate: '2018',
+        publisher: 'Avery',
+        language: 'en',
+        coverUrl:
+          'http://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+        avgRating: 4,
+      },
+      {
+        isbn: '1111111111111',
+        title: 'Atomic Habits 5',
+        author: 'James Clear',
+        publDate: '2018',
+        publisher: 'Avery',
+        language: 'en',
+        coverUrl:
+          'http://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+        avgRating: 4,
+      },
+    ];
+    return of(response);
   }
 }
