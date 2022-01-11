@@ -19,5 +19,6 @@ public class SearchBookResponse {
     private String publisher;
     private String language;
     private String coverUrl;
+    private String category;
     private double avgRating;
 }
