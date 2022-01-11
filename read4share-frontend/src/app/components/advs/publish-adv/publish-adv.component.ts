@@ -14,7 +14,7 @@ export class PublishAdvComponent implements OnInit {
   };
   advForm: any = {
     description: '',
-    price: '',
+    price: null,
     shipCost: null,
     condCode: '',
     pen: false,
@@ -22,7 +22,7 @@ export class PublishAdvComponent implements OnInit {
     highl: false,
   };
   selectedBook?: SearchBookResult;
-  bookChosen: boolean = true;
+  bookChosen: boolean = false;
   searchBookResult: SearchBookResult[] = [];
 
   constructor(private advService: AdvService) {}

@@ -102,14 +102,13 @@
       <input
         required
         matInput
-        type="text"
+        type="number"
         placeholder="25.50€"
         name="price"
         #price="ngModel"
-        [ngModel]="advForm.price | currency: 'EUR':'symbol':'2.2'"
-        [ngModelOptions]="{ updateOn: 'blur' }"
-        (ngModelChange)="advForm.price = $event"
+        [ngModel]="advForm.price"
       />
+      <mat-icon matSuffix style="font-size: 24px">euro</mat-icon>
       <mat-error *ngIf="price.errors?.required && price.touched">
         Price is required
       </mat-error>
@@ -119,18 +118,17 @@
       appearance="fill"
       hideRequiredMarker
     >
-      <mat-label>Shipping cost</mat-label>
+      <mat-label>Shipping</mat-label>
       <input
         required
         matInput
-        type="text"
+        type="number"
         placeholder="5.00€"
         name="shipCost"
         #shipCost="ngModel"
-        [ngModel]="advForm.shipCost | currency: 'EUR':'symbol':'2.2'"
-        [ngModelOptions]="{ updateOn: 'blur' }"
-        (ngModelChange)="advForm.shipCost = $event"
+        [ngModel]="advForm.shipCost"
       />
+      <mat-icon matSuffix style="font-size: 24px">euro</mat-icon>
       <mat-error *ngIf="shipCost.errors?.required && shipCost.touched">
         Shipping cost is required
       </mat-error>
@@ -157,10 +155,10 @@
 
     <section
       class="sub-content"
-      style="margin-top: 10px"
+      style="margin-top: 20px"
       *ngIf="advForm.condCode != 'NW'"
     >
-      <h4>Is your book...</h4>
+      <h4>The book is...</h4>
       <p style="margin-top: 10px">
         <mat-checkbox name="pen" [(ngModel)]="advForm.pen"
           >Pen underlined</mat-checkbox
