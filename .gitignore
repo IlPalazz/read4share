@@ -106,3 +106,8 @@ baseline.json
 
 .env_backend
 .env_db
+
+# Cypress examples
+**/cypress/integration/1-getting-started/**
+**/cypress/integration/2-advanced-examples/**
+**/cypress/support/**
