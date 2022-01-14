@@ -1,0 +1,17 @@
+<div>
+  <div
+    class="img-container"
+    [ngClass]="{ selectedItem: selectedIndex == elementIndex }"
+    (click)="onClick()"
+  >
+    <a class="img-link">
+      <img src="{{ coverUrl }}" alt="{{ title }}" class="book-img" />
+    </a>
+  </div>
+  <div class="title-label" title="{{ title }}">
+    {{ title }}
+  </div>
+  <div class="author-label truncate-line">
+    {{ author }}
+  </div>
+</div>

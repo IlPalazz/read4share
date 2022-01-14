@@ -11,6 +11,5 @@ import java.util.Optional;
 @Repository
 public interface BookRepo extends JpaRepository<Book, Long> {
 
-    @EntityGraph(value = "book-category-graph", type = EntityGraph.EntityGraphType.FETCH)
     Optional<Book> findBookByIsbn(String isbn);
 }

@@ -104,9 +104,8 @@ baseline.json
 # Application.properties
 **/resources/application.properties
 
-# Docker compose environment variables files
-.env_db
 .env_backend
+.env_db
 
 # Cypress examples
 **/cypress/integration/1-getting-started/**
