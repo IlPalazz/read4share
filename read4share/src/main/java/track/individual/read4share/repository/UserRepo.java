@@ -1,6 +1,7 @@
 package track.individual.read4share.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import track.individual.read4share.model.User;
 
@@ -17,6 +18,9 @@ public interface UserRepo extends JpaRepository<User, UUID> {
     Optional<User> findById(Long id);
 
     Optional<User> findByUsername(String username);
+
+    @Query("select COUNT(u) from User u")
+    int getTotalNumber();
 
 
 //    // Update records

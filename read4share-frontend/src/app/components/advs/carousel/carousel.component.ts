@@ -25,7 +25,7 @@ export class CarouselComponent implements OnInit {
     spaceBetween: 10,
     // Responsive breakpoints
     breakpoints: {
-      // when window width is >= 320px
+      // when window width is >= 700px
       700: {
         slidesPerView: 2,
         spaceBetween: -40,
@@ -55,10 +55,5 @@ export class CarouselComponent implements OnInit {
 
   onSwiper(swiper: any) {
     this.swiper = swiper;
-  }
-  onSlideChange() {
-    //let element = document.getElementById('container');
-    //console.log('Width: ' + element!.offsetWidth + 'px');
-    //console.log(window.innerWidth);
   }
 }

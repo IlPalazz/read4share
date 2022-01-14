@@ -5,7 +5,6 @@
       id="container"
       [config]="config"
       (swiper)="onSwiper($event)"
-      (slideChange)="onSlideChange()"
       *ngIf="advs"
     >
       <ng-template swiperSlide *ngFor="let adv of advs">

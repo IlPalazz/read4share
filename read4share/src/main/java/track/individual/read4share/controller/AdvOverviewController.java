@@ -3,6 +3,7 @@ package track.individual.read4share.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import track.individual.read4share.dto.request.SearchBookRequest;
 import track.individual.read4share.dto.response.AdvOverviewResponse;
 import track.individual.read4share.service.AdvOverviewService;
 
@@ -79,6 +80,12 @@ public class AdvOverviewController {
                                                                    @RequestParam int page,
                                                                    @RequestParam int size) {
         return ResponseEntity.ok().body(advService.getByCategoryId(catId, page, size));
+    }
+
+    @PostMapping("/books")
+    public ResponseEntity<?> getBookOverview(@RequestBody SearchBookRequest request) {
+        return ResponseEntity.ok().body(advService.getBookOverview(
+                request.getTitle(),request.getAuthor()));
     }
 
 }

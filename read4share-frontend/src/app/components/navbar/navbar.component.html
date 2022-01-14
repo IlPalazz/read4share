@@ -50,19 +50,15 @@
             </button>
           </ng-container>
           <div *ngIf="isLoggedIn" class="icons-container">
-            <!-- <label class="menu" *ngIf="showAdminBoard">(ADMIN)</label> -->
-            <div class="icon-container">
+            <div class="icon-container" routerLink="/publish">
               <mat-icon class="topbar-icon" aria-label="Post new advertisement"
                 >sell</mat-icon
               >
               <label class="icon-text">Publish</label>
             </div>
-            <div class="icon-container">
+            <div class="icon-container" routerLink="/account">
               <!-- TODO: Move logout to tooltip menu -->
-              <mat-icon
-                class="topbar-icon"
-                aria-label="User account"
-                (click)="onLogout()"
+              <mat-icon class="topbar-icon" aria-label="User account"
                 >account_circle</mat-icon
               >
               <label class="icon-text">Account</label>
@@ -72,6 +68,16 @@
                 >chat_bubble</mat-icon
               >
               <label class="icon-text">Chat</label>
+            </div>
+            <div
+              class="icon-container"
+              routerLink="/stats"
+              *ngIf="showAdminBoard"
+            >
+              <mat-icon class="topbar-icon" aria-label="Show global stats"
+                >analytics</mat-icon
+              >
+              <label class="icon-text">Statistics</label>
             </div>
           </div>
         </div>

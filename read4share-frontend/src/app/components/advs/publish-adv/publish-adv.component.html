@@ -1,0 +1,198 @@
+<mat-card class="container" *ngIf="!bookChosen">
+  <div>
+    <label class="form-title">What book do you want to sell?</label>
+    <form (ngSubmit)="onSearch()">
+      <mat-form-field class="form-field" appearance="fill" hideRequiredMarker>
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          [(ngModel)]="bookForm.title"
+          name="title"
+          placeholder="Moby Dick"
+        />
+        <mat-icon matSuffix>book</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="fill" hideRequiredMarker>
+        <mat-label>Author</mat-label>
+        <input
+          matInput
+          [(ngModel)]="bookForm.author"
+          name="author"
+          placeholder="Herman Melville"
+        />
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+      <mat-card-actions style="margin-left: 0">
+        <button class="button" mat-raised-button color="primary">
+          Search
+          <mat-icon>search</mat-icon>
+        </button>
+        <button
+          class="button"
+          mat-raised-button
+          color="primary"
+          (click)="bookChosen = true"
+          [disabled]="selectedBook == null"
+        >
+          Next
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </mat-card-actions>
+    </form>
+    <div class="carousel-container" *ngIf="searchBookResult as books">
+      <app-book-carousel
+        *ngIf="books.length != 0"
+        [books]="books"
+        (onSelectBook)="onSelectBook($event)"
+      ></app-book-carousel>
+    </div>
+
+    <div class="sub-content" *ngIf="selectedBook != null">
+      <mat-divider inset="true" class="divider"></mat-divider>
+      <div class="sub-content-title">Book additional info</div>
+      <div class="sub-content-field"><b>ISBN:</b> {{ selectedBook.isbn }}</div>
+      <div class="sub-content-field">
+        <b>Publication date:</b>
+        {{ selectedBook.publDate | date: "yyyy" }}
+      </div>
+      <div class="sub-content-field">
+        <b>Publisher:</b> {{ selectedBook.publisher }}
+      </div>
+      <div class="sub-content-field">
+        <b>Language:</b> {{ selectedBook.language }}
+      </div>
+    </div>
+  </div>
+</mat-card>
+<mat-card class="container" *ngIf="bookChosen">
+  <form #f="ngForm" (ngSubmit)="f.form.valid && onPublish()" novalidate>
+    <label class="form-title">Fill in the advertisement info</label>
+    <mat-form-field class="form-field" appearance="fill" hideRequiredMarker>
+      <mat-label>Description</mat-label>
+      <textarea
+        required
+        minlength="10"
+        maxlength="500"
+        matInput
+        type="text"
+        name="description"
+        #description="ngModel"
+        placeholder="I want to sell this book for..."
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="8"
+        [(ngModel)]="advForm.description"
+      ></textarea>
+      <mat-error *ngIf="description.errors?.required && description.touched">
+        Description is required
+      </mat-error>
+      <mat-error *ngIf="description.errors?.minlength">
+        Description too short (min 10 characters)
+      </mat-error>
+      <mat-error *ngIf="description.errors?.maxlength">
+        Description too long (max 500 characters)
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field
+      class="form-field-short"
+      appearance="fill"
+      hideRequiredMarker
+    >
+      <mat-label>Price</mat-label>
+      <input
+        required
+        matInput
+        type="number"
+        placeholder="25.50€"
+        name="price"
+        #price="ngModel"
+        [(ngModel)]="advForm.price"
+      />
+      <mat-icon matSuffix style="font-size: 24px">euro</mat-icon>
+      <mat-error *ngIf="price.errors?.required && price.touched">
+        Price is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field
+      class="form-field-short"
+      appearance="fill"
+      hideRequiredMarker
+    >
+      <mat-label>Shipping</mat-label>
+      <input
+        required
+        matInput
+        type="number"
+        placeholder="5.00€"
+        name="shipCost"
+        #shipCost="ngModel"
+        [(ngModel)]="advForm.shipCost"
+      />
+      <mat-icon matSuffix style="font-size: 24px">euro</mat-icon>
+      <mat-error *ngIf="shipCost.errors?.required && shipCost.touched">
+        Shipping cost is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" hideRequiredMarker>
+      <mat-label>Book condition</mat-label>
+      <mat-select
+        required
+        name="condition"
+        [(ngModel)]="advForm.condCode"
+        #condition="ngModel"
+      >
+        <mat-option value="NW"> New </mat-option>
+        <mat-option value="AN"> As new </mat-option>
+        <mat-option value="GD"> Good </mat-option>
+        <mat-option value="FR"> Fair </mat-option>
+        <mat-option value="PR"> Poor </mat-option>
+      </mat-select>
+      <mat-error *ngIf="condition.errors?.required && condition.touched">
+        Book condition is required
+      </mat-error>
+    </mat-form-field>
+
+    <section
+      class="sub-content"
+      style="margin-top: 20px"
+      *ngIf="advForm.condCode != 'NW'"
+    >
+      <h4>The book is...</h4>
+      <p style="margin-top: 10px">
+        <mat-checkbox name="pen" [(ngModel)]="advForm.pen"
+          >Pen underlined</mat-checkbox
+        >
+      </p>
+      <p>
+        <mat-checkbox name="pencil" [(ngModel)]="advForm.pencil"
+          >Pencil underline</mat-checkbox
+        >
+      </p>
+      <p>
+        <mat-checkbox name="highl" [(ngModel)]="advForm.highl"
+          >Highlighted</mat-checkbox
+        >
+      </p>
+    </section>
+    <mat-card-actions style="margin: 20px 0 0 0">
+      <button
+        class="button"
+        mat-raised-button
+        (click)="bookChosen = false; selectedBook = undefined"
+      >
+        <mat-icon>arrow_back</mat-icon>
+        Back
+      </button>
+      <button
+        style="margin-left: 20px"
+        class="button"
+        mat-raised-button
+        color="primary"
+      >
+        Publish
+        <mat-icon>publish</mat-icon>
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>
