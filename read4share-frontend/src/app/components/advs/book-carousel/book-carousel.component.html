@@ -1,0 +1,22 @@
+<mat-card class="container">
+  <div>
+    <swiper
+      id="container"
+      [config]="config"
+      (swiper)="onSwiper($event)"
+      *ngIf="books"
+    >
+      <ng-template swiperSlide *ngFor="let book of books; let index = index">
+        <app-book-overview
+          class="book-overview"
+          [title]="book.title"
+          [author]="book.author"
+          [coverUrl]="book.coverUrl"
+          [elementIndex]="index"
+          [selectedIndex]="selectedIndex"
+          (onSelectBook)="onSelect($event)"
+        ></app-book-overview>
+      </ng-template>
+    </swiper>
+  </div>
+</mat-card>

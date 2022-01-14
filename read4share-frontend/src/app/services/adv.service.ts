@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AdvOverview } from '../interfaces/AdvOverview';
 import { AdvDetails } from '../interfaces/AdvDetails';
 import { HttpClient } from '@angular/common/http';
+import { SearchBookResult } from '../interfaces/SearchBookResult';
+import { shareReplay } from 'rxjs/operators';
+import { PublishAdv } from '../interfaces/PublishAdv';
 
 const API_URL = 'http://localhost:8080/api/adv';
 
@@ -20,7 +23,6 @@ export class AdvService {
   constructor(private http: HttpClient) {}
 
   getLatest(size: number): Observable<AdvOverview[]> {
-    //return of(mockAdvOverview);
     return this.http.get<AdvOverview[]>(API_URL + `/latest?size=${size}`);
   }
 
@@ -56,5 +58,20 @@ export class AdvService {
 
   getDetails(advId: number): Observable<AdvDetails> {
     return this.http.get<AdvDetails>(API_URL + `/details/${advId}`);
+  }
+
+  searchBook(title: string, author: string): Observable<SearchBookResult[]> {
+    return this.http
+      .post<SearchBookResult[]>(API_URL + '/books', {
+        title,
+        author,
+      })
+      .pipe(shareReplay(1));
+  }
+
+  publishAdv(request: PublishAdv): Observable<any> {
+    return this.http
+      .post<any>(API_URL + '/details/publish', request)
+      .pipe(shareReplay(1));
   }
 }

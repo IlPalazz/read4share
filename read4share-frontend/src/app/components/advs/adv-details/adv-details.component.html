@@ -126,33 +126,35 @@
             it is only of interest to a buyer who seeks a reading copy.
           </div>
         </ng-container>
-        <div class="sub-content-field">
-          <b>Pen underlined: </b>
-          <mat-icon
-            *ngIf="adv.condition.pen_underln"
-            class="adv-icon"
-            aria-label="Pen underlined"
-            >check</mat-icon
-          >
-        </div>
-        <div class="sub-content-field">
-          <b>Pencil underlined: </b>
-          <mat-icon
-            *ngIf="adv.condition.penc_underln"
-            class="adv-icon"
-            aria-label="Pencil underlined"
-            >check</mat-icon
-          >
-        </div>
-        <div class="sub-content-field">
-          <b>Highlited: </b>
-          <mat-icon
-            *ngIf="adv.condition.highl_underln"
-            class="adv-icon"
-            aria-label="Highlited"
-            >check</mat-icon
-          >
-        </div>
+        <ng-container *ngIf="adv.condition.code != 'NW'">
+          <div class="sub-content-field">
+            <b>Pen underlined: </b>
+            <mat-icon
+              *ngIf="adv.condition.pen_underln"
+              class="adv-icon"
+              aria-label="Pen underlined"
+              >check</mat-icon
+            >
+          </div>
+          <div class="sub-content-field">
+            <b>Pencil underlined: </b>
+            <mat-icon
+              *ngIf="adv.condition.penc_underln"
+              class="adv-icon"
+              aria-label="Pencil underlined"
+              >check</mat-icon
+            >
+          </div>
+          <div class="sub-content-field">
+            <b>Highlited: </b>
+            <mat-icon
+              *ngIf="adv.condition.highl_underln"
+              class="adv-icon"
+              aria-label="Highlited"
+              >check</mat-icon
+            >
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>

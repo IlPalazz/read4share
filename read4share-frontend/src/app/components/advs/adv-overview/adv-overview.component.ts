@@ -16,12 +16,7 @@ export class AdvOverviewComponent implements OnInit {
   @Input() advPrice!: number;
   @Input() bookCoverUrl!: string;
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {}
-
-  onClick() {
-    console.log('Click');
-    this.router.navigate(['/home/advs', this.advId]);
-  }
 }

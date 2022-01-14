@@ -91,4 +91,13 @@ public class ErrorHandlingController extends ResponseEntityExceptionHandler {
                 .body(new HttpMessageResponse("Unknown error occurred"));
     }
 
+    @ExceptionHandler(GBooksParseException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<HttpMessageResponse> handleGBooksParseException(GBooksParseException exception) {
+        log.error("GBooks Parse Exception: ", exception);
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new HttpMessageResponse("Error while processing your request"));
+    }
+
 }

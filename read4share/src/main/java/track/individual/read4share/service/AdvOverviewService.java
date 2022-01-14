@@ -1,6 +1,8 @@
 package track.individual.read4share.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import track.individual.read4share.dto.response.AdvOverviewResponse;
+import track.individual.read4share.dto.response.SearchBookResponse;
 
 import java.util.List;
 
@@ -46,4 +48,12 @@ public interface AdvOverviewService {
      * @return List of Advertisements Overview
      */
     List<AdvOverviewResponse> getByCategoryId(Long id, int page, int size);
+
+    /**
+     * List of books retrieved from the GBooks API
+     * @param title Book's title
+     * @param author Book's author
+     * @return List of SearchBookResponse
+     */
+    List<SearchBookResponse> getBookOverview(String title, String author);
 }
