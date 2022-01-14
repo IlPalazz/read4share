@@ -97,12 +97,11 @@
       >
         You have to reinsert your password
       </mat-error>
-      <!-- <mat-error *ngIf="f.value.password != f.value.passwordCheck">
-        Passwords do not match
-      </mat-error> -->
     </mat-form-field>
     <mat-card-actions align="end">
-      <button mat-raised-button color="primary">Register</button>
+      <button mat-raised-button color="primary" name="register-btn">
+        Register
+      </button>
     </mat-card-actions>
     <div class="alert" *ngIf="f.submitted && isRegistrationFailed">
       {{ errorMessage }}
