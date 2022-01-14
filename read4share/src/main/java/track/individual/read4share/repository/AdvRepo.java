@@ -81,4 +81,10 @@ public interface AdvRepo extends JpaRepository<Adv, Long> {
     @EntityGraph(value = "graph.AdvUserCityBookCategoryCondition")
     Optional<Adv> findById(Long advId);
 
+    @Query("select count(adv) from Adv adv where adv.saleDate is null  ")
+    int getActiveAdv();
+
+    @Query(value = "select count(*) from adv where EXTRACT(MONTH FROM publ_date) = 1 ", nativeQuery = true)
+    int getLastMonthPublished();
+
 }

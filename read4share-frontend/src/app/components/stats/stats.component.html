@@ -1,0 +1,9 @@
+<mat-card class="container" *ngIf="globalStats | async as stats">
+  <label class="form-title">Global statistics</label>
+
+  <p><b>Currently active advs: </b> {{ stats.activeAdvs }}</p>
+  <p><b>Advs published within last month: </b> {{ stats.lastMonthAdvs }}</p>
+  <p><b>Total user registered: </b> {{ stats.totalUsers }}</p>
+  <p><b>Average published advs per user: </b> {{ stats.userAverageAdv }}</p>
+  <p><b>Total chats currently active: </b> {{ stats.totalChats }}</p>
+</mat-card>

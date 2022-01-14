@@ -56,4 +56,7 @@ public interface ChatRepo extends JpaRepository<Message, Long> {
             "((mess.sender.id=:senderId and mess.recipient.id=:recipientId) or " +
             "(mess.sender.id=:recipientId and mess.recipient.id=:senderId))")
     List<Message> getChat(UUID senderId, UUID recipientId, Long advId);
+
+    @Query("select count(mess) from Message mess where mess.text like 'START_%' ")
+    int getTotalChats();
 }

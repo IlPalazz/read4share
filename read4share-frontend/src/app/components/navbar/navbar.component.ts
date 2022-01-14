@@ -27,8 +27,4 @@ export class NavbarComponent {
   ngOnInit(): void {
     // TODO: Implement incoming messages check
   }
-
-  onLogout(): void {
-    this.logoutClick.emit(); // Emit the event
-  }
 }
