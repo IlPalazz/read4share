@@ -46,6 +46,7 @@ import { PublishAdvComponent } from './components/advs/publish-adv/publish-adv.c
 import { BookCarouselComponent } from './components/advs/book-carousel/book-carousel.component';
 import { BookOverviewComponent } from './components/advs/book-overview/book-overview.component';
 import { StatsComponent } from './components/stats/stats.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 @NgModule({
   // Only for components
@@ -64,6 +65,7 @@ import { StatsComponent } from './components/stats/stats.component';
     BookCarouselComponent,
     BookOverviewComponent,
     StatsComponent,
+    UserDetailsComponent,
   ],
   // Only for modules
   imports: [

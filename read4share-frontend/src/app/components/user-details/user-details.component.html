@@ -1,0 +1,14 @@
+<mat-card class="container">
+  <label class="form-title">User details</label>
+  <p><b>Username: </b> {{ user!.username }}</p>
+  <p><b>Email: </b> {{ user!.email }}</p>
+  <p><b>Roles: </b> {{ user!.roles }}</p>
+  <button
+    style="margin-top: 20px"
+    mat-raised-button
+    color="accent"
+    (click)="onLogout()"
+  >
+    Logout
+  </button>
+</mat-card>
