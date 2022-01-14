@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PublishAdv } from 'src/app/interfaces/PublishAdv';
 import { SearchBookResult } from 'src/app/interfaces/SearchBookResult';
 import { AdvService } from 'src/app/services/adv.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-publish-adv',
@@ -25,7 +28,11 @@ export class PublishAdvComponent implements OnInit {
   bookChosen: boolean = false;
   searchBookResult: SearchBookResult[] = [];
 
-  constructor(private advService: AdvService) {}
+  constructor(
+    private advService: AdvService,
+    private tokenStorageService: TokenStorageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -53,6 +60,37 @@ export class PublishAdvComponent implements OnInit {
   }
 
   onPublish() {
-    console.log(JSON.stringify(this.advForm));
+    const { description, price, shipCost, condCode, pen, pencil, highl } =
+      this.advForm;
+
+    let request: PublishAdv = {
+      bookIsbn: this.selectedBook!.isbn,
+      bookTitle: this.selectedBook!.title,
+      bookAuthor: this.selectedBook!.author,
+      bookPublDate: this.selectedBook!.publDate,
+      bookPublisher: this.selectedBook!.publisher,
+      bookLanguage: this.selectedBook!.language,
+      bookCoverUrl: this.selectedBook!.coverUrl,
+      bookCategory: this.selectedBook!.category,
+      bookAvgRating: this.selectedBook!.avgRating,
+      advDescr: description,
+      advPrice: price,
+      advShipCost: shipCost,
+      sellerId: this.tokenStorageService.getUser()!.id,
+      condCode: condCode,
+      condPen: pen,
+      condPencil: pencil,
+      condHighl: highl,
+    };
+    console.log('Request:');
+    console.log(JSON.stringify(request));
+    this.advService.publishAdv(request).subscribe(
+      () => {
+        this.router.navigate(['/home']);
+      },
+      (err) => {
+        console.log(err.error.message);
+      }
+    );
   }
 }

@@ -2,7 +2,7 @@ export interface PublishAdv {
   bookIsbn: string;
   bookTitle: string;
   bookAuthor: string;
-  bookPublYear: string;
+  bookPublDate: string;
   bookPublisher: string;
   bookLanguage: string;
   bookCoverUrl: string;
@@ -12,4 +12,8 @@ export interface PublishAdv {
   advPrice: number;
   advShipCost: number;
   sellerId: string;
+  condCode: string;
+  condPen: boolean;
+  condPencil: boolean;
+  condHighl: boolean;
 }

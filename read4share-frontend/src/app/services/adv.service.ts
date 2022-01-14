@@ -5,6 +5,7 @@ import { AdvDetails } from '../interfaces/AdvDetails';
 import { HttpClient } from '@angular/common/http';
 import { SearchBookResult } from '../interfaces/SearchBookResult';
 import { shareReplay } from 'rxjs/operators';
+import { PublishAdv } from '../interfaces/PublishAdv';
 
 const API_URL = 'http://localhost:8080/api/adv';
 
@@ -65,6 +66,12 @@ export class AdvService {
         title,
         author,
       })
+      .pipe(shareReplay(1));
+  }
+
+  publishAdv(request: PublishAdv): Observable<any> {
+    return this.http
+      .post<any>(API_URL + '/details/publish', request)
       .pipe(shareReplay(1));
   }
 }

@@ -106,7 +106,7 @@
         placeholder="25.50€"
         name="price"
         #price="ngModel"
-        [ngModel]="advForm.price"
+        [(ngModel)]="advForm.price"
       />
       <mat-icon matSuffix style="font-size: 24px">euro</mat-icon>
       <mat-error *ngIf="price.errors?.required && price.touched">
@@ -126,7 +126,7 @@
         placeholder="5.00€"
         name="shipCost"
         #shipCost="ngModel"
-        [ngModel]="advForm.shipCost"
+        [(ngModel)]="advForm.shipCost"
       />
       <mat-icon matSuffix style="font-size: 24px">euro</mat-icon>
       <mat-error *ngIf="shipCost.errors?.required && shipCost.touched">

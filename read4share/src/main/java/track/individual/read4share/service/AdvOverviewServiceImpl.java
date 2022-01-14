@@ -118,7 +118,6 @@ public class AdvOverviewServiceImpl implements AdvOverviewService {
                 bookResponse.setPublDate(LocalDateTime.now().minusYears(4));
             }
 
-
             // Get author
             ArrayNode authors = (ArrayNode) book.get("authors");
             if (authors == null || authors.isNull())
@@ -163,9 +162,7 @@ public class AdvOverviewServiceImpl implements AdvOverviewService {
                 bookResponse.setAvgRating(3.0);
             else bookResponse.setAvgRating(avgRating.asDouble());
 
-            System.out.println("Response = " + bookResponse);
             results.add(bookResponse);
-
         }
         return results;
     }
