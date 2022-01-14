@@ -30,6 +30,10 @@ export class PublishAdvComponent implements OnInit {
   ngOnInit(): void {}
 
   onSearch() {
+    this.bookChosen = false;
+    this.selectedBook = undefined;
+    this.searchBookResult = [];
+
     const { title, author } = this.bookForm;
 
     if (title != '' || author != '') {

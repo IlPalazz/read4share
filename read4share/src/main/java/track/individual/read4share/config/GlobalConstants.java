@@ -12,4 +12,7 @@ public class GlobalConstants {
      */
     public static int jwtExpirationMs = 3600000;
 
+    public static String gBooksApiUrl = "https://www.googleapis.com/books/v1/volumes?q=intitle:";
+
+    public static String standardCover = "http://localhost:8080/no-cover.png";
 }

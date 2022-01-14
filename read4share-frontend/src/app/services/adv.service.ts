@@ -4,6 +4,7 @@ import { AdvOverview } from '../interfaces/AdvOverview';
 import { AdvDetails } from '../interfaces/AdvDetails';
 import { HttpClient } from '@angular/common/http';
 import { SearchBookResult } from '../interfaces/SearchBookResult';
+import { shareReplay } from 'rxjs/operators';
 
 const API_URL = 'http://localhost:8080/api/adv';
 
@@ -59,68 +60,11 @@ export class AdvService {
   }
 
   searchBook(title: string, author: string): Observable<SearchBookResult[]> {
-    let response: SearchBookResult[] = [
-      {
-        isbn: '1111111111111',
-        title: 'Atomic Habits 1',
-        author: 'James Clear',
-        publDate: '2018',
-        publisher: 'Avery',
-        language: 'en',
-        coverUrl:
-          'http://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
-        avgRating: 4,
-        category: 'Personal growth',
-      },
-      {
-        isbn: '1111111111111',
-        title: 'Atomic Habits 2',
-        author: 'James Clear',
-        publDate: '2018',
-        publisher: 'Avery',
-        language: 'en',
-        coverUrl:
-          'http://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
-        avgRating: 4,
-        category: 'Personal growth',
-      },
-      {
-        isbn: '1111111111111',
-        title: 'Atomic Habits 3',
-        author: 'James Clear',
-        publDate: '2018',
-        publisher: 'Avery',
-        language: 'en',
-        coverUrl:
-          'http://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
-        avgRating: 4,
-        category: 'Personal growth',
-      },
-      {
-        isbn: '1111111111111',
-        title: 'Atomic Habits 4',
-        author: 'James Clear',
-        publDate: '2018',
-        publisher: 'Avery',
-        language: 'en',
-        coverUrl:
-          'http://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
-        avgRating: 4,
-        category: 'Personal growth',
-      },
-      {
-        isbn: '1111111111111',
-        title: 'Atomic Habits 5',
-        author: 'James Clear',
-        publDate: '2018',
-        publisher: 'Avery',
-        language: 'en',
-        coverUrl:
-          'http://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
-        avgRating: 4,
-        category: 'Personal growth',
-      },
-    ];
-    return of(response);
+    return this.http
+      .post<SearchBookResult[]>(API_URL + '/books', {
+        title,
+        author,
+      })
+      .pipe(shareReplay(1));
   }
 }
