@@ -23,10 +23,14 @@ public class StatsController {
 
     @GetMapping("/global")
     public ResponseEntity<GlobalStatsResponse> getStats() {
+        int totalUsers = userRepo.getTotalNumber();
+        int activeAdvs = advRepo.getActiveAdv();
+
         return ResponseEntity.ok().body(GlobalStatsResponse.builder()
-                .activeAdvs(advRepo.getActiveAdv())
+                .activeAdvs(activeAdvs)
                 .lastMonthAdvs(advRepo.getLastMonthPublished())
-                .totalUsers(userRepo.getTotalNumber())
+                .userAverageAdv((double) activeAdvs / totalUsers)
+                .totalUsers(totalUsers)
                 .totalChats(chatRepo.getTotalChats()).build());
     }
 }

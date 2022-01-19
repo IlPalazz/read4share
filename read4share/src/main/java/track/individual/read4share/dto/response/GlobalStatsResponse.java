@@ -13,6 +13,6 @@ public class GlobalStatsResponse {
     private int activeAdvs;
     private int lastMonthAdvs;
     private int totalUsers;
-    private int userAverageAdv;
+    private double userAverageAdv;
     private int totalChats;
 }
