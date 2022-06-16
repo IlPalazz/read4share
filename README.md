@@ -1,6 +1,23 @@
 # Read4Share
 
-[TOC]
+## Table of contents
+  * [Versioning table](#versioning-table)
+  * [Intro](#intro)
+    + [Example of operation](#example-of-operation)
+    + [Build instructions](#build-instructions)
+  * [Backlog](#backlog)
+    + [Types of users](#types-of-users)
+    + [User stories & Acceptance criteria](#user-stories---acceptance-criteria)
+  * [Design document & Applied research](#design-document---applied-research)
+  * [Test plan](#test-plan)
+  * [Endpoints](#endpoints)
+  * [UI Mockups](#ui-mockups)
+  * [UX feedback report](#ux-feedback-report)
+  * [SonarQube Scan](#sonarqube-scan)
+  * [OWASP Security report](#owasp-security-report)
+  * [Cultural awareness document](#cultural-awareness-document)
+  * [External resources](#external-resources)
+  * [Credits](#credits)
 
 ## Versioning table
 
@@ -97,4 +114,4 @@ This platform doesn't aim to handle an eventual payment for the books exchange, 
 
 ## Credits
 
-- Federico Palazzi (*author*)
+- Federico Palazzi (*[fede-palazz](https://github.com/fede-palazz)*)
